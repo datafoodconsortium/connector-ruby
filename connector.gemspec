@@ -9,4 +9,6 @@ Gem::Specification.new do |s|
   s.homepage    =
     "https://github.com/datafoodconsortium/connector-ruby/"
   s.license       = "MIT"
+
+  s.add_runtime_dependency "virtual_assembly-semantizer", "~> 1.0", ">= 1.0.1"
 end
