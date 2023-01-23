@@ -98,7 +98,16 @@ class DataFoodConsortium::Connector::SKOSParser
             name = property.split('#')[1]
         end
 
-        return name.gsub('-', '_').upcase
+        name = name.gsub('-', '_');
+
+        # workaround to fix concepts starting with a number
+        # see https://github.com/datafoodconsortium/connector-ruby/issues/3
+        # see https://github.com/datafoodconsortium/ontology/issues/66
+        if (name.match?("^[0-9]"))
+            name = "_" + name
+        end
+
+        return name.upcase
     end
 
     private 
