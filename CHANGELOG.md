@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 None.
 
+## [1.0.0-alpha.3] - 2023-01-25
+
+### Fixed
+
+- Use instance variable instead of class variable for SKOS parsed elements.
+
 ## [1.0.0-alpha.2] - 2023-01-18
 
 ### Fixed
@@ -28,6 +34,7 @@ None.
 - Initial version of this library.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[1.0.0-alpha.3]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.2...v1.0.0-alpha.3
 [1.0.0-alpha.2]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.1...v1.0.0-alpha.2
 [1.0.0-alpha.1]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha...v1.0.0-alpha.1
 [1.0.0-alpha]: https://github.com/datafoodconsortium/connector-ruby/releases/tag/v1.0.0-alpha

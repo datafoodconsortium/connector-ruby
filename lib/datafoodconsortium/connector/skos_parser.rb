@@ -26,8 +26,10 @@ require 'datafoodconsortium/connector/skos_parser_element'
 class DataFoodConsortium::Connector::SKOSInstance
 
     def addAttribute(name, value)
-        instance_variable_set("@#{name}", value)
-        self.class.send(:attr_reader, name)
+        self.instance_variable_set("@#{name}", value)
+        self.define_singleton_method(name) do
+            return instance_variable_get("@#{name}")
+        end
     end
 
     def hasAttribute(name)
