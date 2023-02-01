@@ -3,12 +3,6 @@ require 'datafoodconsortium/connector'
 
 class ConnectorTest < Minitest::Test
   def test_export
-    connector = DataFoodConsortium::Connector::Connector.instance
-
-    connector.loadMeasures(parse_json_file("measures.json"))
-    connector.loadFacets(parse_json_file("facets.json"))
-    connector.loadProductTypes(parse_json_file("productTypes.json"))
-
     tomato = DataFoodConsortium::Connector::SuppliedProduct.new(
       "Tomato", "Awesome tomato"
     )
@@ -17,6 +11,14 @@ class ConnectorTest < Minitest::Test
 
     exported_tomato = connector.export(tomato)
     assert_equal tomato_json, exported_tomato
+  end
+
+  def connector
+    @connector ||= DataFoodConsortium::Connector::Connector.instance.tap do |c|
+      c.loadMeasures(parse_json_file("measures.json"))
+      c.loadFacets(parse_json_file("facets.json"))
+      c.loadProductTypes(parse_json_file("productTypes.json"))
+    end
   end
 
   def parse_json_file(name)
