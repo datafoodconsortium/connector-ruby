@@ -25,14 +25,26 @@ require 'json/ld'
 
 class DataFoodConsortium::Connector::JsonLdSerializer
 
-    def initialize(context)
+    def initialize(context = nil)
         @context = context
         @hashSerializer = VirtualAssembly::Semantizer::HashSerializer.new
     end
 
-    def process(subject)
-        input = subject.serialize(@hashSerializer)
-        jsonLd = JSON::LD::API.compact(input, @context)
+    def process(subject, *subjects)
+        subjects.insert(0, subject)
+
+        if (subjects.empty?)
+            return ""
+        end
+
+        inputs = []
+        
+        subjects.each do |subject|
+            inputs.push(subject.serialize(@hashSerializer))
+        end
+        
+        jsonLd = JSON::LD::API.compact(inputs, @context)
+
         return JSON.generate(jsonLd)
     end
 

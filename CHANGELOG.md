@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 None.
 
+## [1.0.0-alpha.4] - 2023-02-13
+
+### Changed
+
+- The connector is now able to export multiple objects.
+- The `JsonLdSerializer` context parameter is optional.
+- Use the DFC context `http://static.datafoodconsortium.org/ontologies/context.json`.
+- Update `README.md`.
+
 ## [1.0.0-alpha.3] - 2023-01-25
 
 ### Fixed
@@ -34,6 +43,7 @@ None.
 - Initial version of this library.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[1.0.0-alpha.4]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.3...v1.0.0-alpha.4
 [1.0.0-alpha.3]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.2...v1.0.0-alpha.3
 [1.0.0-alpha.2]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.1...v1.0.0-alpha.2
 [1.0.0-alpha.1]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha...v1.0.0-alpha.1

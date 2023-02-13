@@ -27,24 +27,26 @@ class DataFoodConsortium::Connector::Connector
 
     include Singleton
 
+    attr_accessor :context
+
     attr_reader :FACETS
     attr_reader :MEASURES
     attr_reader :PRODUCT_TYPES
 
-    def export(subject)
-        return @exporter.process(subject);
+    def export(subject, *subjects)
+        return @exporter.process(subject, *subjects)
     end
 
     def loadFacets(data)
-        @FACETS = loadThesaurus(data);
+        @FACETS = loadThesaurus(data)
     end
 
     def loadMeasures(data)
-        @MEASURES = loadThesaurus(data);
+        @MEASURES = loadThesaurus(data)
     end
 
     def loadProductTypes(data)
-        @PRODUCT_TYPES = loadThesaurus(data);
+        @PRODUCT_TYPES = loadThesaurus(data)
     end
 
     private
@@ -52,12 +54,7 @@ class DataFoodConsortium::Connector::Connector
     def initialize()
         super()
 
-        @context = JSON.parse(%({
-            "@context": {
-                "dfc-b": "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#"
-            }
-        }))['@context']
-
+        @context = "http://static.datafoodconsortium.org/ontologies/context.json"
         @exporter = DataFoodConsortium::Connector::JsonLdSerializer.new(@context)
         @parser = DataFoodConsortium::Connector::SKOSParser.new
 

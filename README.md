@@ -45,23 +45,42 @@ To finish you can export the DFC object to JSON-LD with:
 puts connector.export(tomato)
 ```
 
+Note that you can export mutiple objects passing them to the method: `connector.export(object1, object2, ...)`.
+
 This will output DFC compliant valid JSON-LD:
-```
+```JSON
 {
-  "@context": {
-    "dfc-b": "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#"
-  },
+  "@context": "http://static.datafoodconsortium.org/ontologies/context.json",
   "@type": "dfc-b:SuppliedProduct",
   "dfc-b:name": "Tomato",
   "dfc-b:description": "Awesome tomato",
-  "dfc-b:hasClaim": [],
-  "dfc-b:hasAllergenCharacteristic": [],
-  "dfc-b:hasNutrientCharacteristic": [],
-  "dfc-b:hasPhysicalCharacteristic": [],
-  "dfc-b:referencedBy": [],
   "dfc-b:hasCertification": "dfc-f:Demeter",
-  "dfc-b:hasNatureOrigin": [],
-  "dfc-b:hasPartOrigin": [],
   "@id": "https://myplatform.com/tomato"
+}
+```
+
+__Important:__ Please note that the exporter does not dereference the objects. If you want to include them in the output, just pass these objects to the `export` method:
+```
+puts connector.export(catalogItem, tomato)
+```
+
+This will append the added object into the `@graph`:
+```JSON
+{
+  "@context": "http://static.datafoodconsortium.org/ontologies/context.json",
+  "@graph": [
+    {
+      "@type": "dfc-b:CatalogItem",
+      "dfc-b:references": "https://myplatform.com/tomato",
+      "@id": "https://myplatform.com/catalogItem"
+    },
+    {
+      "@type": "dfc-b:SuppliedProduct",
+      "dfc-b:name": "Tomato",
+      "dfc-b:description": "Awesome tomato",
+      "dfc-b:hasCertification": "dfc-f:Demeter",
+      "@id": "https://myplatform.com/tomato"
+    }
+  ]
 }
 ```
