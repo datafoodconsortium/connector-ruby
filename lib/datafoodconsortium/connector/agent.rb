@@ -29,33 +29,42 @@ class DataFoodConsortium::Connector::Agent
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
+	# @return [Contactable]
 	attr_accessor :contacts
+
+	# @return [Localizable]
 	attr_accessor :localizations
 
-	def initialize()
-		super()
+	# @param semanticId [String]
+	# @param contacts [Contactable]
+	# @param localizations [Localizable]
+	def initialize(semanticId, contacts: [], localizations: [])
+		super(semanticId)
+		@contacts = contacts
+		@localizations = localizations
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Agent"
-		
-		self.contacts = []
-		self.localizations = []
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasAddress") { self.localizations }
 	end
 	
 
+	
 	def addContact(contact)
 		self.contacts.push(contact)
 	end
+	
 	
 	def addLocalization(localization)
 		self.localizations.push(localization)
 	end
 	
+	
 	def removeContact(contact)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
 	
+	
 	def removeLocalization(localization)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
 	
 

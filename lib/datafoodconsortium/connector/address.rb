@@ -27,19 +27,30 @@ class DataFoodConsortium::Connector::Address
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
+	# @return [String]
 	attr_accessor :street
+
+	# @return [String]
 	attr_accessor :postalCode
+
+	# @return [String]
 	attr_accessor :city
+
+	# @return [String]
 	attr_accessor :country
 
-	def initialize(street, postalCode, city, country)
-		super()
+	# @param semanticId [String]
+	# @param street [String]
+	# @param postalCode [String]
+	# @param city [String]
+	# @param country [String]
+	def initialize(semanticId, street: "", postalCode: "", city: "", country: "")
+		super(semanticId)
+		@street = street
+		@postalCode = postalCode
+		@city = city
+		@country = country
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Address"
-		self.street = street
-		self.postalCode = postalCode
-		self.city = city
-		self.country = country
-		
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasStreet") { self.street }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasPostalCode") { self.postalCode }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasCity") { self.city }

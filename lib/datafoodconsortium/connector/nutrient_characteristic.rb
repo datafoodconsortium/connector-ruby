@@ -22,21 +22,24 @@
 
 
 
-
 require "datafoodconsortium/connector/characteristic"
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::NutrientCharacteristic < DataFoodConsortium::Connector::Characteristic
 
 	
 
+	# @return [INutrientDimension]
 	attr_accessor :nutrientDimension
 
-	def initialize(quantityUnit, quantityValue, nutrientDimension)
-		super(quantityUnit, quantityValue)
+	# @param nutrientDimension [INutrientDimension]
+	# @param unit [IUnit]
+	# @param value [Real]
+	def initialize(nutrientDimension: nil, unit: nil, value: 0.0)
+		super(unit: unit, value: value)
+		@nutrientDimension = nutrientDimension
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#NutrientCharacteristic"
-		self.nutrientDimension = nutrientDimension
-		
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasNutrientDimension") { self.nutrientDimension }
 	end
 	

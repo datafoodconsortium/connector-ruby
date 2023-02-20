@@ -21,23 +21,28 @@
 # SOFTWARE.
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::QuantitativeValue
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	attr_accessor :quantityUnit
-	attr_accessor :quantityValue
+	# @return [IUnit]
+	attr_accessor :unit
 
-	def initialize(quantityUnit, quantityValue)
+	# @return [Real]
+	attr_accessor :value
+
+	# @param unit [IUnit]
+	# @param value [Real]
+	def initialize(unit: nil, value: 0.0)
 		super()
+		@unit = unit
+		@value = value
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#QuantitativeValue"
-		self.quantityUnit = quantityUnit
-		self.quantityValue = quantityValue
-		
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasUnit") { self.quantityUnit }
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#value") { self.quantityValue }
+		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasUnit") { self.unit }
+		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#value") { self.value }
 	end
 	
 

@@ -29,19 +29,29 @@ class DataFoodConsortium::Connector::SKOSConcept
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
+	# @return [ISKOSConcept]
 	attr_accessor :broaders
+
+	# @return [ISKOSConceptScheme]
 	attr_accessor :schemes
+
+	# @return [ISKOSConcept]
 	attr_accessor :narrowers
+
+	# @return [ISKOSLabel]
 	attr_accessor :prefLabels
 
-	def initialize()
+	# @param broaders [ISKOSConcept]
+	# @param schemes [ISKOSConceptScheme]
+	# @param narrowers [ISKOSConcept]
+	# @param prefLabels [ISKOSLabel]
+	def initialize(broaders: [], schemes: [], narrowers: [], prefLabels: [])
 		super()
+		@broaders = broaders
+		@schemes = schemes
+		@narrowers = narrowers
+		@prefLabels = prefLabels
 		self.semanticType = "http://www.w3.org/2004/02/skos/core#Concept"
-		
-		self.broaders = []
-		self.schemes = []
-		self.narrowers = []
-		self.prefLabels = []
 		registerSemanticProperty("http://www.w3.org/2004/02/skos/core#broader") { self.broaders }
 		registerSemanticProperty("http://www.w3.org/2004/02/skos/core#inScheme") { self.schemes }
 		registerSemanticProperty("http://www.w3.org/2004/02/skos/core#narrower") { self.narrowers }
@@ -49,36 +59,28 @@ class DataFoodConsortium::Connector::SKOSConcept
 	end
 	
 
-	def addBroader(broader)
-		self.broaders.push(broader)
-	end
 	
-	def addScheme(scheme)
-		self.schemes.push(scheme)
-	end
 	
-	def addNarrower(narrower)
-		self.narrowers.push(narrower)
-	end
 	
-	def addPrefLabel(prefLabel)
-		self.prefLabels.push(prefLabel)
-	end
+	
 	
 	def removeBroader(broader)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
+	
 	
 	def removeScheme(scheme)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
+	
 	
 	def removeNarrower(narrower)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
 	
+	
 	def removePrefLabel(prefLabel)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
 	
 

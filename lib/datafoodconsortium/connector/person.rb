@@ -29,28 +29,41 @@ class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Age
 
 	
 
+	# @return [String]
 	attr_accessor :firstName
+
+	# @return [String]
 	attr_accessor :lastName
+
+	# @return [Onboardable]
 	attr_accessor :affiliatedOrganizations
 
-	def initialize(firstName, lastName)
-		super()
+	# @param semanticId [String]
+	# @param firstName [String]
+	# @param lastName [String]
+	# @param affiliatedOrganizations [Onboardable]
+	# @param contacts [Contactable]
+	# @param localizations [Localizable]
+	def initialize(semanticId, firstName: "", lastName: "", affiliatedOrganizations: [], contacts: [], localizations: [])
+		super(semanticId, contacts: contacts, localizations: localizations)
+		@firstName = firstName
+		@lastName = lastName
+		@affiliatedOrganizations = affiliatedOrganizations
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Person"
-		self.firstName = firstName
-		self.lastName = lastName
-		self.affiliatedOrganizations = []
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#firstName") { self.firstName }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#familyName") { self.lastName }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#affiliates") { self.affiliatedOrganizations }
 	end
 	
 
+	
 	def affiliateTo(organization)
 		self.affiliatedOrganizations.push(organization)
 	end
 	
+	
 	def leaveAffiliatedOrganization(organization)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
 	
 

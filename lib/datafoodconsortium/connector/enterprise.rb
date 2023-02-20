@@ -20,12 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
-
 require "datafoodconsortium/connector/supplied_product"
 
+
+
 require "datafoodconsortium/connector/agent"
+
 
 require "virtual_assembly/semantizer"
 
@@ -33,22 +33,42 @@ class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector:
 
 	
 
+	# @return [String]
 	attr_accessor :name
+
+	# @return [String]
 	attr_accessor :description
+
+	# @return [String]
 	attr_accessor :vatNumber
+
+	# @return [ICustomerCategory]
 	attr_accessor :customerCategories
+
+	# @return [SuppliedProduct]
 	attr_accessor :suppliedProducts
+
+	# @return [ICatalogItem]
 	attr_accessor :catalogItems
 
-	def initialize(name)
-		super()
+	# @param semanticId [String]
+	# @param name [String]
+	# @param description [String]
+	# @param vatNumber [String]
+	# @param customerCategories [ICustomerCategory]
+	# @param suppliedProducts [SuppliedProduct]
+	# @param catalogItems [ICatalogItem]
+	# @param contacts [Contactable]
+	# @param localizations [Localizable]
+	def initialize(semanticId, name: "", description: "", vatNumber: "", customerCategories: [], suppliedProducts: [], catalogItems: [], contacts: [], localizations: [])
+		super(semanticId, contacts: contacts, localizations: localizations)
+		@name = name
+		@description = description
+		@vatNumber = vatNumber
+		@customerCategories = customerCategories
+		@suppliedProducts = suppliedProducts
+		@catalogItems = catalogItems
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Enterprise"
-		self.name = name
-		self.description = nil
-		self.vatNumber = nil
-		self.customerCategories = []
-		self.suppliedProducts = []
-		self.catalogItems = []
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasName") { self.name }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasDescription") { self.description }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#VATnumber") { self.vatNumber }
@@ -58,25 +78,6 @@ class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector:
 	end
 	
 
-	def addCustomerCategory(customerCategory)
-		self.customerCategories.push(customerCategory)
-	end
-	
-	def addSupplyProduct(suppliedProduct)
-		self.suppliedProducts.push(suppliedProduct)
-	end
-	
-	def addCatalogItem(catalogItem)
-		self.catalogItems.push(catalogItem)
-	end
-	
-	def addSupplyProduct(suppliedProduct)
-		self.suppliedProducts.push(suppliedProduct)
-	end
-	
-	def addCatalogItem(catalogItem)
-		self.catalogItems.push(catalogItem)
-	end
 	
 	def addCustomerCategory(customerCategory)
 		self.customerCategories.push(customerCategory)

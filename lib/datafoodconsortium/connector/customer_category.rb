@@ -27,16 +27,15 @@ class DataFoodConsortium::Connector::CustomerCategory
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	attr_accessor :name
+	# @return [String]
 	attr_accessor :description
 
-	def initialize(name, description)
-		super()
+	# @param semanticId [String]
+	# @param description [String]
+	def initialize(semanticId, description: "")
+		super(semanticId)
+		@description = description
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#CustomerCategory"
-		self.name = name
-		self.description = description
-		
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#name") { self.name }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#description") { self.description }
 	end
 	

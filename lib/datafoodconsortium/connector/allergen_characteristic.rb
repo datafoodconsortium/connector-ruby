@@ -21,22 +21,25 @@
 # SOFTWARE.
 
 
-
-
 require "datafoodconsortium/connector/characteristic"
+
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::AllergenCharacteristic < DataFoodConsortium::Connector::Characteristic
 
 	
 
+	# @return [IAllergenDimension]
 	attr_accessor :allergenDimension
 
-	def initialize(quantityUnit, quantityValue, allergenDimension)
-		super(quantityUnit, quantityValue)
+	# @param allergenDimension [IAllergenDimension]
+	# @param unit [IUnit]
+	# @param value [Real]
+	def initialize(allergenDimension: nil, unit: nil, value: 0.0)
+		super(unit: unit, value: value)
+		@allergenDimension = allergenDimension
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#AllergenCharacteristic"
-		self.allergenDimension = allergenDimension
-		
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasAllergenDimension") { self.allergenDimension }
 	end
 	

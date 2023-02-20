@@ -29,18 +29,30 @@ class DataFoodConsortium::Connector::CatalogItem
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
+	# @return [IDefinedProduct]
 	attr_accessor :product
+
+	# @return [String]
 	attr_accessor :sku
+
+	# @return [Real]
 	attr_accessor :stockLimitation
+
+	# @return [IOffer]
 	attr_accessor :offers
 
-	def initialize(product)
-		super()
+	# @param semanticId [String]
+	# @param product [IDefinedProduct]
+	# @param sku [String]
+	# @param stockLimitation [Real]
+	# @param offers [IOffer]
+	def initialize(semanticId, product: nil, sku: "", stockLimitation: 0.0, offers: [])
+		super(semanticId)
+		@product = product
+		@sku = sku
+		@stockLimitation = stockLimitation
+		@offers = offers
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#CatalogItem"
-		self.product = product
-		self.sku = nil
-		self.stockLimitation = nil
-		self.offers = []
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#references") { self.product }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#sku") { self.sku }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#stockLimitation") { self.stockLimitation }
@@ -50,13 +62,7 @@ class DataFoodConsortium::Connector::CatalogItem
 
 	
 
-	def addOffer(offer)
-		self.offers.push(offer)
-	end
 	
-	def addOffer(offer)
-		self.offers.push(offer)
-	end
 	
 
 end

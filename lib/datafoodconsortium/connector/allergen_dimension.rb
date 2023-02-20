@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 require "datafoodconsortium/connector/characteristic_dimension"
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::AllergenDimension < DataFoodConsortium::Connector::CharacteristicDimension

@@ -27,14 +27,37 @@ class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Conne
 
 	
 
+	# @return [Real]
+	attr_accessor :totalTheoreticalStock
 
-	def initialize(name, description)
-		super(name, description)
+	# @param semanticId [String]
+	# @param totalTheoreticalStock [Real]
+	# @param name [String]
+	# @param description [String]
+	# @param productType [IProductType]
+	# @param quantity [Quantifiable]
+	# @param alcoholPercentage [Real]
+	# @param lifetime [String]
+	# @param claims [Claimable]
+	# @param usageOrStorageConditions [String]
+	# @param allergenCharacteristics [IAllergenCharacteristic]
+	# @param nutrientCharacteristics [INutrientCharacteristic]
+	# @param physicalCharacteristics [IPhysicalCharacteristic]
+	# @param geographicalOrigin [IGeographicalOrigin]
+	# @param catalogItems [ICatalogItem]
+	# @param certifications [ICertification]
+	# @param natureOrigin [INatureOrigin]
+	# @param partOrigin [IPartOrigin]
+	def initialize(semanticId, totalTheoreticalStock: 0.0, name: "", description: "", productType: nil, quantity: nil, alcoholPercentage: 0.0, lifetime: "", claims: [], usageOrStorageConditions: "", allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [])
+		super(semanticId, name: name, description: description, productType: productType, quantity: quantity, alcoholPercentage: alcoholPercentage, lifetime: lifetime, claims: claims, usageOrStorageConditions: usageOrStorageConditions, allergenCharacteristics: allergenCharacteristics, nutrientCharacteristics: nutrientCharacteristics, physicalCharacteristics: physicalCharacteristics, geographicalOrigin: geographicalOrigin, catalogItems: catalogItems, certifications: certifications, natureOrigin: natureOrigin, partOrigin: partOrigin)
+		@totalTheoreticalStock = totalTheoreticalStock
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#SuppliedProduct"
-		
-		
-		
+		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#totalTheoreticalStock") { self.totalTheoreticalStock }
 	end
+	
+
+	
+
 	
 
 

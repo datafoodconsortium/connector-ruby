@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
 require "datafoodconsortium/connector/characteristic"
+
+
 
 require "virtual_assembly/semantizer"
 
@@ -30,13 +30,16 @@ class DataFoodConsortium::Connector::PhysicalCharacteristic < DataFoodConsortium
 
 	
 
+	# @return [IPhysicalDimension]
 	attr_accessor :physicalDimension
 
-	def initialize(quantityUnit, quantityValue, physicalDimension)
-		super(quantityUnit, quantityValue)
+	# @param physicalDimension [IPhysicalDimension]
+	# @param unit [IUnit]
+	# @param value [Real]
+	def initialize(physicalDimension: nil, unit: nil, value: 0.0)
+		super(unit: unit, value: value)
+		@physicalDimension = physicalDimension
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#PhysicalCharacteristic"
-		self.physicalDimension = physicalDimension
-		
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasPhysicalDimension") { self.physicalDimension }
 	end
 	

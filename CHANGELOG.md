@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 None.
 
+## [1.0.0-alpha.5] - 2023-02-20
+
+### Added
+
+- Add automated tests and GitHub actions.
+- Handle optional parameters (named parameters).
+
+### Changed
+
+- Price is a BlankNode (ontology version 1.7.1).
+- Update README.md.
+
 ## [1.0.0-alpha.4] - 2023-02-13
 
 ### Changed
@@ -43,6 +55,7 @@ None.
 - Initial version of this library.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[1.0.0-alpha.5]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.4...v1.0.0-alpha.5
 [1.0.0-alpha.4]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.3...v1.0.0-alpha.4
 [1.0.0-alpha.3]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.2...v1.0.0-alpha.3
 [1.0.0-alpha.2]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.1...v1.0.0-alpha.2

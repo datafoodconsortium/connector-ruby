@@ -38,42 +38,90 @@ class DataFoodConsortium::Connector::DefinedProduct
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
+	# @return [String]
 	attr_accessor :name
+
+	# @return [String]
 	attr_accessor :description
+
+	# @return [IProductType]
 	attr_accessor :productType
+
+	# @return [Quantifiable]
 	attr_accessor :quantity
+
+	# @return [Real]
 	attr_accessor :alcoholPercentage
+
+	# @return [String]
 	attr_accessor :lifetime
+
+	# @return [Claimable]
 	attr_accessor :claims
+
+	# @return [String]
 	attr_accessor :usageOrStorageConditions
+
+	# @return [IAllergenCharacteristic]
 	attr_accessor :allergenCharacteristics
+
+	# @return [INutrientCharacteristic]
 	attr_accessor :nutrientCharacteristics
+
+	# @return [IPhysicalCharacteristic]
 	attr_accessor :physicalCharacteristics
+
+	# @return [IGeographicalOrigin]
 	attr_accessor :geographicalOrigin
+
+	# @return [ICatalogItem]
 	attr_accessor :catalogItems
+
+	# @return [ICertification]
 	attr_accessor :certifications
+
+	# @return [INatureOrigin]
 	attr_accessor :natureOrigin
+
+	# @return [IPartOrigin]
 	attr_accessor :partOrigin
 
-	def initialize(name, description)
-		super()
+	# @param semanticId [String]
+	# @param name [String]
+	# @param description [String]
+	# @param productType [IProductType]
+	# @param quantity [Quantifiable]
+	# @param alcoholPercentage [Real]
+	# @param lifetime [String]
+	# @param claims [Claimable]
+	# @param usageOrStorageConditions [String]
+	# @param allergenCharacteristics [IAllergenCharacteristic]
+	# @param nutrientCharacteristics [INutrientCharacteristic]
+	# @param physicalCharacteristics [IPhysicalCharacteristic]
+	# @param geographicalOrigin [IGeographicalOrigin]
+	# @param catalogItems [ICatalogItem]
+	# @param certifications [ICertification]
+	# @param natureOrigin [INatureOrigin]
+	# @param partOrigin [IPartOrigin]
+	def initialize(semanticId, name: "", description: "", productType: nil, quantity: nil, alcoholPercentage: 0.0, lifetime: "", claims: [], usageOrStorageConditions: "", allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [])
+		super(semanticId)
+		@name = name
+		@description = description
+		@productType = productType
+		@quantity = quantity
+		@alcoholPercentage = alcoholPercentage
+		@lifetime = lifetime
+		@claims = claims
+		@usageOrStorageConditions = usageOrStorageConditions
+		@allergenCharacteristics = allergenCharacteristics
+		@nutrientCharacteristics = nutrientCharacteristics
+		@physicalCharacteristics = physicalCharacteristics
+		@geographicalOrigin = geographicalOrigin
+		@catalogItems = catalogItems
+		@certifications = certifications
+		@natureOrigin = natureOrigin
+		@partOrigin = partOrigin
 		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#DefinedProduct"
-		self.name = name
-		self.description = description
-		self.productType = nil
-		self.quantity = nil
-		self.alcoholPercentage = nil
-		self.lifetime = nil
-		self.claims = []
-		self.usageOrStorageConditions = nil
-		self.allergenCharacteristics = []
-		self.nutrientCharacteristics = []
-		self.physicalCharacteristics = []
-		self.geographicalOrigin = nil
-		self.catalogItems = []
-		self.certifications = []
-		self.natureOrigin = []
-		self.partOrigin = []
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#name") { self.name }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#description") { self.description }
 		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasType") { self.productType }
@@ -93,64 +141,79 @@ class DataFoodConsortium::Connector::DefinedProduct
 	end
 	
 
+	
 	def addClaim(claim)
 		self.claims.push(claim)
 	end
 	
+	
 	def removeClaim(claim)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
+	
 	
 	def addAllergenCharacteristic(allergenCharacteristic)
 		self.allergenCharacteristics.push(allergenCharacteristic)
 	end
 	
+	
 	def addNutrientCharacteristic(nutrientCharacteristic)
 		self.nutrientCharacteristics.push(nutrientCharacteristic)
 	end
+	
 	
 	def addPhysicalCharacteristic(physicalCharacteristic)
 		self.physicalCharacteristics.push(physicalCharacteristic)
 	end
 	
+	
 	def addNatureOrigin(natureOrigin)
 		self.natureOrigin.push(natureOrigin)
 	end
+	
 	
 	def addPartOrigin(partOrigin)
 		self.partOrigin.push(partOrigin)
 	end
 	
+	
 	def removeAllergenCharacteristic(allergenCharacteristic)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
+	
 	
 	def removeNutrientCharacteristic(nutrientCharacteristic)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
+	
 	
 	def removePhysicalCharacteristic(physicalCharacteristic)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
+	
 	
 	def removeNatureOrigin(natureOrigin)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
 	
+	
 	def removePartOrigin(partOrigin)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
+	
 	
 	def addCatalogItem(catalogItem)
 		self.catalogItems.push(catalogItem)
 	end
 	
+	
 	def addCertification(certification)
 		self.certifications.push(certification)
 	end
 	
+	
 	def removeCertification(certification)
-		raise "Not implemented"
+		raise "Not yet implemented."
 	end
 	
 

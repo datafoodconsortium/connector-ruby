@@ -23,6 +23,7 @@
 
 
 require "datafoodconsortium/connector/quantitative_value"
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Characteristic < DataFoodConsortium::Connector::QuantitativeValue
@@ -30,9 +31,10 @@ class DataFoodConsortium::Connector::Characteristic < DataFoodConsortium::Connec
 	
 
 
-	def initialize(quantityUnit, quantityValue)
-		super(quantityUnit, quantityValue)
-		
+	# @param unit [IUnit]
+	# @param value [Real]
+	def initialize(unit: nil, value: 0.0)
+		super(unit: unit, value: value)
 		
 		
 		

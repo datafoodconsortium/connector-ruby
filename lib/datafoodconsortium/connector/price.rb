@@ -20,15 +20,36 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require "datafoodconsortium/connector/skos_concept"
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PartOrigin < DataFoodConsortium::Connector::SKOSConcept
+class DataFoodConsortium::Connector::Price
 
+	include VirtualAssembly::Semantizer::SemanticObject
+
+	# @return [Real]
+	attr_accessor :value
+
+	# @return [Real]
+	attr_accessor :vatRate
+
+	# @return [IUnit]
+	attr_accessor :unit
+
+	# @param value [Real]
+	# @param vatRate [Real]
+	# @param unit [IUnit]
+	def initialize(value: 0.0, vatRate: 0.0, unit: nil)
+		super()
+		@value = value
+		@vatRate = vatRate
+		@unit = unit
+		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Price"
+		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#value") { self.value }
+		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#VATrate") { self.vatRate }
+		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasUnit") { self.unit }
+	end
 	
-
-
 
 
 end
