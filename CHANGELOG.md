@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 None.
 
+## [1.0.0-alpha.6] - 2023-04-06
+
+### Fixed
+
+- Properties can be prefixed when serialized.
+
 ## [1.0.0-alpha.5] - 2023-02-20
 
 ### Added
@@ -55,6 +61,7 @@ None.
 - Initial version of this library.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[1.0.0-alpha.6]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.5...v1.0.0-alpha.6
 [1.0.0-alpha.5]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.4...v1.0.0-alpha.5
 [1.0.0-alpha.4]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.3...v1.0.0-alpha.4
 [1.0.0-alpha.3]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.2...v1.0.0-alpha.3

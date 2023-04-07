@@ -30,7 +30,7 @@ class EnterpriseTest < Minitest::Test
         localizations: []
     )
     actual = connector.export(e)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:hasName":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#defines":"https://myplatform.com/cc","http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#supplies":"https://myplatform.com/sp","http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#manages":"https://myplatform.com/ci"}'
+    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:hasName":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"https://myplatform.com/cc","dfc-b:supplies":"https://myplatform.com/sp","dfc-b:manages":"https://myplatform.com/ci"}'
     assert_equal expected, actual
   end
 
@@ -56,7 +56,7 @@ class EnterpriseTest < Minitest::Test
         localizations: []
     )
     actual = connector.export(e)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:hasName":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#defines":["https://myplatform.com/cc","https://myplatform.com/cc2"],"http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#supplies":["https://myplatform.com/sp","https://myplatform.com/sp2"],"http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#manages":["https://myplatform.com/ci","https://myplatform.com/ci2"]}'
+    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:hasName":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","dfc-b:defines":["https://myplatform.com/cc","https://myplatform.com/cc2"],"dfc-b:supplies":["https://myplatform.com/sp","https://myplatform.com/sp2"],"dfc-b:manages":["https://myplatform.com/ci","https://myplatform.com/ci2"]}'
     assert_equal expected, actual
   end
 

@@ -22,7 +22,7 @@ class CatalogItemTest < Minitest::Test
         offers: [offer]
     )
     actual = connector.export(ci)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem","http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#references":"https://myplatform.com/sp","dfc-b:sku":"sku","dfc-b:stockLimitation":10,"http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#offeredThrough":"https://myplatform.com/o"}'
+    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem","dfc-b:references":"https://myplatform.com/sp","dfc-b:sku":"sku","dfc-b:stockLimitation":10,"dfc-b:offeredThrough":"https://myplatform.com/o"}'
     assert_equal expected, actual
   end
 

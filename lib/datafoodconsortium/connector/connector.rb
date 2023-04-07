@@ -54,8 +54,21 @@ class DataFoodConsortium::Connector::Connector
     def initialize()
         super()
 
+        # used to prefix properties
+        # so the DFC's context can be used.
+        # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
+        inputContext = {
+            "dfc-b" => "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#",
+            "dfc-p" => "http://static.datafoodconsortium.org/ontologies/DFC_ProductOntology.owl#",
+            "dfc-t" => "http://static.datafoodconsortium.org/ontologies/DFC_TechnicalOntology.owl#",
+            "dfc-m" => "http://static.datafoodconsortium.org/data/measures.rdf#",
+		    "dfc-pt" => "http://static.datafoodconsortium.org/data/productTypes.rdf#",
+		    "dfc-f" => "http://static.datafoodconsortium.org/data/facets.rdf#"
+        }
+
         @context = "http://static.datafoodconsortium.org/ontologies/context.json"
-        @exporter = DataFoodConsortium::Connector::JsonLdSerializer.new(@context)
+
+        @exporter = DataFoodConsortium::Connector::JsonLdSerializer.new(@context, inputContext)
         @parser = DataFoodConsortium::Connector::SKOSParser.new
 
         @FACETS = []

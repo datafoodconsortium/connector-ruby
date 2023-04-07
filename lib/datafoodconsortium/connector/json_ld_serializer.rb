@@ -25,9 +25,9 @@ require 'json/ld'
 
 class DataFoodConsortium::Connector::JsonLdSerializer
 
-    def initialize(context = nil)
-        @context = context
-        @hashSerializer = VirtualAssembly::Semantizer::HashSerializer.new
+    def initialize(outputContext = nil, inputContext = nil)
+        @outputContext = outputContext
+        @hashSerializer = VirtualAssembly::Semantizer::HashSerializer.new(inputContext)
     end
 
     def process(subject, *subjects)
@@ -39,11 +39,16 @@ class DataFoodConsortium::Connector::JsonLdSerializer
 
         inputs = []
         
+        # Insert an input context on each subject so the properties could be prefixed. This way,
+        # the DFC's context can be used.
+        # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
         subjects.each do |subject|
-            inputs.push(subject.serialize(@hashSerializer))
+            input = { "@context" => "http://static.datafoodconsortium.org/ontologies/context.json" }
+            input.merge!(subject.serialize(@hashSerializer))
+            inputs.push(input)
         end
-        
-        jsonLd = JSON::LD::API.compact(inputs, @context)
+
+        jsonLd = JSON::LD::API.compact(inputs, @outputContext)
 
         return JSON.generate(jsonLd)
     end

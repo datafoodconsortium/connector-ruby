@@ -25,7 +25,7 @@ class PersonTest < Minitest::Test
       ]
     )
     actual = connector.export(p)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/p","@type":"dfc-b:Person","dfc-b:hasAddress":"https://myplatform.com/a","dfc-b:firstName":"firstName","dfc-b:familyName":"lastName","http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#affiliates":"https://myplatform.com/e"}'
+    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/p","@type":"dfc-b:Person","dfc-b:hasAddress":"https://myplatform.com/a","dfc-b:firstName":"firstName","dfc-b:familyName":"lastName","dfc-b:affiliates":"https://myplatform.com/e"}'
     assert_equal expected, actual
   end
 
