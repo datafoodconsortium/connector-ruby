@@ -44,10 +44,10 @@ class DataFoodConsortium::Connector::Price
 		@value = value
 		@vatRate = vatRate
 		@unit = unit
-		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Price"
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#value") { self.value }
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#VATrate") { self.vatRate }
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasUnit") { self.unit }
+		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#Price"
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#value") { self.value }
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#VATrate") { self.vatRate }
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#hasUnit") { self.unit }
 	end
 	
 

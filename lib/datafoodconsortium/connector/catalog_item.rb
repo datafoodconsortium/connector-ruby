@@ -52,11 +52,11 @@ class DataFoodConsortium::Connector::CatalogItem
 		@sku = sku
 		@stockLimitation = stockLimitation
 		@offers = offers
-		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#CatalogItem"
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#references") { self.product }
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#sku") { self.sku }
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#stockLimitation") { self.stockLimitation }
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#offeredThrough") { self.offers }
+		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#CatalogItem"
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#references") { self.product }
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#sku") { self.sku }
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#stockLimitation") { self.stockLimitation }
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#offeredThrough") { self.offers }
 	end
 	
 

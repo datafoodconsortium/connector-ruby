@@ -40,9 +40,9 @@ class DataFoodConsortium::Connector::QuantitativeValue
 		super()
 		@unit = unit
 		@value = value
-		self.semanticType = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#QuantitativeValue"
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#hasUnit") { self.unit }
-		registerSemanticProperty("http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#value") { self.value }
+		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#QuantitativeValue"
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#hasUnit") { self.unit }
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#value") { self.value }
 	end
 	
 
