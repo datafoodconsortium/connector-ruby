@@ -39,8 +39,8 @@ class DataFoodConsortium::Connector::PhysicalCharacteristic < DataFoodConsortium
 	def initialize(physicalDimension: nil, unit: nil, value: 0.0)
 		super(unit: unit, value: value)
 		@physicalDimension = physicalDimension
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#PhysicalCharacteristic"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#hasPhysicalDimension") { self.physicalDimension }
+		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#PhysicalCharacteristic"
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasPhysicalDimension") { self.physicalDimension }
 	end
 	
 

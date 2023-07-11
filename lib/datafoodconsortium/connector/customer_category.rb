@@ -35,8 +35,8 @@ class DataFoodConsortium::Connector::CustomerCategory
 	def initialize(semanticId, description: "")
 		super(semanticId)
 		@description = description
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#CustomerCategory"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#description") { self.description }
+		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#CustomerCategory"
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#description") { self.description }
 	end
 	
 

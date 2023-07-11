@@ -58,7 +58,7 @@ class DataFoodConsortium::Connector::Connector
         # so the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
         inputContext = {
-            "dfc-b" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#",
+            "dfc-b" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#",
             #"dfc-p" => "http://static.datafoodconsortium.org/ontologies/DFC_ProductOntology.owl#",
             #"dfc-t" => "http://static.datafoodconsortium.org/ontologies/DFC_TechnicalOntology.owl#",
             "dfc-m" => "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",

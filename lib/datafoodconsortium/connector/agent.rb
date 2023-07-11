@@ -42,8 +42,8 @@ class DataFoodConsortium::Connector::Agent
 		super(semanticId)
 		@contacts = contacts
 		@localizations = localizations
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#Agent"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#hasAddress") { self.localizations }
+		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#Agent"
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasAddress") { self.localizations }
 	end
 	
 

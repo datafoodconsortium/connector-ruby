@@ -39,8 +39,8 @@ class DataFoodConsortium::Connector::AllergenCharacteristic < DataFoodConsortium
 	def initialize(allergenDimension: nil, unit: nil, value: 0.0)
 		super(unit: unit, value: value)
 		@allergenDimension = allergenDimension
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#AllergenCharacteristic"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#hasAllergenDimension") { self.allergenDimension }
+		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#AllergenCharacteristic"
+		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasAllergenDimension") { self.allergenDimension }
 	end
 	
 
