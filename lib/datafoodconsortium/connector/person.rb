@@ -22,6 +22,7 @@
 
 
 
+
 require "datafoodconsortium/connector/agent"
 require "virtual_assembly/semantizer"
 
@@ -35,36 +36,29 @@ class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Age
 	# @return [String]
 	attr_accessor :lastName
 
-	# @return [Onboardable]
+	# @return [IEnterprise]
 	attr_accessor :affiliatedOrganizations
 
 	# @param semanticId [String]
 	# @param firstName [String]
 	# @param lastName [String]
-	# @param affiliatedOrganizations [Onboardable]
-	# @param contacts [Contactable]
-	# @param localizations [Localizable]
-	def initialize(semanticId, firstName: "", lastName: "", affiliatedOrganizations: [], contacts: [], localizations: [])
-		super(semanticId, contacts: contacts, localizations: localizations)
+	# @param affiliatedOrganizations [IEnterprise]
+	# @param localizations [IAddress]
+	# @param phoneNumbers [IPhoneNumber]
+	# @param emails [String]
+	# @param websites [String]
+	# @param socialMedias [ISocialMedia]
+	def initialize(semanticId, firstName: "", lastName: "", affiliatedOrganizations: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [])
+		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias)
 		@firstName = firstName
 		@lastName = lastName
 		@affiliatedOrganizations = affiliatedOrganizations
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#Person"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#firstName") { self.firstName }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#familyName") { self.lastName }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#affiliates") { self.affiliatedOrganizations }
+		self.semanticType = "dfc-b:Person"
+		registerSemanticProperty("dfc-b:firstName") { self.firstName }
+		registerSemanticProperty("dfc-b:familyName") { self.lastName }
+		registerSemanticProperty("dfc-b:affiliates") { self.affiliatedOrganizations }
 	end
 	
 
-	
-	def affiliateTo(organization)
-		self.affiliatedOrganizations.push(organization)
-	end
-	
-	
-	def leaveAffiliatedOrganization(organization)
-		raise "Not yet implemented."
-	end
-	
 
 end

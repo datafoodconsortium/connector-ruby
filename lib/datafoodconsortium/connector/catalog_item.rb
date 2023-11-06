@@ -23,6 +23,7 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::CatalogItem
@@ -41,28 +42,30 @@ class DataFoodConsortium::Connector::CatalogItem
 	# @return [IOffer]
 	attr_accessor :offers
 
+	# @return [ICatalog]
+	attr_accessor :catalogs
+
 	# @param semanticId [String]
 	# @param product [IDefinedProduct]
 	# @param sku [String]
 	# @param stockLimitation [Real]
 	# @param offers [IOffer]
-	def initialize(semanticId, product: nil, sku: "", stockLimitation: 0.0, offers: [])
+	# @param catalogs [ICatalog]
+	def initialize(semanticId, product: nil, sku: "", stockLimitation: 0.0, offers: [], catalogs: [])
 		super(semanticId)
 		@product = product
 		@sku = sku
 		@stockLimitation = stockLimitation
 		@offers = offers
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#CatalogItem"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#references") { self.product }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#sku") { self.sku }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#stockLimitation") { self.stockLimitation }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#offeredThrough") { self.offers }
+		@catalogs = catalogs
+		self.semanticType = "dfc-b:CatalogItem"
+		registerSemanticProperty("dfc-b:references") { self.product }
+		registerSemanticProperty("dfc-b:sku") { self.sku }
+		registerSemanticProperty("dfc-b:stockLimitation") { self.stockLimitation }
+		registerSemanticProperty("dfc-b:offeredThrough") { self.offers }
+		registerSemanticProperty("dfc-b:listedIn") { self.catalogs }
 	end
 	
 
-	
-
-	
-	
 
 end

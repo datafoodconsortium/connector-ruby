@@ -23,6 +23,7 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Offer
@@ -52,14 +53,13 @@ class DataFoodConsortium::Connector::Offer
 		@stockLimitation = stockLimitation
 		@offeredItem = offeredItem
 		@offeredTo = offeredTo
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#Offer"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#price") { self.price }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#stockLimitation") { self.stockLimitation }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#offeredItem") { self.offeredItem }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#offeredTo") { self.offeredTo }
+		self.semanticType = "dfc-b:Offer"
+		registerSemanticProperty("dfc-b:hasPrice") { self.price }
+		registerSemanticProperty("dfc-b:stockLimitation") { self.stockLimitation }
+		registerSemanticProperty("dfc-b:offeredItem") { self.offeredItem }
+		registerSemanticProperty("dfc-b:offeredTo") { self.offeredTo }
 	end
 	
 
-	
 
 end

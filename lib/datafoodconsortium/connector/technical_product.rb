@@ -20,29 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
+
 require "datafoodconsortium/connector/defined_product"
-
-
-
-
-
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Connector::DefinedProduct
+class DataFoodConsortium::Connector::TechnicalProduct < DataFoodConsortium::Connector::DefinedProduct
 
 	
 
-	# @return [Real]
-	attr_accessor :totalTheoreticalStock
-
-	
-
-	
 
 	# @param semanticId [String]
-	# @param totalTheoreticalStock [Real]
 	# @param name [String]
 	# @param description [String]
 	# @param productType [ISKOSConcept]
@@ -59,11 +47,11 @@ class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Conne
 	# @param certifications [ISKOSConcept]
 	# @param natureOrigin [ISKOSConcept]
 	# @param partOrigin [ISKOSConcept]
-	def initialize(semanticId, totalTheoreticalStock: 0.0, name: "", description: "", productType: nil, quantity: nil, alcoholPercentage: 0.0, lifetime: "", claims: [], usageOrStorageConditions: "", allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [])
+	def initialize(semanticId, name: "", description: "", productType: nil, quantity: nil, alcoholPercentage: 0.0, lifetime: "", claims: [], usageOrStorageConditions: "", allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [])
 		super(semanticId, name: name, description: description, productType: productType, quantity: quantity, alcoholPercentage: alcoholPercentage, lifetime: lifetime, claims: claims, usageOrStorageConditions: usageOrStorageConditions, allergenCharacteristics: allergenCharacteristics, nutrientCharacteristics: nutrientCharacteristics, physicalCharacteristics: physicalCharacteristics, geographicalOrigin: geographicalOrigin, catalogItems: catalogItems, certifications: certifications, natureOrigin: natureOrigin, partOrigin: partOrigin)
-		@totalTheoreticalStock = totalTheoreticalStock
-		self.semanticType = "dfc-b:SuppliedProduct"
-		registerSemanticProperty("dfc-b:totalTheoreticalStock") { self.totalTheoreticalStock }
+		
+		self.semanticType = "dfc-b:TechnicalProduct"
+		
 	end
 	
 

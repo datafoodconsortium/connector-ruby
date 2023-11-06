@@ -21,34 +21,28 @@
 # SOFTWARE.
 
 
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Price
+class DataFoodConsortium::Connector::PhoneNumber
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	# @return [Real]
-	attr_accessor :value
+	# @return [Integer]
+	attr_accessor :countryCode
 
-	# @return [Real]
-	attr_accessor :vatRate
+	# @return [String]
+	attr_accessor :phoneNumber
 
-	# @return [ISKOSConcept]
-	attr_accessor :unit
-
-	# @param value [Real]
-	# @param vatRate [Real]
-	# @param unit [ISKOSConcept]
-	def initialize(value: 0.0, vatRate: 0.0, unit: nil)
-		super()
-		@value = value
-		@vatRate = vatRate
-		@unit = unit
-		self.semanticType = "dfc-b:Price"
-		registerSemanticProperty("dfc-b:value") { self.value }
-		registerSemanticProperty("dfc-b:VATrate") { self.vatRate }
-		registerSemanticProperty("dfc-b:hasUnit") { self.unit }
+	# @param semanticId [String]
+	# @param countryCode [Integer]
+	# @param phoneNumber [String]
+	def initialize(semanticId, countryCode: 0, phoneNumber: "")
+		super(semanticId)
+		@countryCode = countryCode
+		@phoneNumber = phoneNumber
+		self.semanticType = "dfc-b:PhoneNumber"
+		registerSemanticProperty("dfc-b:countryCode") { self.countryCode }
+		registerSemanticProperty("dfc-b:phoneNumber") { self.phoneNumber }
 	end
 	
 

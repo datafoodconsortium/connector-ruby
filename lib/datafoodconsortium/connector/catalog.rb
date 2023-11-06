@@ -22,33 +22,30 @@
 
 
 
+
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Price
+class DataFoodConsortium::Connector::Catalog
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	# @return [Real]
-	attr_accessor :value
+	# @return [ICatalogItem]
+	attr_accessor :items
 
-	# @return [Real]
-	attr_accessor :vatRate
+	# @return [IEnterprise]
+	attr_accessor :maintainers
 
-	# @return [ISKOSConcept]
-	attr_accessor :unit
-
-	# @param value [Real]
-	# @param vatRate [Real]
-	# @param unit [ISKOSConcept]
-	def initialize(value: 0.0, vatRate: 0.0, unit: nil)
-		super()
-		@value = value
-		@vatRate = vatRate
-		@unit = unit
-		self.semanticType = "dfc-b:Price"
-		registerSemanticProperty("dfc-b:value") { self.value }
-		registerSemanticProperty("dfc-b:VATrate") { self.vatRate }
-		registerSemanticProperty("dfc-b:hasUnit") { self.unit }
+	# @param semanticId [String]
+	# @param items [ICatalogItem]
+	# @param maintainers [IEnterprise]
+	def initialize(semanticId, items: [], maintainers: [])
+		super(semanticId)
+		@items = items
+		@maintainers = maintainers
+		self.semanticType = "dfc-b:Catalog"
+		registerSemanticProperty("dfc-b:lists") { self.items }
+		registerSemanticProperty("dfc-b:maintainedBy") { self.maintainers }
 	end
 	
 

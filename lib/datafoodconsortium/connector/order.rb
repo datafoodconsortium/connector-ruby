@@ -21,13 +21,51 @@
 # SOFTWARE.
 
 
+
+
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Order
 
+	include VirtualAssembly::Semantizer::SemanticObject
+
+	# @return [String]
+	attr_accessor :number
+
+	# @return [String]
+	attr_accessor :date
+
+	# @return [ISaleSession]
+	attr_accessor :saleSession
+
+	# @return [IOrderLine]
+	attr_accessor :lines
+
+	# @return [IAgent]
+	attr_accessor :client
+
+	# @param semanticId [String]
+	# @param number [String]
+	# @param date [String]
+	# @param saleSession [ISaleSession]
+	# @param lines [IOrderLine]
+	# @param client [IAgent]
+	def initialize(semanticId, number: "", date: "", saleSession: nil, lines: [], client: nil)
+		super(semanticId)
+		@number = number
+		@date = date
+		@saleSession = saleSession
+		@lines = lines
+		@client = client
+		self.semanticType = "dfc-b:Order"
+		registerSemanticProperty("dfc-b:orderNumber") { self.number }
+		registerSemanticProperty("dfc-b:date") { self.date }
+		registerSemanticProperty("dfc-b:belongsTo") { self.saleSession }
+		registerSemanticProperty("dfc-b:hasPart") { self.lines }
+		registerSemanticProperty("dfc-b:orderedBy") { self.client }
+	end
 	
-
-
 
 
 end

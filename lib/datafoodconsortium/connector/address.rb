@@ -50,11 +50,11 @@ class DataFoodConsortium::Connector::Address
 		@postalCode = postalCode
 		@city = city
 		@country = country
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#Address"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasStreet") { self.street }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasPostalCode") { self.postalCode }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasCity") { self.city }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasCountry") { self.country }
+		self.semanticType = "dfc-b:Address"
+		registerSemanticProperty("dfc-b:hasStreet") { self.street }
+		registerSemanticProperty("dfc-b:hasPostalCode") { self.postalCode }
+		registerSemanticProperty("dfc-b:hasCity") { self.city }
+		registerSemanticProperty("dfc-b:hasCountry") { self.country }
 	end
 	
 

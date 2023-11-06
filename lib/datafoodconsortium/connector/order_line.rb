@@ -21,13 +21,51 @@
 # SOFTWARE.
 
 
+
+
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::OrderLine
 
+	include VirtualAssembly::Semantizer::SemanticObject
+
+	# @return [String]
+	attr_accessor :description
+
+	# @return [Real]
+	attr_accessor :quantity
+
+	# @return [IPrice]
+	attr_accessor :price
+
+	# @return [IOffer]
+	attr_accessor :offer
+
+	# @return [IOrder]
+	attr_accessor :order
+
+	# @param semanticId [String]
+	# @param description [String]
+	# @param quantity [Real]
+	# @param price [IPrice]
+	# @param offer [IOffer]
+	# @param order [IOrder]
+	def initialize(semanticId, description: "", quantity: 0.0, price: nil, offer: nil, order: nil)
+		super(semanticId)
+		@description = description
+		@quantity = quantity
+		@price = price
+		@offer = offer
+		@order = order
+		self.semanticType = "dfc-b:OrderLine"
+		registerSemanticProperty("dfc-b:description") { self.description }
+		registerSemanticProperty("dfc-b:quantity") { self.quantity }
+		registerSemanticProperty("dfc-b:hasPrice") { self.price }
+		registerSemanticProperty("dfc-b:concerns") { self.offer }
+		registerSemanticProperty("dfc-b:partOf") { self.order }
+	end
 	
-
-
 
 
 end

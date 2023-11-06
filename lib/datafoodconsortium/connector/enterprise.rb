@@ -20,11 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require "datafoodconsortium/connector/supplied_product"
-
-
 
 require "datafoodconsortium/connector/agent"
+
+
+
+
+
+
+
 
 
 require "virtual_assembly/semantizer"
@@ -45,43 +49,59 @@ class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector:
 	# @return [ICustomerCategory]
 	attr_accessor :customerCategories
 
-	# @return [SuppliedProduct]
-	attr_accessor :suppliedProducts
+	# @return [ICatalog]
+	attr_accessor :catalogs
 
 	# @return [ICatalogItem]
 	attr_accessor :catalogItems
+
+	# @return [ISuppliedProduct]
+	attr_accessor :suppliedProducts
+
+	# @return [ITechnicalProduct]
+	attr_accessor :technicalProducts
+
+	# @return [IPerson]
+	attr_accessor :mainContact
 
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
 	# @param vatNumber [String]
 	# @param customerCategories [ICustomerCategory]
-	# @param suppliedProducts [SuppliedProduct]
+	# @param catalogs [ICatalog]
 	# @param catalogItems [ICatalogItem]
-	# @param contacts [Contactable]
-	# @param localizations [Localizable]
-	def initialize(semanticId, name: "", description: "", vatNumber: "", customerCategories: [], suppliedProducts: [], catalogItems: [], contacts: [], localizations: [])
-		super(semanticId, contacts: contacts, localizations: localizations)
+	# @param suppliedProducts [ISuppliedProduct]
+	# @param technicalProducts [ITechnicalProduct]
+	# @param mainContact [IPerson]
+	# @param localizations [IAddress]
+	# @param phoneNumbers [IPhoneNumber]
+	# @param emails [String]
+	# @param websites [String]
+	# @param socialMedias [ISocialMedia]
+	def initialize(semanticId, name: "", description: "", vatNumber: "", customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [])
+		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias)
 		@name = name
 		@description = description
 		@vatNumber = vatNumber
 		@customerCategories = customerCategories
-		@suppliedProducts = suppliedProducts
+		@catalogs = catalogs
 		@catalogItems = catalogItems
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#Enterprise"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasName") { self.name }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasDescription") { self.description }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#VATnumber") { self.vatNumber }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#defines") { self.customerCategories }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#supplies") { self.suppliedProducts }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#manages") { self.catalogItems }
+		@suppliedProducts = suppliedProducts
+		@technicalProducts = technicalProducts
+		@mainContact = mainContact
+		self.semanticType = "dfc-b:Enterprise"
+		registerSemanticProperty("dfc-b:name") { self.name }
+		registerSemanticProperty("dfc-b:hasDescription") { self.description }
+		registerSemanticProperty("dfc-b:VATnumber") { self.vatNumber }
+		registerSemanticProperty("dfc-b:defines") { self.customerCategories }
+		registerSemanticProperty("dfc-b:maintains") { self.catalogs }
+		registerSemanticProperty("dfc-b:manages") { self.catalogItems }
+		registerSemanticProperty("dfc-b:supplies") { self.suppliedProducts }
+		registerSemanticProperty("dfc-b:proposes") { self.technicalProducts }
+		registerSemanticProperty("dfc-b:hasMainContact") { self.mainContact }
 	end
 	
 
-	
-	def addCustomerCategory(customerCategory)
-		self.customerCategories.push(customerCategory)
-	end
-	
 
 end

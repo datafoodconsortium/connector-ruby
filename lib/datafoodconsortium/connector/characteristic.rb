@@ -21,7 +21,6 @@
 # SOFTWARE.
 
 
-
 require "datafoodconsortium/connector/quantitative_value"
 
 require "virtual_assembly/semantizer"
@@ -31,7 +30,7 @@ class DataFoodConsortium::Connector::Characteristic < DataFoodConsortium::Connec
 	
 
 
-	# @param unit [IUnit]
+	# @param unit [ISKOSConcept]
 	# @param value [Real]
 	def initialize(unit: nil, value: 0.0)
 		super(unit: unit, value: value)

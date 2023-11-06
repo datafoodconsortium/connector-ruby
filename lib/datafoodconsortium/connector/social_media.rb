@@ -21,35 +21,33 @@
 # SOFTWARE.
 
 
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Price
+class DataFoodConsortium::Connector::SocialMedia
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	# @return [Real]
-	attr_accessor :value
+	# @return [String]
+	attr_accessor :name
 
-	# @return [Real]
-	attr_accessor :vatRate
+	# @return [String]
+	attr_accessor :url
 
-	# @return [ISKOSConcept]
-	attr_accessor :unit
-
-	# @param value [Real]
-	# @param vatRate [Real]
-	# @param unit [ISKOSConcept]
-	def initialize(value: 0.0, vatRate: 0.0, unit: nil)
-		super()
-		@value = value
-		@vatRate = vatRate
-		@unit = unit
-		self.semanticType = "dfc-b:Price"
-		registerSemanticProperty("dfc-b:value") { self.value }
-		registerSemanticProperty("dfc-b:VATrate") { self.vatRate }
-		registerSemanticProperty("dfc-b:hasUnit") { self.unit }
+	# @param semanticId [String]
+	# @param name [String]
+	# @param url [String]
+	def initialize(semanticId, name: "", url: "")
+		super(semanticId)
+		@name = name
+		@url = url
+		self.semanticType = "dfc-b:SocialMedia"
+		registerSemanticProperty("dfc-b:name") { self.name }
+		registerSemanticProperty("dfc-b:URL") { self.url }
 	end
+	
+
+	
+
 	
 
 

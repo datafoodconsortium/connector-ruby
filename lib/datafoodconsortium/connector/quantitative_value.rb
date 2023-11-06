@@ -28,21 +28,21 @@ class DataFoodConsortium::Connector::QuantitativeValue
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	# @return [IUnit]
+	# @return [ISKOSConcept]
 	attr_accessor :unit
 
 	# @return [Real]
 	attr_accessor :value
 
-	# @param unit [IUnit]
+	# @param unit [ISKOSConcept]
 	# @param value [Real]
 	def initialize(unit: nil, value: 0.0)
 		super()
 		@unit = unit
 		@value = value
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#QuantitativeValue"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasUnit") { self.unit }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#value") { self.value }
+		self.semanticType = "dfc-b:QuantitativeValue"
+		registerSemanticProperty("dfc-b:hasUnit") { self.unit }
+		registerSemanticProperty("dfc-b:value") { self.value }
 	end
 	
 

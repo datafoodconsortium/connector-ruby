@@ -24,31 +24,38 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Price
+class DataFoodConsortium::Connector::SaleSession
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	# @return [Real]
-	attr_accessor :value
+	# @return [String]
+	attr_accessor :beginDate
+
+	# @return [String]
+	attr_accessor :endDate
 
 	# @return [Real]
-	attr_accessor :vatRate
+	attr_accessor :quantity
 
-	# @return [ISKOSConcept]
-	attr_accessor :unit
+	# @return [IOffer]
+	attr_accessor :offers
 
-	# @param value [Real]
-	# @param vatRate [Real]
-	# @param unit [ISKOSConcept]
-	def initialize(value: 0.0, vatRate: 0.0, unit: nil)
-		super()
-		@value = value
-		@vatRate = vatRate
-		@unit = unit
-		self.semanticType = "dfc-b:Price"
-		registerSemanticProperty("dfc-b:value") { self.value }
-		registerSemanticProperty("dfc-b:VATrate") { self.vatRate }
-		registerSemanticProperty("dfc-b:hasUnit") { self.unit }
+	# @param semanticId [String]
+	# @param beginDate [String]
+	# @param endDate [String]
+	# @param quantity [Real]
+	# @param offers [IOffer]
+	def initialize(semanticId, beginDate: "", endDate: "", quantity: 0.0, offers: [])
+		super(semanticId)
+		@beginDate = beginDate
+		@endDate = endDate
+		@quantity = quantity
+		@offers = offers
+		self.semanticType = "dfc-b:SaleSession"
+		registerSemanticProperty("dfc-b:beginDate") { self.beginDate }
+		registerSemanticProperty("dfc-b:endDate") { self.endDate }
+		registerSemanticProperty("dfc-b:quantity") { self.quantity }
+		registerSemanticProperty("dfc-b:lists") { self.offers }
 	end
 	
 

@@ -20,27 +20,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
+
 require "datafoodconsortium/connector/characteristic"
-
-
-
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::PhysicalCharacteristic < DataFoodConsortium::Connector::Characteristic
 
 	
 
-	# @return [IPhysicalDimension]
+	# @return [ISKOSConcept]
 	attr_accessor :physicalDimension
 
-	# @param physicalDimension [IPhysicalDimension]
-	# @param unit [IUnit]
+	# @param physicalDimension [ISKOSConcept]
+	# @param unit [ISKOSConcept]
 	# @param value [Real]
 	def initialize(physicalDimension: nil, unit: nil, value: 0.0)
 		super(unit: unit, value: value)
 		@physicalDimension = physicalDimension
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#PhysicalCharacteristic"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasPhysicalDimension") { self.physicalDimension }
+		self.semanticType = "dfc-b:PhysicalCharacteristic"
+		registerSemanticProperty("dfc-b:hasPhysicalDimension") { self.physicalDimension }
 	end
 	
 

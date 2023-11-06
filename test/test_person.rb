@@ -19,7 +19,6 @@ class PersonTest < Minitest::Test
       affiliatedOrganizations: [
         DataFoodConsortium::Connector::Enterprise.new("https://myplatform.com/e")
       ], 
-      contacts: [], 
       localizations: [
         DataFoodConsortium::Connector::Address.new("https://myplatform.com/a")
       ]

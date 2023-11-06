@@ -22,50 +22,48 @@
 
 
 
-
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Agent
 
 	include VirtualAssembly::Semantizer::SemanticObject
 
-	# @return [Contactable]
-	attr_accessor :contacts
-
-	# @return [Localizable]
+	# @return [IAddress]
 	attr_accessor :localizations
 
+	# @return [IPhoneNumber]
+	attr_accessor :phoneNumbers
+
+	# @return [String]
+	attr_accessor :emails
+
+	# @return [String]
+	attr_accessor :websites
+
+	# @return [ISocialMedia]
+	attr_accessor :socialMedias
+
 	# @param semanticId [String]
-	# @param contacts [Contactable]
-	# @param localizations [Localizable]
-	def initialize(semanticId, contacts: [], localizations: [])
+	# @param localizations [IAddress]
+	# @param phoneNumbers [IPhoneNumber]
+	# @param emails [String]
+	# @param websites [String]
+	# @param socialMedias [ISocialMedia]
+	def initialize(semanticId, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [])
 		super(semanticId)
-		@contacts = contacts
 		@localizations = localizations
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#Agent"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasAddress") { self.localizations }
+		@phoneNumbers = phoneNumbers
+		@emails = emails
+		@websites = websites
+		@socialMedias = socialMedias
+		self.semanticType = "dfc-b:Agent"
+		registerSemanticProperty("dfc-b:hasAddress") { self.localizations }
+		registerSemanticProperty("dfc-b:hasPhoneNumber") { self.phoneNumbers }
+		registerSemanticProperty("dfc-b:email") { self.emails }
+		registerSemanticProperty("dfc-b:websitePage") { self.websites }
+		registerSemanticProperty("dfc-b:hasSocialMedia") { self.socialMedias }
 	end
 	
 
-	
-	def addContact(contact)
-		self.contacts.push(contact)
-	end
-	
-	
-	def addLocalization(localization)
-		self.localizations.push(localization)
-	end
-	
-	
-	def removeContact(contact)
-		raise "Not yet implemented."
-	end
-	
-	
-	def removeLocalization(localization)
-		raise "Not yet implemented."
-	end
-	
 
 end

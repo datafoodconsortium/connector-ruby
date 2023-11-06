@@ -20,9 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
 require "datafoodconsortium/connector/characteristic"
+
 
 require "virtual_assembly/semantizer"
 
@@ -30,17 +29,17 @@ class DataFoodConsortium::Connector::NutrientCharacteristic < DataFoodConsortium
 
 	
 
-	# @return [INutrientDimension]
+	# @return [ISKOSConcept]
 	attr_accessor :nutrientDimension
 
-	# @param nutrientDimension [INutrientDimension]
-	# @param unit [IUnit]
+	# @param nutrientDimension [ISKOSConcept]
+	# @param unit [ISKOSConcept]
 	# @param value [Real]
 	def initialize(nutrientDimension: nil, unit: nil, value: 0.0)
 		super(unit: unit, value: value)
 		@nutrientDimension = nutrientDimension
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#NutrientCharacteristic"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasNutrientDimension") { self.nutrientDimension }
+		self.semanticType = "dfc-b:NutrientCharacteristic"
+		registerSemanticProperty("dfc-b:hasNutrientDimension") { self.nutrientDimension }
 	end
 	
 

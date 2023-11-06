@@ -23,24 +23,23 @@
 
 require "datafoodconsortium/connector/characteristic"
 
-
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::AllergenCharacteristic < DataFoodConsortium::Connector::Characteristic
 
 	
 
-	# @return [IAllergenDimension]
+	# @return [ISKOSConcept]
 	attr_accessor :allergenDimension
 
-	# @param allergenDimension [IAllergenDimension]
-	# @param unit [IUnit]
+	# @param allergenDimension [ISKOSConcept]
+	# @param unit [ISKOSConcept]
 	# @param value [Real]
 	def initialize(allergenDimension: nil, unit: nil, value: 0.0)
 		super(unit: unit, value: value)
 		@allergenDimension = allergenDimension
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#AllergenCharacteristic"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasAllergenDimension") { self.allergenDimension }
+		self.semanticType = "dfc-b:AllergenCharacteristic"
+		registerSemanticProperty("dfc-b:hasAllergenDimension") { self.allergenDimension }
 	end
 	
 

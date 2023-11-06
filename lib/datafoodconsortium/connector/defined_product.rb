@@ -27,11 +27,6 @@
 
 
 
-
-
-
-
-
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::DefinedProduct
@@ -44,10 +39,10 @@ class DataFoodConsortium::Connector::DefinedProduct
 	# @return [String]
 	attr_accessor :description
 
-	# @return [IProductType]
+	# @return [ISKOSConcept]
 	attr_accessor :productType
 
-	# @return [Quantifiable]
+	# @return [IQuantity]
 	attr_accessor :quantity
 
 	# @return [Real]
@@ -56,7 +51,7 @@ class DataFoodConsortium::Connector::DefinedProduct
 	# @return [String]
 	attr_accessor :lifetime
 
-	# @return [Claimable]
+	# @return [ISKOSConcept]
 	attr_accessor :claims
 
 	# @return [String]
@@ -71,38 +66,38 @@ class DataFoodConsortium::Connector::DefinedProduct
 	# @return [IPhysicalCharacteristic]
 	attr_accessor :physicalCharacteristics
 
-	# @return [IGeographicalOrigin]
+	# @return [ISKOSConcept]
 	attr_accessor :geographicalOrigin
 
 	# @return [ICatalogItem]
 	attr_accessor :catalogItems
 
-	# @return [ICertification]
+	# @return [ISKOSConcept]
 	attr_accessor :certifications
 
-	# @return [INatureOrigin]
+	# @return [ISKOSConcept]
 	attr_accessor :natureOrigin
 
-	# @return [IPartOrigin]
+	# @return [ISKOSConcept]
 	attr_accessor :partOrigin
 
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
-	# @param productType [IProductType]
-	# @param quantity [Quantifiable]
+	# @param productType [ISKOSConcept]
+	# @param quantity [IQuantity]
 	# @param alcoholPercentage [Real]
 	# @param lifetime [String]
-	# @param claims [Claimable]
+	# @param claims [ISKOSConcept]
 	# @param usageOrStorageConditions [String]
 	# @param allergenCharacteristics [IAllergenCharacteristic]
 	# @param nutrientCharacteristics [INutrientCharacteristic]
 	# @param physicalCharacteristics [IPhysicalCharacteristic]
-	# @param geographicalOrigin [IGeographicalOrigin]
+	# @param geographicalOrigin [ISKOSConcept]
 	# @param catalogItems [ICatalogItem]
-	# @param certifications [ICertification]
-	# @param natureOrigin [INatureOrigin]
-	# @param partOrigin [IPartOrigin]
+	# @param certifications [ISKOSConcept]
+	# @param natureOrigin [ISKOSConcept]
+	# @param partOrigin [ISKOSConcept]
 	def initialize(semanticId, name: "", description: "", productType: nil, quantity: nil, alcoholPercentage: 0.0, lifetime: "", claims: [], usageOrStorageConditions: "", allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [])
 		super(semanticId)
 		@name = name
@@ -121,100 +116,25 @@ class DataFoodConsortium::Connector::DefinedProduct
 		@certifications = certifications
 		@natureOrigin = natureOrigin
 		@partOrigin = partOrigin
-		self.semanticType = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#DefinedProduct"
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#name") { self.name }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#description") { self.description }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasType") { self.productType }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasQuantity") { self.quantity }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#alcoholPercentage") { self.alcoholPercentage }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#lifetime") { self.lifetime }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasClaim") { self.claims }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#usageOrStorageCondition") { self.usageOrStorageConditions }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasAllergenCharacteristic") { self.allergenCharacteristics }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasNutrientCharacteristic") { self.nutrientCharacteristics }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasPhysicalCharacteristic") { self.physicalCharacteristics }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasGeographicalOrigin") { self.geographicalOrigin }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#referencedBy") { self.catalogItems }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasCertification") { self.certifications }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasNatureOrigin") { self.natureOrigin }
-		registerSemanticProperty("https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#hasPartOrigin") { self.partOrigin }
+		self.semanticType = "dfc-b:DefinedProduct"
+		registerSemanticProperty("dfc-b:name") { self.name }
+		registerSemanticProperty("dfc-b:description") { self.description }
+		registerSemanticProperty("dfc-b:hasType") { self.productType }
+		registerSemanticProperty("dfc-b:hasQuantity") { self.quantity }
+		registerSemanticProperty("dfc-b:alcoholPercentage") { self.alcoholPercentage }
+		registerSemanticProperty("dfc-b:lifetime") { self.lifetime }
+		registerSemanticProperty("dfc-b:hasClaim") { self.claims }
+		registerSemanticProperty("dfc-b:usageOrStorageCondition") { self.usageOrStorageConditions }
+		registerSemanticProperty("dfc-b:hasAllergenCharacteristic") { self.allergenCharacteristics }
+		registerSemanticProperty("dfc-b:hasNutrientCharacteristic") { self.nutrientCharacteristics }
+		registerSemanticProperty("dfc-b:hasPhysicalCharacteristic") { self.physicalCharacteristics }
+		registerSemanticProperty("dfc-b:hasGeographicalOrigin") { self.geographicalOrigin }
+		registerSemanticProperty("dfc-b:referencedBy") { self.catalogItems }
+		registerSemanticProperty("dfc-b:hasCertification") { self.certifications }
+		registerSemanticProperty("dfc-b:hasNatureOrigin") { self.natureOrigin }
+		registerSemanticProperty("dfc-b:hasPartOrigin") { self.partOrigin }
 	end
 	
 
-	
-	def addClaim(claim)
-		self.claims.push(claim)
-	end
-	
-	
-	def removeClaim(claim)
-		raise "Not yet implemented."
-	end
-	
-	
-	def addAllergenCharacteristic(allergenCharacteristic)
-		self.allergenCharacteristics.push(allergenCharacteristic)
-	end
-	
-	
-	def addNutrientCharacteristic(nutrientCharacteristic)
-		self.nutrientCharacteristics.push(nutrientCharacteristic)
-	end
-	
-	
-	def addPhysicalCharacteristic(physicalCharacteristic)
-		self.physicalCharacteristics.push(physicalCharacteristic)
-	end
-	
-	
-	def addNatureOrigin(natureOrigin)
-		self.natureOrigin.push(natureOrigin)
-	end
-	
-	
-	def addPartOrigin(partOrigin)
-		self.partOrigin.push(partOrigin)
-	end
-	
-	
-	def removeAllergenCharacteristic(allergenCharacteristic)
-		raise "Not yet implemented."
-	end
-	
-	
-	def removeNutrientCharacteristic(nutrientCharacteristic)
-		raise "Not yet implemented."
-	end
-	
-	
-	def removePhysicalCharacteristic(physicalCharacteristic)
-		raise "Not yet implemented."
-	end
-	
-	
-	def removeNatureOrigin(natureOrigin)
-		raise "Not yet implemented."
-	end
-	
-	
-	def removePartOrigin(partOrigin)
-		raise "Not yet implemented."
-	end
-	
-	
-	def addCatalogItem(catalogItem)
-		self.catalogItems.push(catalogItem)
-	end
-	
-	
-	def addCertification(certification)
-		self.certifications.push(certification)
-	end
-	
-	
-	def removeCertification(certification)
-		raise "Not yet implemented."
-	end
-	
 
 end
