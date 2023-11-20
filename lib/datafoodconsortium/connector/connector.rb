@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 require 'singleton'
+require 'datafoodconsortium/connector/context'
 require 'datafoodconsortium/connector/json_ld_serializer'
 
 class DataFoodConsortium::Connector::Connector
@@ -77,7 +78,9 @@ class DataFoodConsortium::Connector::Connector
     end
     
     def loadThesaurus(data)
-        return @parser.parse(data[0]["@graph"])
+        # The root element may be an array or the ontology.
+        data = data[0] if data.is_a?(Array)
+        @parser.parse(data["@graph"])
     end
     
 end
