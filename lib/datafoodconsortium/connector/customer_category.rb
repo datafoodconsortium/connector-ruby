@@ -24,8 +24,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::CustomerCategory
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze
 
 	# @return [String]
 	attr_accessor :description
@@ -36,7 +37,7 @@ class DataFoodConsortium::Connector::CustomerCategory
 		super(semanticId)
 		@description = description
 		self.semanticType = "dfc-b:CustomerCategory"
-		registerSemanticProperty("dfc-b:description") { self.description }
+		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
 	end
 	
 

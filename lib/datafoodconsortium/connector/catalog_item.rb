@@ -27,8 +27,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::CatalogItem
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:CatalogItem".freeze
 
 	# @return [IDefinedProduct]
 	attr_accessor :product
@@ -59,11 +60,11 @@ class DataFoodConsortium::Connector::CatalogItem
 		@offers = offers
 		@catalogs = catalogs
 		self.semanticType = "dfc-b:CatalogItem"
-		registerSemanticProperty("dfc-b:references") { self.product }
-		registerSemanticProperty("dfc-b:sku") { self.sku }
-		registerSemanticProperty("dfc-b:stockLimitation") { self.stockLimitation }
-		registerSemanticProperty("dfc-b:offeredThrough") { self.offers }
-		registerSemanticProperty("dfc-b:listedIn") { self.catalogs }
+		registerSemanticProperty("dfc-b:references", &method("product")).valueSetter = method("product=")
+		registerSemanticProperty("dfc-b:sku", &method("sku")).valueSetter = method("sku=")
+		registerSemanticProperty("dfc-b:stockLimitation", &method("stockLimitation")).valueSetter = method("stockLimitation=")
+		registerSemanticProperty("dfc-b:offeredThrough", &method("offers")).valueSetter = method("offers=")
+		registerSemanticProperty("dfc-b:listedIn", &method("catalogs")).valueSetter = method("catalogs=")
 	end
 	
 

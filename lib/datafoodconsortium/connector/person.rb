@@ -20,15 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
 require "datafoodconsortium/connector/agent"
+
+
 
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Agent
 
-	
+    SEMANTIC_TYPE = "dfc-b:Person".freeze
 
 	# @return [String]
 	attr_accessor :firstName
@@ -54,9 +54,9 @@ class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Age
 		@lastName = lastName
 		@affiliatedOrganizations = affiliatedOrganizations
 		self.semanticType = "dfc-b:Person"
-		registerSemanticProperty("dfc-b:firstName") { self.firstName }
-		registerSemanticProperty("dfc-b:familyName") { self.lastName }
-		registerSemanticProperty("dfc-b:affiliates") { self.affiliatedOrganizations }
+		registerSemanticProperty("dfc-b:firstName", &method("firstName")).valueSetter = method("firstName=")
+		registerSemanticProperty("dfc-b:familyName", &method("lastName")).valueSetter = method("lastName=")
+		registerSemanticProperty("dfc-b:affiliates", &method("affiliatedOrganizations")).valueSetter = method("affiliatedOrganizations=")
 	end
 	
 

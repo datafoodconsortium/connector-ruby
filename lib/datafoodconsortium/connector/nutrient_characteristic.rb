@@ -20,14 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
 require "datafoodconsortium/connector/characteristic"
+
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::NutrientCharacteristic < DataFoodConsortium::Connector::Characteristic
 
-	
+    SEMANTIC_TYPE = "dfc-b:NutrientCharacteristic".freeze
 
 	# @return [ISKOSConcept]
 	attr_accessor :nutrientDimension
@@ -39,7 +39,7 @@ class DataFoodConsortium::Connector::NutrientCharacteristic < DataFoodConsortium
 		super(unit: unit, value: value)
 		@nutrientDimension = nutrientDimension
 		self.semanticType = "dfc-b:NutrientCharacteristic"
-		registerSemanticProperty("dfc-b:hasNutrientDimension") { self.nutrientDimension }
+		registerSemanticProperty("dfc-b:hasNutrientDimension", &method("nutrientDimension")).valueSetter = method("nutrientDimension=")
 	end
 	
 

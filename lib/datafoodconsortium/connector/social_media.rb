@@ -24,8 +24,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::SocialMedia
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:SocialMedia".freeze
 
 	# @return [String]
 	attr_accessor :name
@@ -41,8 +42,8 @@ class DataFoodConsortium::Connector::SocialMedia
 		@name = name
 		@url = url
 		self.semanticType = "dfc-b:SocialMedia"
-		registerSemanticProperty("dfc-b:name") { self.name }
-		registerSemanticProperty("dfc-b:URL") { self.url }
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:URL", &method("url")).valueSetter = method("url=")
 	end
 	
 

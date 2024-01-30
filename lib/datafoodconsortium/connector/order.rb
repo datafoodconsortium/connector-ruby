@@ -27,8 +27,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Order
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:Order".freeze
 
 	# @return [String]
 	attr_accessor :number
@@ -59,11 +60,11 @@ class DataFoodConsortium::Connector::Order
 		@lines = lines
 		@client = client
 		self.semanticType = "dfc-b:Order"
-		registerSemanticProperty("dfc-b:orderNumber") { self.number }
-		registerSemanticProperty("dfc-b:date") { self.date }
-		registerSemanticProperty("dfc-b:belongsTo") { self.saleSession }
-		registerSemanticProperty("dfc-b:hasPart") { self.lines }
-		registerSemanticProperty("dfc-b:orderedBy") { self.client }
+		registerSemanticProperty("dfc-b:orderNumber", &method("number")).valueSetter = method("number=")
+		registerSemanticProperty("dfc-b:date", &method("date")).valueSetter = method("date=")
+		registerSemanticProperty("dfc-b:belongsTo", &method("saleSession")).valueSetter = method("saleSession=")
+		registerSemanticProperty("dfc-b:hasPart", &method("lines")).valueSetter = method("lines=")
+		registerSemanticProperty("dfc-b:orderedBy", &method("client")).valueSetter = method("client=")
 	end
 	
 

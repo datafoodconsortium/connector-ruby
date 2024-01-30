@@ -25,8 +25,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::QuantitativeValue
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:QuantitativeValue".freeze
 
 	# @return [ISKOSConcept]
 	attr_accessor :unit
@@ -41,8 +42,8 @@ class DataFoodConsortium::Connector::QuantitativeValue
 		@unit = unit
 		@value = value
 		self.semanticType = "dfc-b:QuantitativeValue"
-		registerSemanticProperty("dfc-b:hasUnit") { self.unit }
-		registerSemanticProperty("dfc-b:value") { self.value }
+		registerSemanticProperty("dfc-b:hasUnit", &method("unit")).valueSetter = method("unit=")
+		registerSemanticProperty("dfc-b:value", &method("value")).valueSetter = method("value=")
 	end
 	
 

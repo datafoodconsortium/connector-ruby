@@ -24,10 +24,12 @@
 
 
 require "virtual_assembly/semantizer"
-
+require 'datafoodconsortium/connector/skos_helper'
 class DataFoodConsortium::Connector::SKOSConcept
+    include VirtualAssembly::Semantizer::SemanticObject
+    include DataFoodConsortium::Connector::SKOSHelper
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "skos:Concept".freeze
 
 	# @return [ISKOSConcept]
 	attr_accessor :broaders
@@ -51,12 +53,13 @@ class DataFoodConsortium::Connector::SKOSConcept
 		@broaders = broaders
 		@schemes = schemes
 		@narrowers = narrowers
-		@prefLabels = prefLabels
+		# Sort locale alphabetically
+		@prefLabels = prefLabels.sort.to_h
 		self.semanticType = "skos:Concept"
-		registerSemanticProperty("skos:broader") { self.broaders }
-		registerSemanticProperty("skos:inScheme") { self.schemes }
-		registerSemanticProperty("skos:narrower") { self.narrowers }
-		registerSemanticProperty("skos:prefLabel") { self.prefLabels }
+		registerSemanticProperty("skos:broader", &method("broaders")).valueSetter = method("broaders=")
+		registerSemanticProperty("skos:inScheme", &method("schemes")).valueSetter = method("schemes=")
+		registerSemanticProperty("skos:narrower", &method("narrowers")).valueSetter = method("narrowers=")
+		registerSemanticProperty("skos:prefLabel", &method("prefLabels")).valueSetter = method("prefLabels=")
 	end
 	
 

@@ -25,8 +25,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::SaleSession
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:SaleSession".freeze
 
 	# @return [String]
 	attr_accessor :beginDate
@@ -52,10 +53,10 @@ class DataFoodConsortium::Connector::SaleSession
 		@quantity = quantity
 		@offers = offers
 		self.semanticType = "dfc-b:SaleSession"
-		registerSemanticProperty("dfc-b:beginDate") { self.beginDate }
-		registerSemanticProperty("dfc-b:endDate") { self.endDate }
-		registerSemanticProperty("dfc-b:quantity") { self.quantity }
-		registerSemanticProperty("dfc-b:lists") { self.offers }
+		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
+		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
+		registerSemanticProperty("dfc-b:quantity", &method("quantity")).valueSetter = method("quantity=")
+		registerSemanticProperty("dfc-b:lists", &method("offers")).valueSetter = method("offers=")
 	end
 	
 

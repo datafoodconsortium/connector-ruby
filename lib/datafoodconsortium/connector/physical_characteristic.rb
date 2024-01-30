@@ -20,14 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
 require "datafoodconsortium/connector/characteristic"
+
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::PhysicalCharacteristic < DataFoodConsortium::Connector::Characteristic
 
-	
+    SEMANTIC_TYPE = "dfc-b:PhysicalCharacteristic".freeze
 
 	# @return [ISKOSConcept]
 	attr_accessor :physicalDimension
@@ -39,7 +39,7 @@ class DataFoodConsortium::Connector::PhysicalCharacteristic < DataFoodConsortium
 		super(unit: unit, value: value)
 		@physicalDimension = physicalDimension
 		self.semanticType = "dfc-b:PhysicalCharacteristic"
-		registerSemanticProperty("dfc-b:hasPhysicalDimension") { self.physicalDimension }
+		registerSemanticProperty("dfc-b:hasPhysicalDimension", &method("physicalDimension")).valueSetter = method("physicalDimension=")
 	end
 	
 

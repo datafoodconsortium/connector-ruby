@@ -25,8 +25,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Price
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:Price".freeze
 
 	# @return [Real]
 	attr_accessor :value
@@ -46,9 +47,9 @@ class DataFoodConsortium::Connector::Price
 		@vatRate = vatRate
 		@unit = unit
 		self.semanticType = "dfc-b:Price"
-		registerSemanticProperty("dfc-b:value") { self.value }
-		registerSemanticProperty("dfc-b:VATrate") { self.vatRate }
-		registerSemanticProperty("dfc-b:hasUnit") { self.unit }
+		registerSemanticProperty("dfc-b:value", &method("value")).valueSetter = method("value=")
+		registerSemanticProperty("dfc-b:VATrate", &method("vatRate")).valueSetter = method("vatRate=")
+		registerSemanticProperty("dfc-b:hasUnit", &method("unit")).valueSetter = method("unit=")
 	end
 	
 

@@ -25,8 +25,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Agent
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:Agent".freeze
 
 	# @return [IAddress]
 	attr_accessor :localizations
@@ -57,11 +58,11 @@ class DataFoodConsortium::Connector::Agent
 		@websites = websites
 		@socialMedias = socialMedias
 		self.semanticType = "dfc-b:Agent"
-		registerSemanticProperty("dfc-b:hasAddress") { self.localizations }
-		registerSemanticProperty("dfc-b:hasPhoneNumber") { self.phoneNumbers }
-		registerSemanticProperty("dfc-b:email") { self.emails }
-		registerSemanticProperty("dfc-b:websitePage") { self.websites }
-		registerSemanticProperty("dfc-b:hasSocialMedia") { self.socialMedias }
+		registerSemanticProperty("dfc-b:hasAddress", &method("localizations")).valueSetter = method("localizations=")
+		registerSemanticProperty("dfc-b:hasPhoneNumber", &method("phoneNumbers")).valueSetter = method("phoneNumbers=")
+		registerSemanticProperty("dfc-b:email", &method("emails")).valueSetter = method("emails=")
+		registerSemanticProperty("dfc-b:websitePage", &method("websites")).valueSetter = method("websites=")
+		registerSemanticProperty("dfc-b:hasSocialMedia", &method("socialMedias")).valueSetter = method("socialMedias=")
 	end
 	
 

@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
-
-
-
-
 require "datafoodconsortium/connector/agent"
+
+
+
+
+
+
 
 
 
@@ -35,7 +35,7 @@ require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector::Agent
 
-	
+    SEMANTIC_TYPE = "dfc-b:Enterprise".freeze
 
 	# @return [String]
 	attr_accessor :name
@@ -91,15 +91,15 @@ class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector:
 		@technicalProducts = technicalProducts
 		@mainContact = mainContact
 		self.semanticType = "dfc-b:Enterprise"
-		registerSemanticProperty("dfc-b:name") { self.name }
-		registerSemanticProperty("dfc-b:hasDescription") { self.description }
-		registerSemanticProperty("dfc-b:VATnumber") { self.vatNumber }
-		registerSemanticProperty("dfc-b:defines") { self.customerCategories }
-		registerSemanticProperty("dfc-b:maintains") { self.catalogs }
-		registerSemanticProperty("dfc-b:manages") { self.catalogItems }
-		registerSemanticProperty("dfc-b:supplies") { self.suppliedProducts }
-		registerSemanticProperty("dfc-b:proposes") { self.technicalProducts }
-		registerSemanticProperty("dfc-b:hasMainContact") { self.mainContact }
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:hasDescription", &method("description")).valueSetter = method("description=")
+		registerSemanticProperty("dfc-b:VATnumber", &method("vatNumber")).valueSetter = method("vatNumber=")
+		registerSemanticProperty("dfc-b:defines", &method("customerCategories")).valueSetter = method("customerCategories=")
+		registerSemanticProperty("dfc-b:maintains", &method("catalogs")).valueSetter = method("catalogs=")
+		registerSemanticProperty("dfc-b:manages", &method("catalogItems")).valueSetter = method("catalogItems=")
+		registerSemanticProperty("dfc-b:supplies", &method("suppliedProducts")).valueSetter = method("suppliedProducts=")
+		registerSemanticProperty("dfc-b:proposes", &method("technicalProducts")).valueSetter = method("technicalProducts=")
+		registerSemanticProperty("dfc-b:hasMainContact", &method("mainContact")).valueSetter = method("mainContact=")
 	end
 	
 

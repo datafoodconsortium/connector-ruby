@@ -24,8 +24,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Address
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:Address".freeze
 
 	# @return [String]
 	attr_accessor :street
@@ -51,10 +52,10 @@ class DataFoodConsortium::Connector::Address
 		@city = city
 		@country = country
 		self.semanticType = "dfc-b:Address"
-		registerSemanticProperty("dfc-b:hasStreet") { self.street }
-		registerSemanticProperty("dfc-b:hasPostalCode") { self.postalCode }
-		registerSemanticProperty("dfc-b:hasCity") { self.city }
-		registerSemanticProperty("dfc-b:hasCountry") { self.country }
+		registerSemanticProperty("dfc-b:hasStreet", &method("street")).valueSetter = method("street=")
+		registerSemanticProperty("dfc-b:hasPostalCode", &method("postalCode")).valueSetter = method("postalCode=")
+		registerSemanticProperty("dfc-b:hasCity", &method("city")).valueSetter = method("city=")
+		registerSemanticProperty("dfc-b:hasCountry", &method("country")).valueSetter = method("country=")
 	end
 	
 

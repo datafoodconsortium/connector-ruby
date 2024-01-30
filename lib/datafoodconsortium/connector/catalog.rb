@@ -27,8 +27,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Catalog
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:Catalog".freeze
 
 	# @return [ICatalogItem]
 	attr_accessor :items
@@ -44,8 +45,8 @@ class DataFoodConsortium::Connector::Catalog
 		@items = items
 		@maintainers = maintainers
 		self.semanticType = "dfc-b:Catalog"
-		registerSemanticProperty("dfc-b:lists") { self.items }
-		registerSemanticProperty("dfc-b:maintainedBy") { self.maintainers }
+		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
+		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
 	end
 	
 

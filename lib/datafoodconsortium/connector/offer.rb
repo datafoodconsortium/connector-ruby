@@ -27,8 +27,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Offer
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:Offer".freeze
 
 	# @return [IPrice]
 	attr_accessor :price
@@ -54,10 +55,10 @@ class DataFoodConsortium::Connector::Offer
 		@offeredItem = offeredItem
 		@offeredTo = offeredTo
 		self.semanticType = "dfc-b:Offer"
-		registerSemanticProperty("dfc-b:hasPrice") { self.price }
-		registerSemanticProperty("dfc-b:stockLimitation") { self.stockLimitation }
-		registerSemanticProperty("dfc-b:offeredItem") { self.offeredItem }
-		registerSemanticProperty("dfc-b:offeredTo") { self.offeredTo }
+		registerSemanticProperty("dfc-b:hasPrice", &method("price")).valueSetter = method("price=")
+		registerSemanticProperty("dfc-b:stockLimitation", &method("stockLimitation")).valueSetter = method("stockLimitation=")
+		registerSemanticProperty("dfc-b:offeredItem", &method("offeredItem")).valueSetter = method("offeredItem=")
+		registerSemanticProperty("dfc-b:offeredTo", &method("offeredTo")).valueSetter = method("offeredTo=")
 	end
 	
 

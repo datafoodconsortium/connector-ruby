@@ -20,14 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
+
 require "datafoodconsortium/connector/quantitative_value"
-
-
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Characteristic < DataFoodConsortium::Connector::QuantitativeValue
-
-	
 
 
 	# @param unit [ISKOSConcept]

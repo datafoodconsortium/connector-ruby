@@ -24,8 +24,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::PhoneNumber
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:PhoneNumber".freeze
 
 	# @return [Integer]
 	attr_accessor :countryCode
@@ -41,8 +42,8 @@ class DataFoodConsortium::Connector::PhoneNumber
 		@countryCode = countryCode
 		@phoneNumber = phoneNumber
 		self.semanticType = "dfc-b:PhoneNumber"
-		registerSemanticProperty("dfc-b:countryCode") { self.countryCode }
-		registerSemanticProperty("dfc-b:phoneNumber") { self.phoneNumber }
+		registerSemanticProperty("dfc-b:countryCode", &method("countryCode")).valueSetter = method("countryCode=")
+		registerSemanticProperty("dfc-b:phoneNumber", &method("phoneNumber")).valueSetter = method("phoneNumber=")
 	end
 	
 

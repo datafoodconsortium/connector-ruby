@@ -20,19 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
-
-
-
 require "datafoodconsortium/connector/defined_product"
+
+
+
+
+
 
 
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Connector::DefinedProduct
 
-	
+    SEMANTIC_TYPE = "dfc-b:SuppliedProduct".freeze
 
 	# @return [Real]
 	attr_accessor :totalTheoreticalStock
@@ -63,7 +63,7 @@ class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Conne
 		super(semanticId, name: name, description: description, productType: productType, quantity: quantity, alcoholPercentage: alcoholPercentage, lifetime: lifetime, claims: claims, usageOrStorageConditions: usageOrStorageConditions, allergenCharacteristics: allergenCharacteristics, nutrientCharacteristics: nutrientCharacteristics, physicalCharacteristics: physicalCharacteristics, geographicalOrigin: geographicalOrigin, catalogItems: catalogItems, certifications: certifications, natureOrigin: natureOrigin, partOrigin: partOrigin)
 		@totalTheoreticalStock = totalTheoreticalStock
 		self.semanticType = "dfc-b:SuppliedProduct"
-		registerSemanticProperty("dfc-b:totalTheoreticalStock") { self.totalTheoreticalStock }
+		registerSemanticProperty("dfc-b:totalTheoreticalStock", &method("totalTheoreticalStock")).valueSetter = method("totalTheoreticalStock=")
 	end
 	
 

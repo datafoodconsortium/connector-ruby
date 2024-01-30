@@ -30,8 +30,9 @@
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::DefinedProduct
+    include VirtualAssembly::Semantizer::SemanticObject
 
-	include VirtualAssembly::Semantizer::SemanticObject
+    SEMANTIC_TYPE = "dfc-b:DefinedProduct".freeze
 
 	# @return [String]
 	attr_accessor :name
@@ -117,22 +118,22 @@ class DataFoodConsortium::Connector::DefinedProduct
 		@natureOrigin = natureOrigin
 		@partOrigin = partOrigin
 		self.semanticType = "dfc-b:DefinedProduct"
-		registerSemanticProperty("dfc-b:name") { self.name }
-		registerSemanticProperty("dfc-b:description") { self.description }
-		registerSemanticProperty("dfc-b:hasType") { self.productType }
-		registerSemanticProperty("dfc-b:hasQuantity") { self.quantity }
-		registerSemanticProperty("dfc-b:alcoholPercentage") { self.alcoholPercentage }
-		registerSemanticProperty("dfc-b:lifetime") { self.lifetime }
-		registerSemanticProperty("dfc-b:hasClaim") { self.claims }
-		registerSemanticProperty("dfc-b:usageOrStorageCondition") { self.usageOrStorageConditions }
-		registerSemanticProperty("dfc-b:hasAllergenCharacteristic") { self.allergenCharacteristics }
-		registerSemanticProperty("dfc-b:hasNutrientCharacteristic") { self.nutrientCharacteristics }
-		registerSemanticProperty("dfc-b:hasPhysicalCharacteristic") { self.physicalCharacteristics }
-		registerSemanticProperty("dfc-b:hasGeographicalOrigin") { self.geographicalOrigin }
-		registerSemanticProperty("dfc-b:referencedBy") { self.catalogItems }
-		registerSemanticProperty("dfc-b:hasCertification") { self.certifications }
-		registerSemanticProperty("dfc-b:hasNatureOrigin") { self.natureOrigin }
-		registerSemanticProperty("dfc-b:hasPartOrigin") { self.partOrigin }
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
+		registerSemanticProperty("dfc-b:hasType", &method("productType")).valueSetter = method("productType=")
+		registerSemanticProperty("dfc-b:hasQuantity", &method("quantity")).valueSetter = method("quantity=")
+		registerSemanticProperty("dfc-b:alcoholPercentage", &method("alcoholPercentage")).valueSetter = method("alcoholPercentage=")
+		registerSemanticProperty("dfc-b:lifetime", &method("lifetime")).valueSetter = method("lifetime=")
+		registerSemanticProperty("dfc-b:hasClaim", &method("claims")).valueSetter = method("claims=")
+		registerSemanticProperty("dfc-b:usageOrStorageCondition", &method("usageOrStorageConditions")).valueSetter = method("usageOrStorageConditions=")
+		registerSemanticProperty("dfc-b:hasAllergenCharacteristic", &method("allergenCharacteristics")).valueSetter = method("allergenCharacteristics=")
+		registerSemanticProperty("dfc-b:hasNutrientCharacteristic", &method("nutrientCharacteristics")).valueSetter = method("nutrientCharacteristics=")
+		registerSemanticProperty("dfc-b:hasPhysicalCharacteristic", &method("physicalCharacteristics")).valueSetter = method("physicalCharacteristics=")
+		registerSemanticProperty("dfc-b:hasGeographicalOrigin", &method("geographicalOrigin")).valueSetter = method("geographicalOrigin=")
+		registerSemanticProperty("dfc-b:referencedBy", &method("catalogItems")).valueSetter = method("catalogItems=")
+		registerSemanticProperty("dfc-b:hasCertification", &method("certifications")).valueSetter = method("certifications=")
+		registerSemanticProperty("dfc-b:hasNatureOrigin", &method("natureOrigin")).valueSetter = method("natureOrigin=")
+		registerSemanticProperty("dfc-b:hasPartOrigin", &method("partOrigin")).valueSetter = method("partOrigin=")
 	end
 	
 
