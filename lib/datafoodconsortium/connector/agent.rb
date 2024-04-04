@@ -44,25 +44,31 @@ class DataFoodConsortium::Connector::Agent
 	# @return [ISocialMedia]
 	attr_accessor :socialMedias
 
+	# @return [String]
+	attr_accessor :logo
+
 	# @param semanticId [String]
 	# @param localizations [IAddress]
 	# @param phoneNumbers [IPhoneNumber]
 	# @param emails [String]
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
-	def initialize(semanticId, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [])
+	# @param logo [String]
+	def initialize(semanticId, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: "")
 		super(semanticId)
 		@localizations = localizations
 		@phoneNumbers = phoneNumbers
 		@emails = emails
 		@websites = websites
 		@socialMedias = socialMedias
+		@logo = logo
 		self.semanticType = "dfc-b:Agent"
 		registerSemanticProperty("dfc-b:hasAddress", &method("localizations")).valueSetter = method("localizations=")
 		registerSemanticProperty("dfc-b:hasPhoneNumber", &method("phoneNumbers")).valueSetter = method("phoneNumbers=")
 		registerSemanticProperty("dfc-b:email", &method("emails")).valueSetter = method("emails=")
 		registerSemanticProperty("dfc-b:websitePage", &method("websites")).valueSetter = method("websites=")
 		registerSemanticProperty("dfc-b:hasSocialMedia", &method("socialMedias")).valueSetter = method("socialMedias=")
+		registerSemanticProperty("dfc-b:logo", &method("logo")).valueSetter = method("logo=")
 	end
 	
 

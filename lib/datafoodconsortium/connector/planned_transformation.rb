@@ -21,29 +21,37 @@
 # SOFTWARE.
 
 
+
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::SocialMedia
+class DataFoodConsortium::Connector::PlannedTransformation
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:SocialMedia".freeze
+    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
 
-	# @return [String]
-	attr_accessor :name
+	# @return [ISKOSConcept]
+	attr_accessor :transformationType
 
-	# @return [String]
-	attr_accessor :url
+	# @return [IPlannedConsumptionFlow]
+	attr_accessor :consumptionFlow
+
+	# @return [IPlannedProductionFlow]
+	attr_accessor :productionFlow
 
 	# @param semanticId [String]
-	# @param name [String]
-	# @param url [String]
-	def initialize(semanticId, name: "", url: "")
+	# @param transformationType [ISKOSConcept]
+	# @param consumptionFlow [IPlannedConsumptionFlow]
+	# @param productionFlow [IPlannedProductionFlow]
+	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
 		super(semanticId)
-		@name = name
-		@url = url
-		self.semanticType = "dfc-b:SocialMedia"
-		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
-		registerSemanticProperty("dfc-b:URL", &method("url")).valueSetter = method("url=")
+		@transformationType = transformationType
+		@consumptionFlow = consumptionFlow
+		@productionFlow = productionFlow
+		self.semanticType = "dfc-b:AsPlannedTransformation"
+		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
+		registerSemanticProperty("dfc-b:hasIncome", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
+		registerSemanticProperty("dfc-b:hasOutcome", &method("productionFlow")).valueSetter = method("productionFlow=")
 	end
 	
 

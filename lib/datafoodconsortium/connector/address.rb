@@ -40,22 +40,40 @@ class DataFoodConsortium::Connector::Address
 	# @return [String]
 	attr_accessor :country
 
+	# @return [Real]
+	attr_accessor :latitude
+
+	# @return [Real]
+	attr_accessor :longitude
+
+	# @return [String]
+	attr_accessor :region
+
 	# @param semanticId [String]
 	# @param street [String]
 	# @param postalCode [String]
 	# @param city [String]
 	# @param country [String]
-	def initialize(semanticId, street: "", postalCode: "", city: "", country: "")
+	# @param latitude [Real]
+	# @param longitude [Real]
+	# @param region [String]
+	def initialize(semanticId, street: "", postalCode: "", city: "", country: "", latitude: 0.0, longitude: 0.0, region: "")
 		super(semanticId)
 		@street = street
 		@postalCode = postalCode
 		@city = city
 		@country = country
+		@latitude = latitude
+		@longitude = longitude
+		@region = region
 		self.semanticType = "dfc-b:Address"
 		registerSemanticProperty("dfc-b:hasStreet", &method("street")).valueSetter = method("street=")
 		registerSemanticProperty("dfc-b:hasPostalCode", &method("postalCode")).valueSetter = method("postalCode=")
 		registerSemanticProperty("dfc-b:hasCity", &method("city")).valueSetter = method("city=")
 		registerSemanticProperty("dfc-b:hasCountry", &method("country")).valueSetter = method("country=")
+		registerSemanticProperty("dfc-b:latitude", &method("latitude")).valueSetter = method("latitude=")
+		registerSemanticProperty("dfc-b:longitude", &method("longitude")).valueSetter = method("longitude=")
+		registerSemanticProperty("dfc-b:region", &method("region")).valueSetter = method("region=")
 	end
 	
 

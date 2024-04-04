@@ -21,29 +21,24 @@
 # SOFTWARE.
 
 
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::SocialMedia
+class DataFoodConsortium::Connector::Flow
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:SocialMedia".freeze
+    SEMANTIC_TYPE = "".freeze
 
-	# @return [String]
-	attr_accessor :name
-
-	# @return [String]
-	attr_accessor :url
+	# @return [IQuantity]
+	attr_accessor :quantity
 
 	# @param semanticId [String]
-	# @param name [String]
-	# @param url [String]
-	def initialize(semanticId, name: "", url: "")
+	# @param quantity [IQuantity]
+	def initialize(semanticId, quantity: nil)
 		super(semanticId)
-		@name = name
-		@url = url
-		self.semanticType = "dfc-b:SocialMedia"
-		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
-		registerSemanticProperty("dfc-b:URL", &method("url")).valueSetter = method("url=")
+		@quantity = quantity
+		self.semanticType = ""
+		registerSemanticProperty("dfc-b:hasQuantity", &method("quantity")).valueSetter = method("quantity=")
 	end
 	
 

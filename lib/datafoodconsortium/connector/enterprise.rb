@@ -79,8 +79,9 @@ class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector:
 	# @param emails [String]
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
-	def initialize(semanticId, name: "", description: "", vatNumber: "", customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [])
-		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias)
+	# @param logo [String]
+	def initialize(semanticId, name: "", description: "", vatNumber: "", customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: "")
+		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias, logo: logo)
 		@name = name
 		@description = description
 		@vatNumber = vatNumber

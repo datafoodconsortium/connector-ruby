@@ -20,30 +20,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require "datafoodconsortium/connector/flow"
+
+
+
+
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::SocialMedia
-    include VirtualAssembly::Semantizer::SemanticObject
+class DataFoodConsortium::Connector::PlannedProductionFlow < DataFoodConsortium::Connector::Flow
 
-    SEMANTIC_TYPE = "dfc-b:SocialMedia".freeze
+    SEMANTIC_TYPE = "dfc-b:AsPlannedProductionFlow".freeze
 
-	# @return [String]
-	attr_accessor :name
+	# @return [IPlannedTransformation]
+	attr_accessor :transformation
 
-	# @return [String]
-	attr_accessor :url
+	# @return [ISuppliedProduct]
+	attr_accessor :product
 
 	# @param semanticId [String]
-	# @param name [String]
-	# @param url [String]
-	def initialize(semanticId, name: "", url: "")
-		super(semanticId)
-		@name = name
-		@url = url
-		self.semanticType = "dfc-b:SocialMedia"
-		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
-		registerSemanticProperty("dfc-b:URL", &method("url")).valueSetter = method("url=")
+	# @param transformation [IPlannedTransformation]
+	# @param product [ISuppliedProduct]
+	# @param quantity [IQuantity]
+	def initialize(semanticId, transformation: nil, product: nil, quantity: nil)
+		super(semanticId, quantity: quantity)
+		@transformation = transformation
+		@product = product
+		self.semanticType = "dfc-b:AsPlannedProductionFlow"
+		registerSemanticProperty("dfc-b:outcomeOf", &method("transformation")).valueSetter = method("transformation=")
+		registerSemanticProperty("dfc-b:produces", &method("product")).valueSetter = method("product=")
 	end
 	
 
