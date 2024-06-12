@@ -35,7 +35,7 @@ class DataFoodConsortium::Connector::PhysicalCharacteristic < DataFoodConsortium
 	# @param physicalDimension [ISKOSConcept]
 	# @param unit [ISKOSConcept]
 	# @param value [Real]
-	def initialize(physicalDimension: nil, unit: nil, value: 0.0)
+	def initialize(physicalDimension: nil, unit: nil, value: nil)
 		super(unit: unit, value: value)
 		@physicalDimension = physicalDimension
 		self.semanticType = "dfc-b:PhysicalCharacteristic"

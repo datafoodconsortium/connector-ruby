@@ -37,7 +37,7 @@ class DataFoodConsortium::Connector::SocialMedia
 	# @param semanticId [String]
 	# @param name [String]
 	# @param url [String]
-	def initialize(semanticId, name: "", url: "")
+	def initialize(semanticId, name: nil, url: nil)
 		super(semanticId)
 		@name = name
 		@url = url

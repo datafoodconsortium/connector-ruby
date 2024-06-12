@@ -46,7 +46,7 @@ class DataFoodConsortium::Connector::SaleSession
 	# @param endDate [String]
 	# @param quantity [Real]
 	# @param offers [IOffer]
-	def initialize(semanticId, beginDate: "", endDate: "", quantity: 0.0, offers: [])
+	def initialize(semanticId, beginDate: nil, endDate: nil, quantity: nil, offers: [])
 		super(semanticId)
 		@beginDate = beginDate
 		@endDate = endDate

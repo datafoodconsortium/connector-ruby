@@ -35,7 +35,7 @@ class DataFoodConsortium::Connector::AllergenCharacteristic < DataFoodConsortium
 	# @param allergenDimension [ISKOSConcept]
 	# @param unit [ISKOSConcept]
 	# @param value [Real]
-	def initialize(allergenDimension: nil, unit: nil, value: 0.0)
+	def initialize(allergenDimension: nil, unit: nil, value: nil)
 		super(unit: unit, value: value)
 		@allergenDimension = allergenDimension
 		self.semanticType = "dfc-b:AllergenCharacteristic"

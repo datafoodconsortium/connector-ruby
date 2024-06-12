@@ -80,7 +80,7 @@ class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector:
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
 	# @param logo [String]
-	def initialize(semanticId, name: "", description: "", vatNumber: "", customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: "")
+	def initialize(semanticId, name: nil, description: nil, vatNumber: nil, customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil)
 		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias, logo: logo)
 		@name = name
 		@description = description

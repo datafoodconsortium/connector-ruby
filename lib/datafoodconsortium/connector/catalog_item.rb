@@ -52,7 +52,7 @@ class DataFoodConsortium::Connector::CatalogItem
 	# @param stockLimitation [Real]
 	# @param offers [IOffer]
 	# @param catalogs [ICatalog]
-	def initialize(semanticId, product: nil, sku: "", stockLimitation: 0.0, offers: [], catalogs: [])
+	def initialize(semanticId, product: nil, sku: nil, stockLimitation: nil, offers: [], catalogs: [])
 		super(semanticId)
 		@product = product
 		@sku = sku

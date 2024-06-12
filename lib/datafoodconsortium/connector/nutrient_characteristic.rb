@@ -35,7 +35,7 @@ class DataFoodConsortium::Connector::NutrientCharacteristic < DataFoodConsortium
 	# @param nutrientDimension [ISKOSConcept]
 	# @param unit [ISKOSConcept]
 	# @param value [Real]
-	def initialize(nutrientDimension: nil, unit: nil, value: 0.0)
+	def initialize(nutrientDimension: nil, unit: nil, value: nil)
 		super(unit: unit, value: value)
 		@nutrientDimension = nutrientDimension
 		self.semanticType = "dfc-b:NutrientCharacteristic"

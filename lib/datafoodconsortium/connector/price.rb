@@ -41,7 +41,7 @@ class DataFoodConsortium::Connector::Price
 	# @param value [Real]
 	# @param vatRate [Real]
 	# @param unit [ISKOSConcept]
-	def initialize(value: 0.0, vatRate: 0.0, unit: nil)
+	def initialize(value: nil, vatRate: nil, unit: nil)
 		super()
 		@value = value
 		@vatRate = vatRate

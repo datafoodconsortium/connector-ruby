@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Use nil as default value for all types.
+
 ## [1.0.0-alpha.12] - 2024-04-11
 
 This version has been generated using:
