@@ -48,7 +48,7 @@ class DataFoodConsortium::Connector::Offer
 	# @param stockLimitation [Real]
 	# @param offeredItem [ICatalogItem]
 	# @param offeredTo [ICustomerCategory]
-	def initialize(semanticId, price: nil, stockLimitation: 0.0, offeredItem: nil, offeredTo: nil)
+	def initialize(semanticId, price: nil, stockLimitation: nil, offeredItem: nil, offeredTo: nil)
 		super(semanticId)
 		@price = price
 		@stockLimitation = stockLimitation

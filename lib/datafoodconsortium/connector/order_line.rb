@@ -52,7 +52,7 @@ class DataFoodConsortium::Connector::OrderLine
 	# @param price [IPrice]
 	# @param offer [IOffer]
 	# @param order [IOrder]
-	def initialize(semanticId, description: "", quantity: 0.0, price: nil, offer: nil, order: nil)
+	def initialize(semanticId, description: nil, quantity: nil, price: nil, offer: nil, order: nil)
 		super(semanticId)
 		@description = description
 		@quantity = quantity

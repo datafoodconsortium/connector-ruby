@@ -54,7 +54,7 @@ class DataFoodConsortium::Connector::Agent
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
 	# @param logo [String]
-	def initialize(semanticId, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: "")
+	def initialize(semanticId, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil)
 		super(semanticId)
 		@localizations = localizations
 		@phoneNumbers = phoneNumbers

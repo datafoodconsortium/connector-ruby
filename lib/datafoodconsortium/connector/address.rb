@@ -57,7 +57,7 @@ class DataFoodConsortium::Connector::Address
 	# @param latitude [Real]
 	# @param longitude [Real]
 	# @param region [String]
-	def initialize(semanticId, street: "", postalCode: "", city: "", country: "", latitude: 0.0, longitude: 0.0, region: "")
+	def initialize(semanticId, street: nil, postalCode: nil, city: nil, country: nil, latitude: nil, longitude: nil, region: nil)
 		super(semanticId)
 		@street = street
 		@postalCode = postalCode

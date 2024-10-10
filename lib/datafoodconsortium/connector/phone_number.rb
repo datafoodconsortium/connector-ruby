@@ -37,7 +37,7 @@ class DataFoodConsortium::Connector::PhoneNumber
 	# @param semanticId [String]
 	# @param countryCode [Integer]
 	# @param phoneNumber [String]
-	def initialize(semanticId, countryCode: 0, phoneNumber: "")
+	def initialize(semanticId, countryCode: nil, phoneNumber: nil)
 		super(semanticId)
 		@countryCode = countryCode
 		@phoneNumber = phoneNumber

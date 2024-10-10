@@ -33,7 +33,7 @@ class DataFoodConsortium::Connector::CustomerCategory
 
 	# @param semanticId [String]
 	# @param description [String]
-	def initialize(semanticId, description: "")
+	def initialize(semanticId, description: nil)
 		super(semanticId)
 		@description = description
 		self.semanticType = "dfc-b:CustomerCategory"

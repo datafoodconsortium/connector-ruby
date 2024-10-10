@@ -64,7 +64,7 @@ class DataFoodConsortium::Connector::Order
 	# @param fulfilmentStatus [ISKOSConcept]
 	# @param orderStatus [ISKOSConcept]
 	# @param paymentStatus [ISKOSConcept]
-	def initialize(semanticId, number: "", date: "", saleSession: nil, lines: [], client: nil, fulfilmentStatus: nil, orderStatus: nil, paymentStatus: nil)
+	def initialize(semanticId, number: nil, date: nil, saleSession: nil, lines: [], client: nil, fulfilmentStatus: nil, orderStatus: nil, paymentStatus: nil)
 		super(semanticId)
 		@number = number
 		@date = date

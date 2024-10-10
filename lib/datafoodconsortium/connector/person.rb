@@ -49,7 +49,7 @@ class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Age
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
 	# @param logo [String]
-	def initialize(semanticId, firstName: "", lastName: "", affiliatedOrganizations: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: "")
+	def initialize(semanticId, firstName: nil, lastName: nil, affiliatedOrganizations: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil)
 		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias, logo: logo)
 		@firstName = firstName
 		@lastName = lastName

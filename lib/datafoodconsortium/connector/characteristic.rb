@@ -30,7 +30,7 @@ class DataFoodConsortium::Connector::Characteristic < DataFoodConsortium::Connec
 
 	# @param unit [ISKOSConcept]
 	# @param value [Real]
-	def initialize(unit: nil, value: 0.0)
+	def initialize(unit: nil, value: nil)
 		super(unit: unit, value: value)
 		
 		
