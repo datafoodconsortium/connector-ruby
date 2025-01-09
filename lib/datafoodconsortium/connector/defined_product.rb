@@ -85,6 +85,12 @@ class DataFoodConsortium::Connector::DefinedProduct
 	# @return [String]
 	attr_accessor :images
 
+	# @return [IDefinedProduct]
+	attr_accessor :variants
+
+	# @return [IDefinedProduct]
+	attr_accessor :isVariantOf
+
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
@@ -103,7 +109,9 @@ class DataFoodConsortium::Connector::DefinedProduct
 	# @param natureOrigin [ISKOSConcept]
 	# @param partOrigin [ISKOSConcept]
 	# @param images [String]
-	def initialize(semanticId, name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [])
+	# @param variants [IDefinedProduct]
+	# @param isVariantOf [IDefinedProduct]
+	def initialize(semanticId, name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [], variants: [], isVariantOf: [])
 		super(semanticId)
 		@name = name
 		@description = description
@@ -122,6 +130,8 @@ class DataFoodConsortium::Connector::DefinedProduct
 		@natureOrigin = natureOrigin
 		@partOrigin = partOrigin
 		@images = images
+		@variants = variants
+		@isVariantOf = isVariantOf
 		self.semanticType = "dfc-b:DefinedProduct"
 		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
@@ -140,6 +150,8 @@ class DataFoodConsortium::Connector::DefinedProduct
 		registerSemanticProperty("dfc-b:hasNatureOrigin", &method("natureOrigin")).valueSetter = method("natureOrigin=")
 		registerSemanticProperty("dfc-b:hasPartOrigin", &method("partOrigin")).valueSetter = method("partOrigin=")
 		registerSemanticProperty("dfc-b:image", &method("images")).valueSetter = method("images=")
+		registerSemanticProperty("dfc-b:hasVariant", &method("variants")).valueSetter = method("variants=")
+		registerSemanticProperty("dfc-b:isVariantOf", &method("isVariantOf")).valueSetter = method("isVariantOf=")
 	end
 	
 

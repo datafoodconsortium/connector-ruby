@@ -46,6 +46,9 @@ class DataFoodConsortium::Connector::Order
 	# @return [IAgent]
 	attr_accessor :client
 
+	# @return [IAgent]
+	attr_accessor :soldBy
+
 	# @return [ISKOSConcept]
 	attr_accessor :fulfilmentStatus
 
@@ -61,16 +64,18 @@ class DataFoodConsortium::Connector::Order
 	# @param saleSession [ISaleSession]
 	# @param lines [IOrderLine]
 	# @param client [IAgent]
+	# @param soldBy [IAgent]
 	# @param fulfilmentStatus [ISKOSConcept]
 	# @param orderStatus [ISKOSConcept]
 	# @param paymentStatus [ISKOSConcept]
-	def initialize(semanticId, number: nil, date: nil, saleSession: nil, lines: [], client: nil, fulfilmentStatus: nil, orderStatus: nil, paymentStatus: nil)
+	def initialize(semanticId, number: nil, date: nil, saleSession: nil, lines: [], client: nil, soldBy: nil, fulfilmentStatus: nil, orderStatus: nil, paymentStatus: nil)
 		super(semanticId)
 		@number = number
 		@date = date
 		@saleSession = saleSession
 		@lines = lines
 		@client = client
+		@soldBy = soldBy
 		@fulfilmentStatus = fulfilmentStatus
 		@orderStatus = orderStatus
 		@paymentStatus = paymentStatus
@@ -80,6 +85,7 @@ class DataFoodConsortium::Connector::Order
 		registerSemanticProperty("dfc-b:belongsTo", &method("saleSession")).valueSetter = method("saleSession=")
 		registerSemanticProperty("dfc-b:hasPart", &method("lines")).valueSetter = method("lines=")
 		registerSemanticProperty("dfc-b:orderedBy", &method("client")).valueSetter = method("client=")
+		registerSemanticProperty("dfc-b:soldBy", &method("soldBy")).valueSetter = method("soldBy=")
 		registerSemanticProperty("dfc-b:hasFulfilmentStatus", &method("fulfilmentStatus")).valueSetter = method("fulfilmentStatus=")
 		registerSemanticProperty("dfc-b:hasOrderStatus", &method("orderStatus")).valueSetter = method("orderStatus=")
 		registerSemanticProperty("dfc-b:hasPaymentStatus", &method("paymentStatus")).valueSetter = method("paymentStatus=")

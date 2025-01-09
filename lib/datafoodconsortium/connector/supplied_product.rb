@@ -60,8 +60,10 @@ class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Conne
 	# @param natureOrigin [ISKOSConcept]
 	# @param partOrigin [ISKOSConcept]
 	# @param images [String]
-	def initialize(semanticId, totalTheoreticalStock: nil, name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [])
-		super(semanticId, name: name, description: description, productType: productType, quantity: quantity, alcoholPercentage: alcoholPercentage, lifetime: lifetime, claims: claims, usageOrStorageConditions: usageOrStorageConditions, allergenCharacteristics: allergenCharacteristics, nutrientCharacteristics: nutrientCharacteristics, physicalCharacteristics: physicalCharacteristics, geographicalOrigin: geographicalOrigin, catalogItems: catalogItems, certifications: certifications, natureOrigin: natureOrigin, partOrigin: partOrigin, images: images)
+	# @param variants [IDefinedProduct]
+	# @param isVariantOf [IDefinedProduct]
+	def initialize(semanticId, totalTheoreticalStock: nil, name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [], variants: [], isVariantOf: [])
+		super(semanticId, name: name, description: description, productType: productType, quantity: quantity, alcoholPercentage: alcoholPercentage, lifetime: lifetime, claims: claims, usageOrStorageConditions: usageOrStorageConditions, allergenCharacteristics: allergenCharacteristics, nutrientCharacteristics: nutrientCharacteristics, physicalCharacteristics: physicalCharacteristics, geographicalOrigin: geographicalOrigin, catalogItems: catalogItems, certifications: certifications, natureOrigin: natureOrigin, partOrigin: partOrigin, images: images, variants: variants, isVariantOf: isVariantOf)
 		@totalTheoreticalStock = totalTheoreticalStock
 		self.semanticType = "dfc-b:SuppliedProduct"
 		registerSemanticProperty("dfc-b:totalTheoreticalStock", &method("totalTheoreticalStock")).valueSetter = method("totalTheoreticalStock=")
