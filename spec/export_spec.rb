@@ -1,4 +1,11 @@
 RSpec.describe DataFoodConsortium::Connector::Connector do
+  it "exports an empty list" do
+    subjects = []
+    actual = exported_json(*subjects)
+    expected = {"@context"=>"https://www.datafoodconsortium.org"}
+    expect(actual).to eq expected
+  end
+
   it "exports multiple subjects in a graph" do
     a = DataFoodConsortium::Connector::Address.new(
       "https://myplatform.com/a",

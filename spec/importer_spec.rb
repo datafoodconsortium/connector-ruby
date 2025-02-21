@@ -67,6 +67,11 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
     )
   end
 
+  it "imports an empty DFC document" do
+    result = import # nothing
+    expect(result).to eq nil
+  end
+
   it "imports a single object with simple properties" do
     result = import(product)
 
