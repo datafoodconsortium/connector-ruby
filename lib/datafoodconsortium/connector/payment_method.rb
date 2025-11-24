@@ -22,37 +22,47 @@
 
 
 
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::PaymentMethod
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:PaymentMethod".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
+	# @return [String]
+	attr_accessor :name
 
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
+	# @return [String]
+	attr_accessor :description
 
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [IPrice]
+	attr_accessor :price
+
+	# @return [String]
+	attr_accessor :provider
+
+	# @return [String]
+	attr_accessor :type
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param name [String]
+	# @param description [String]
+	# @param price [IPrice]
+	# @param provider [String]
+	# @param type [String]
+	def initialize(semanticId, name: nil, description: nil, price: nil, provider: nil, type: nil)
 		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasIncome", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutcome", &method("productionFlow")).valueSetter = method("productionFlow=")
+		@name = name
+		@description = description
+		@price = price
+		@provider = provider
+		@type = type
+		self.semanticType = "dfc-b:PaymentMethod"
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
+		registerSemanticProperty("dfc-b:hasPrice", &method("price")).valueSetter = method("price=")
+		registerSemanticProperty("dfc-b:paymentMethodProvider", &method("provider")).valueSetter = method("provider=")
+		registerSemanticProperty("dfc-b:paymentMethodType", &method("type")).valueSetter = method("type=")
 	end
 	
 

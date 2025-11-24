@@ -24,33 +24,52 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::PlannedLocalTransformation
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:AsPlannedLocalTransformation".freeze
 
 	# @return [ISKOSConcept]
 	attr_accessor :transformationType
 
-	# @return [IPlannedConsumptionFlow]
+	# @return [Real]
+	attr_accessor :cost
+
+	# @return [DateTime]
+	attr_accessor :startDate
+
+	# @return [DateTime]
+	attr_accessor :endDate
+
+	# @return [IPlannedLocalConsumptionFlow]
 	attr_accessor :consumptionFlow
 
-	# @return [IPlannedProductionFlow]
+	# @return [IPlannedLocalProductionFlow]
 	attr_accessor :productionFlow
 
 	# @param semanticId [String]
 	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param cost [Real]
+	# @param startDate [DateTime]
+	# @param endDate [DateTime]
+	# @param consumptionFlow [IPlannedLocalConsumptionFlow]
+	# @param productionFlow [IPlannedLocalProductionFlow]
+	def initialize(semanticId, transformationType: nil, cost: nil, startDate: nil, endDate: nil, consumptionFlow: nil, productionFlow: nil)
 		super(semanticId)
 		@transformationType = transformationType
+		@cost = cost
+		@startDate = startDate
+		@endDate = endDate
 		@consumptionFlow = consumptionFlow
 		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
+		self.semanticType = "dfc-b:AsPlannedLocalTransformation"
 		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
+		registerSemanticProperty("dfc-b:cost", &method("cost")).valueSetter = method("cost=")
+		registerSemanticProperty("dfc-b:startDate", &method("startDate")).valueSetter = method("startDate=")
+		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
 		registerSemanticProperty("dfc-b:hasIncome", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
 		registerSemanticProperty("dfc-b:hasOutcome", &method("productionFlow")).valueSetter = method("productionFlow=")
 	end
