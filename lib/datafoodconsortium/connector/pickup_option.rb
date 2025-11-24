@@ -23,36 +23,31 @@
 
 
 
-
+require "datafoodconsortium/connector/shipping_option"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
-    include VirtualAssembly::Semantizer::SemanticObject
+class DataFoodConsortium::Connector::PickupOption < DataFoodConsortium::Connector::ShippingOption
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:PickupOption".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
-
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
-
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [IPhysicalPlace]
+	attr_accessor :pickupPlace
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
-		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasIncome", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutcome", &method("productionFlow")).valueSetter = method("productionFlow=")
+	# @param pickupPlace [IPhysicalPlace]
+	# @param name [String]
+	# @param description [String]
+	# @param fee [Real]
+	# @param quantity [IQuantity]
+	# @param order [IOrder]
+	# @param saleSession [ISaleSession]
+	# @param beginDate [DateTime]
+	# @param endDate [DateTime]
+	def initialize(semanticId, pickupPlace: nil, name: nil, description: nil, fee: nil, quantity: nil, order: nil, saleSession: nil, beginDate: nil, endDate: nil)
+		super(semanticId, name: name, description: description, fee: fee, quantity: quantity, order: order, saleSession: saleSession, beginDate: beginDate, endDate: endDate)
+		@pickupPlace = pickupPlace
+		self.semanticType = "dfc-b:PickupOption"
+		registerSemanticProperty("dfc-b:pickedUpAt", &method("pickupPlace")).valueSetter = method("pickupPlace=")
 	end
 	
 

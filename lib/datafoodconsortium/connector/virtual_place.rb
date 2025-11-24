@@ -22,37 +22,41 @@
 
 
 
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::VirtualPlace
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:VirtualPlace".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
+	# @return [String]
+	attr_accessor :name
 
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
+	# @return [String]
+	attr_accessor :description
 
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [ISaleSession]
+	attr_accessor :hostedSaleSessions
+
+	# @return [String]
+	attr_accessor :urls
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param name [String]
+	# @param description [String]
+	# @param hostedSaleSessions [ISaleSession]
+	# @param urls [String]
+	def initialize(semanticId, name: nil, description: nil, hostedSaleSessions: [], urls: [])
 		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasIncome", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutcome", &method("productionFlow")).valueSetter = method("productionFlow=")
+		@name = name
+		@description = description
+		@hostedSaleSessions = hostedSaleSessions
+		@urls = urls
+		self.semanticType = "dfc-b:VirtualPlace"
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
+		registerSemanticProperty("dfc-b:hosts", &method("hostedSaleSessions")).valueSetter = method("hostedSaleSessions=")
+		registerSemanticProperty("dfc-b:URL", &method("urls")).valueSetter = method("urls=")
 	end
 	
 

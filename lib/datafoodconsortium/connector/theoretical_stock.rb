@@ -24,35 +24,42 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::TheoreticalStock
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:TheoreticalStock".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
+	# @return [ILocalizedProduct]
+	attr_accessor :localizedProduct
 
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
+	# @return [IQuantity]
+	attr_accessor :quantity
 
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [IPhysicalPlace]
+	attr_accessor :physicalPlace
+
+	# @return [DateTime]
+	attr_accessor :availabilityDate
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param localizedProduct [ILocalizedProduct]
+	# @param quantity [IQuantity]
+	# @param physicalPlace [IPhysicalPlace]
+	# @param availabilityDate [DateTime]
+	def initialize(semanticId, localizedProduct: nil, quantity: nil, physicalPlace: nil, availabilityDate: nil)
 		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasIncome", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutcome", &method("productionFlow")).valueSetter = method("productionFlow=")
+		@localizedProduct = localizedProduct
+		@quantity = quantity
+		@physicalPlace = physicalPlace
+		@availabilityDate = availabilityDate
+		self.semanticType = "dfc-b:TheoreticalStock"
+		registerSemanticProperty("dfc-b:constitutes", &method("localizedProduct")).valueSetter = method("localizedProduct=")
+		registerSemanticProperty("dfc-b:hasQuantity", &method("quantity")).valueSetter = method("quantity=")
+		registerSemanticProperty("dfc-b:localizedBy", &method("physicalPlace")).valueSetter = method("physicalPlace=")
+		registerSemanticProperty("dfc-b:availabilityDate", &method("availabilityDate")).valueSetter = method("availabilityDate=")
 	end
 	
 
