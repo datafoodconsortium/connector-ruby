@@ -10,17 +10,19 @@ module DataFoodConsortium
     class Context < JSON::LD::Context
       URL = "https://www.datafoodconsortium.org"
 
+      # All context URIs have to use http because https is normalised to http
+      # during the lookup of preloaded contexts.
       add_preloaded("http://www.datafoodconsortium.org/") { parse(json) }
 
       # This is the current file the DFC website refers to in a link header.
       alias_preloaded(
-        "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld",
+        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld",
         "http://www.datafoodconsortium.org/"
       )
 
       # This was the file the DFC website refers to in a link header.
       alias_preloaded(
-        "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context.jsonld",
+        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context.jsonld",
         "http://www.datafoodconsortium.org/"
       )
 

@@ -72,6 +72,28 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
     expect(result).to eq nil
   end
 
+  it "imports with the default context URL" do
+    result = connector.import <<~JSON
+      {
+        "@context":"https://www.datafoodconsortium.org",
+        "@id":"https://example.net/tomato",
+        "@type":"dfc-b:SuppliedProduct"
+      }
+    JSON
+    expect(result.semanticType).to eq "dfc-b:SuppliedProduct"
+  end
+
+  it "imports with another context URL" do
+    result = connector.import <<~JSON
+      {
+        "@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context.jsonld",
+        "@id":"https://example.net/tomato",
+        "@type":"dfc-b:SuppliedProduct"
+      }
+    JSON
+    expect(result.semanticType).to eq "dfc-b:SuppliedProduct"
+  end
+
   it "imports a single object with simple properties" do
     result = import(product)
 
