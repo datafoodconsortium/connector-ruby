@@ -7,9 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2025-12-17
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/e8e324dfc9952aa59f10a94edb8d33c3ef7f90f3).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/945fb8edb4e29b78475414c6afdf87858a6a97ad).
+
 ### Changed
 
 - Export valid empty JSON instead of invalid empty string
+- Lock context to version 1.16 to prevent upgrade to 2.0
+- Bump dev dependencies
 
 ## [1.2.0] - 2025-11-24
 
