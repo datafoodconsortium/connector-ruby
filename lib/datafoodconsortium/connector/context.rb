@@ -8,12 +8,16 @@ module DataFoodConsortium
     #
     # Similar to: https://github.com/ruby-rdf/json-ld-preloaded/
     class Context < JSON::LD::Context
-      URL = "https://www.datafoodconsortium.org"
-      URL_NORMALISED = "http://www.datafoodconsortium.org/"
+      URL = "https://w3id.org/dfc/ontology/context/context_1.16.0.json"
+      URL_NORMALISED = "http://w3id.org/dfc/ontology/context/context_1.16.0.json"
 
       # All context URIs have to use http because https is normalised to http
       # during the lookup of preloaded contexts.
+      # And if the URI doesn't have a path, it must end with `/`.
       add_preloaded(URL_NORMALISED) { parse(json) }
+
+      # The default context always pointing to the latest version:
+      alias_preloaded("http://www.datafoodconsortium.org/", URL_NORMALISED)
 
       # This is the current file the DFC website refers to in a link header.
       alias_preloaded(
