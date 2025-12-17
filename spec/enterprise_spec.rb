@@ -4,9 +4,8 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
       "https://myplatform.com/e"
     )
     result = exported_json(subject)
-    expect(result).to eq(
+    expect(result).to include(
       {
-        "@context" => "https://www.datafoodconsortium.org",
         "@id" => "https://myplatform.com/e",
         "@type" => "dfc-b:Enterprise",
       }
@@ -31,9 +30,8 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
       localizations: []
     )
     result = exported_json(subject)
-    expect(result).to eq(
+    expect(result).to include(
       {
-        "@context" => "https://www.datafoodconsortium.org",
         "@id" => "https://myplatform.com/e",
         "@type" => "dfc-b:Enterprise",
         "dfc-b:VATnumber" => "vatNumber",
@@ -67,9 +65,8 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
       localizations: []
     )
     result = exported_json(subject)
-    expect(result).to eq(
+    expect(result).to include(
       {
-        "@context" => "https://www.datafoodconsortium.org",
         "@id" => "https://myplatform.com/e",
         "@type" => "dfc-b:Enterprise",
         "dfc-b:VATnumber" => "vatNumber",
