@@ -23,43 +23,27 @@
 
 
 
-
-
+require "datafoodconsortium/connector/step"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Catalog
-    include VirtualAssembly::Semantizer::SemanticObject
+class DataFoodConsortium::Connector::PickupStep < DataFoodConsortium::Connector::Step
 
-    SEMANTIC_TYPE = "dfc-b:Catalog".freeze
+    SEMANTIC_TYPE = "dfc-b:PickUpStep".freeze
 
-	# @return [ICatalogItem]
-	attr_accessor :items
-
-	# @return [IEnterprise]
-	attr_accessor :maintainers
-
-	# @return [DateTime]
-	attr_accessor :beginDate
-
-	# @return [DateTime]
-	attr_accessor :endDate
 
 	# @param semanticId [String]
-	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
-	# @param beginDate [DateTime]
-	# @param endDate [DateTime]
-	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)
-		super(semanticId)
-		@items = items
-		@maintainers = maintainers
-		@beginDate = beginDate
-		@endDate = endDate
-		self.semanticType = "dfc-b:Catalog"
-		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
-		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
-		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
-		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
+	# @param name [String]
+	# @param description [String]
+	# @param routes [IRoute]
+	# @param deliveredShipments [IShipment]
+	# @param pickedUpShipments [IShipment]
+	# @param duration [String]
+	# @param arrivalDate [DateTime]
+	def initialize(semanticId, name: nil, description: nil, routes: [], deliveredShipments: [], pickedUpShipments: [], duration: nil, arrivalDate: nil)
+		super(semanticId, name: name, description: description, routes: routes, deliveredShipments: deliveredShipments, pickedUpShipments: pickedUpShipments, duration: duration, arrivalDate: arrivalDate)
+		
+		self.semanticType = "dfc-b:PickUpStep"
+		
 	end
 	
 

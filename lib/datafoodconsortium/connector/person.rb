@@ -24,6 +24,7 @@ require "datafoodconsortium/connector/agent"
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Agent
@@ -49,8 +50,9 @@ class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Age
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
 	# @param logo [String]
-	def initialize(semanticId, firstName: nil, lastName: nil, affiliatedOrganizations: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil)
-		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias, logo: logo)
+	# @param customerCategoriesMembership [ICustomerCategory]
+	def initialize(semanticId, firstName: nil, lastName: nil, affiliatedOrganizations: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil, customerCategoriesMembership: [])
+		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias, logo: logo, customerCategoriesMembership: customerCategoriesMembership)
 		@firstName = firstName
 		@lastName = lastName
 		@affiliatedOrganizations = affiliatedOrganizations

@@ -23,43 +23,41 @@
 
 
 
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Catalog
+class DataFoodConsortium::Connector::Route
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:Catalog".freeze
+    SEMANTIC_TYPE = "dfc-b:Route".freeze
 
-	# @return [ICatalogItem]
-	attr_accessor :items
+	# @return [String]
+	attr_accessor :name
 
-	# @return [IEnterprise]
-	attr_accessor :maintainers
+	# @return [String]
+	attr_accessor :description
 
-	# @return [DateTime]
-	attr_accessor :beginDate
+	# @return [IStep]
+	attr_accessor :steps
 
-	# @return [DateTime]
-	attr_accessor :endDate
+	# @return [IGeoJsonFeature]
+	attr_accessor :features
 
 	# @param semanticId [String]
-	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
-	# @param beginDate [DateTime]
-	# @param endDate [DateTime]
-	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)
+	# @param name [String]
+	# @param description [String]
+	# @param steps [IStep]
+	# @param features [IGeoJsonFeature]
+	def initialize(semanticId, name: nil, description: nil, steps: [], features: [])
 		super(semanticId)
-		@items = items
-		@maintainers = maintainers
-		@beginDate = beginDate
-		@endDate = endDate
-		self.semanticType = "dfc-b:Catalog"
-		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
-		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
-		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
-		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
+		@name = name
+		@description = description
+		@steps = steps
+		@features = features
+		self.semanticType = "dfc-b:Route"
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
+		registerSemanticProperty("dfc-b:hasStep", &method("steps")).valueSetter = method("steps=")
+		registerSemanticProperty("dfc-b:hasGeoJsonFeature", &method("features")).valueSetter = method("features=")
 	end
 	
 

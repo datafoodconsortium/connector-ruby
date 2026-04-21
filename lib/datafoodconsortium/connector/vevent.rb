@@ -21,45 +21,47 @@
 # SOFTWARE.
 
 
-
-
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Catalog
+class DataFoodConsortium::Connector::Vevent
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:Catalog".freeze
-
-	# @return [ICatalogItem]
-	attr_accessor :items
-
-	# @return [IEnterprise]
-	attr_accessor :maintainers
+    SEMANTIC_TYPE = "http://www.w3.org/2002/12/cal/icaltzd#Vevent".freeze
 
 	# @return [DateTime]
-	attr_accessor :beginDate
+	attr_accessor :dtstart
 
 	# @return [DateTime]
-	attr_accessor :endDate
+	attr_accessor :dtend
+
+	# @return [ValueRecur]
+	attr_accessor :rrule
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
 
 	# @param semanticId [String]
-	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
-	# @param beginDate [DateTime]
-	# @param endDate [DateTime]
-	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)
+	# @param dtstart [DateTime]
+	# @param dtend [DateTime]
+	# @param rrule [ValueRecur]
+	def initialize(semanticId, dtstart: nil, dtend: nil, rrule: nil)
 		super(semanticId)
-		@items = items
-		@maintainers = maintainers
-		@beginDate = beginDate
-		@endDate = endDate
-		self.semanticType = "dfc-b:Catalog"
-		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
-		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
-		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
-		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
+		@dtstart = dtstart
+		@dtend = dtend
+		@rrule = rrule
+		self.semanticType = "http://www.w3.org/2002/12/cal/icaltzd#Vevent"
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtstart", &method("dtstart")).valueSetter = method("dtstart=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtstart", &method("dtend")).valueSetter = method("dtend=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtstart", &method("rrule")).valueSetter = method("rrule=")
 	end
 	
 

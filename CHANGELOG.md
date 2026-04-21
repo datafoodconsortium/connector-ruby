@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0-beta1]
+
+This version has been generated using:
+
+- [Connector code generator v1.2.0 branch](https://github.com/datafoodconsortium/connector-codegen/tree/v1.2.0).
+- [UML data model PR 29](https://github.com/datafoodconsortium/data-model-uml/pull/29).
+
 ## [1.3.0] - 2025-12-17
 
 This version has been generated using:
@@ -31,6 +38,7 @@ This version has been generated using:
 
 - Bump DFC context from 1.14.0 to 1.16.0
 - Bump dev dependencies
+
 
 ## [1.1.0] - 2025-01-14
 
@@ -191,7 +199,10 @@ This version has been generated using the [code generator](https://github.com/da
 
 - Initial version of this library.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.3.0...HEAD
+[1.4.0-beta1]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.13...v1.0.0
 [1.0.0-alpha.13]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.12...v1.0.0-alpha.13

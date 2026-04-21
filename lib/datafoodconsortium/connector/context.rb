@@ -8,34 +8,27 @@ module DataFoodConsortium
     #
     # Similar to: https://github.com/ruby-rdf/json-ld-preloaded/
     class Context < JSON::LD::Context
-      URL = "https://w3id.org/dfc/ontology/context/context_1.16.0.json"
-      URL_NORMALISED = "http://w3id.org/dfc/ontology/context/context_1.16.0.json"
+      URL = "https://www.datafoodconsortium.org"
 
-      # All context URIs have to use http because https is normalised to http
-      # during the lookup of preloaded contexts.
-      # And if the URI doesn't have a path, it must end with `/`.
-      add_preloaded(URL_NORMALISED) { parse(json) }
-
-      # The default context always pointing to the latest version:
-      alias_preloaded("http://www.datafoodconsortium.org/", URL_NORMALISED)
+      add_preloaded("http://www.datafoodconsortium.org/") { parse(json) }
 
       # This is the current file the DFC website refers to in a link header.
       alias_preloaded(
-        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld",
-        URL_NORMALISED
+        "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld",
+        "http://www.datafoodconsortium.org/"
       )
 
       # This was the file the DFC website refers to in a link header.
       alias_preloaded(
-        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context.jsonld",
-        URL_NORMALISED
+        "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context.jsonld",
+        "http://www.datafoodconsortium.org/"
       )
 
       # This is the old URL that's not online anymore.
       # Keep it for compatiblity with all versions before 1.8.
       alias_preloaded(
         "http://static.datafoodconsortium.org/ontologies/context.json",
-        URL_NORMALISED
+        "http://www.datafoodconsortium.org/"
       )
 
       # The hash serializer expects only string values in the context.

@@ -35,8 +35,8 @@ module DataFoodConsortium::Connector
     attr_reader :MEASURES
     attr_reader :PRODUCT_TYPES
 
-    def export(*subjects)
-        @exporter.process(*subjects)
+    def export(subject, *subjects)
+        return @exporter.process(subject, *subjects)
     end
 
     def import(json_string_or_io)

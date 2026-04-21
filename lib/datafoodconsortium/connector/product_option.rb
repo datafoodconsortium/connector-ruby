@@ -22,44 +22,41 @@
 
 
 
-
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Catalog
+class DataFoodConsortium::Connector::ProductOption
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:Catalog".freeze
+    SEMANTIC_TYPE = "dfc-b:ProductOption".freeze
 
-	# @return [ICatalogItem]
-	attr_accessor :items
+	# @return [String]
+	attr_accessor :name
 
-	# @return [IEnterprise]
-	attr_accessor :maintainers
-
-	# @return [DateTime]
-	attr_accessor :beginDate
+	# @return [String]
+	attr_accessor :description
 
 	# @return [DateTime]
-	attr_accessor :endDate
+	attr_accessor :date
+
+	# @return [IProductOptionValue]
+	attr_accessor :referenceProductionOptionValue
 
 	# @param semanticId [String]
-	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
-	# @param beginDate [DateTime]
-	# @param endDate [DateTime]
-	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)
+	# @param name [String]
+	# @param description [String]
+	# @param date [DateTime]
+	# @param referenceProductionOptionValue [IProductOptionValue]
+	def initialize(semanticId, name: nil, description: nil, date: nil, referenceProductionOptionValue: [])
 		super(semanticId)
-		@items = items
-		@maintainers = maintainers
-		@beginDate = beginDate
-		@endDate = endDate
-		self.semanticType = "dfc-b:Catalog"
-		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
-		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
-		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
-		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
+		@name = name
+		@description = description
+		@date = date
+		@referenceProductionOptionValue = referenceProductionOptionValue
+		self.semanticType = "dfc-b:ProductOption"
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
+		registerSemanticProperty("dfc-b:date", &method("date")).valueSetter = method("date=")
+		registerSemanticProperty("dfc-b:hasReferenceProductOptionValue", &method("referenceProductionOptionValue")).valueSetter = method("referenceProductionOptionValue=")
 	end
 	
 

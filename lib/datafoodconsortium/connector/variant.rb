@@ -30,21 +30,22 @@ require "datafoodconsortium/connector/defined_product"
 
 
 
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Connector::DefinedProduct
+class DataFoodConsortium::Connector::Variant < DataFoodConsortium::Connector::DefinedProduct
 
-    SEMANTIC_TYPE = "dfc-b:SuppliedProduct".freeze
+    SEMANTIC_TYPE = "dfc-b:Variant".freeze
 
-	# @return [Real]
-	attr_accessor :totalTheoreticalStock
+	# @return [IDefinedProduct]
+	attr_accessor :isVariantOf
 
-	
-
-	
+	# @return [IVariantCharacteristic]
+	attr_accessor :variantCharacteristics
 
 	# @param semanticId [String]
-	# @param totalTheoreticalStock [Real]
+	# @param isVariantOf [IDefinedProduct]
+	# @param variantCharacteristics [IVariantCharacteristic]
 	# @param name [String]
 	# @param description [String]
 	# @param productType [ISKOSConcept]
@@ -64,11 +65,13 @@ class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Conne
 	# @param images [String]
 	# @param variants [IDefinedProduct]
 	# @param referenceProductOptions [IProductOption]
-	def initialize(semanticId, totalTheoreticalStock: nil, name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [], variants: [], referenceProductOptions: [])
+	def initialize(semanticId, isVariantOf: [], variantCharacteristics: [], name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [], variants: [], referenceProductOptions: [])
 		super(semanticId, name: name, description: description, productType: productType, quantity: quantity, alcoholPercentage: alcoholPercentage, lifetime: lifetime, claims: claims, usageOrStorageConditions: usageOrStorageConditions, allergenCharacteristics: allergenCharacteristics, nutrientCharacteristics: nutrientCharacteristics, physicalCharacteristics: physicalCharacteristics, geographicalOrigin: geographicalOrigin, catalogItems: catalogItems, certifications: certifications, natureOrigin: natureOrigin, partOrigin: partOrigin, images: images, variants: variants, referenceProductOptions: referenceProductOptions)
-		@totalTheoreticalStock = totalTheoreticalStock
-		self.semanticType = "dfc-b:SuppliedProduct"
-		registerSemanticProperty("dfc-b:totalTheoreticalStock", &method("totalTheoreticalStock")).valueSetter = method("totalTheoreticalStock=")
+		@isVariantOf = isVariantOf
+		@variantCharacteristics = variantCharacteristics
+		self.semanticType = "dfc-b:Variant"
+		registerSemanticProperty("dfc-b:isVariantOf", &method("isVariantOf")).valueSetter = method("isVariantOf=")
+		registerSemanticProperty("dfc-b:hasVariantCaracteristic", &method("variantCharacteristics")).valueSetter = method("variantCharacteristics=")
 	end
 	
 

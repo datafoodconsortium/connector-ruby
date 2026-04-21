@@ -21,30 +21,57 @@
 # SOFTWARE.
 
 
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::CustomerCategory
+class DataFoodConsortium::Connector::ValueRecur
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze
+    SEMANTIC_TYPE = "http://www.w3.org/2002/12/cal/icaltzd#Value_RECUR".freeze
 
 	# @return [String]
-	attr_accessor :description
+	attr_accessor :byday
 
-	# @return [IAgent]
-	attr_accessor :members
+	# @return [String]
+	attr_accessor :bymonth
+
+	# @return [String]
+	attr_accessor :freq
+
+	# @return [Integer]
+	attr_accessor :interval
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
 
 	# @param semanticId [String]
-	# @param description [String]
-	# @param members [IAgent]
-	def initialize(semanticId, description: nil, members: [])
+	# @param byday [String]
+	# @param bymonth [String]
+	# @param freq [String]
+	# @param interval [Integer]
+	def initialize(semanticId, byday: nil, bymonth: nil, freq: nil, interval: nil)
 		super(semanticId)
-		@description = description
-		@members = members
-		self.semanticType = "dfc-b:CustomerCategory"
-		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
-		registerSemanticProperty("dfc-b:isMemberOf", &method("members")).valueSetter = method("members=")
+		@byday = byday
+		@bymonth = bymonth
+		@freq = freq
+		@interval = interval
+		self.semanticType = "http://www.w3.org/2002/12/cal/icaltzd#Value_RECUR"
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#byday", &method("byday")).valueSetter = method("byday=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#bymonth", &method("bymonth")).valueSetter = method("bymonth=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#freq", &method("freq")).valueSetter = method("freq=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#interval", &method("interval")).valueSetter = method("interval=")
 	end
 	
 

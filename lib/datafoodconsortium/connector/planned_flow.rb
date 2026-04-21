@@ -20,46 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-
-
-
-
+require "datafoodconsortium/connector/flow"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Catalog
-    include VirtualAssembly::Semantizer::SemanticObject
+class DataFoodConsortium::Connector::PlannedFlow < DataFoodConsortium::Connector::Flow
 
-    SEMANTIC_TYPE = "dfc-b:Catalog".freeze
+	# @return [IPlannedTransformation]
+	attr_accessor :transformation
 
-	# @return [ICatalogItem]
-	attr_accessor :items
-
-	# @return [IEnterprise]
-	attr_accessor :maintainers
-
-	# @return [DateTime]
-	attr_accessor :beginDate
-
-	# @return [DateTime]
-	attr_accessor :endDate
-
-	# @param semanticId [String]
-	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
-	# @param beginDate [DateTime]
-	# @param endDate [DateTime]
-	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)
-		super(semanticId)
-		@items = items
-		@maintainers = maintainers
-		@beginDate = beginDate
-		@endDate = endDate
-		self.semanticType = "dfc-b:Catalog"
-		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
-		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
-		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
-		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
+	# @param transformation [IPlannedTransformation]
+	# @param quantity [IQuantity]
+	def initialize(transformation: nil, quantity: nil)
+		super(quantity: quantity)
+		@transformation = transformation
+		
+		registerSemanticProperty("dfc-b:incomeOf", &method("transformation")).valueSetter = method("transformation=")
 	end
 	
 

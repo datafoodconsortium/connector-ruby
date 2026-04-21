@@ -23,43 +23,29 @@
 
 
 
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Catalog
+class DataFoodConsortium::Connector::TemplateSaleSession
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:Catalog".freeze
+    SEMANTIC_TYPE = "dfc-b:TemplateSaleSession".freeze
 
-	# @return [ICatalogItem]
-	attr_accessor :items
+	# @return [IPlace]
+	attr_accessor :hostingPlaces
 
-	# @return [IEnterprise]
-	attr_accessor :maintainers
-
-	# @return [DateTime]
-	attr_accessor :beginDate
-
-	# @return [DateTime]
-	attr_accessor :endDate
+	# @return [IOrganization]
+	attr_accessor :organizations
 
 	# @param semanticId [String]
-	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
-	# @param beginDate [DateTime]
-	# @param endDate [DateTime]
-	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)
+	# @param hostingPlaces [IPlace]
+	# @param organizations [IOrganization]
+	def initialize(semanticId, hostingPlaces: [], organizations: [])
 		super(semanticId)
-		@items = items
-		@maintainers = maintainers
-		@beginDate = beginDate
-		@endDate = endDate
-		self.semanticType = "dfc-b:Catalog"
-		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
-		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
-		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
-		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
+		@hostingPlaces = hostingPlaces
+		@organizations = organizations
+		self.semanticType = "dfc-b:TemplateSaleSession"
+		registerSemanticProperty("dfc-b:hostedAt", &method("hostingPlaces")).valueSetter = method("hostingPlaces=")
+		registerSemanticProperty("dfc-b:isTemplateSaleSessionOf", &method("organizations")).valueSetter = method("organizations=")
 	end
 	
 

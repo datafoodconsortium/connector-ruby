@@ -22,6 +22,7 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::PhysicalPlace
@@ -56,6 +57,9 @@ class DataFoodConsortium::Connector::PhysicalPlace
 	# @return [IRealStock]
 	attr_accessor :realStocks
 
+	# @return [IGeoJsonFeature]
+	attr_accessor :features
+
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
@@ -66,7 +70,8 @@ class DataFoodConsortium::Connector::PhysicalPlace
 	# @param mainContact [IPerson]
 	# @param theoreticalStocks [ITheoreticalStock]
 	# @param realStocks [IRealStock]
-	def initialize(semanticId, name: nil, description: nil, hostedSaleSessions: [], phoneNumbers: [], openingHours: [], addresses: [], mainContact: nil, theoreticalStocks: [], realStocks: [])
+	# @param features [IGeoJsonFeature]
+	def initialize(semanticId, name: nil, description: nil, hostedSaleSessions: [], phoneNumbers: [], openingHours: [], addresses: [], mainContact: nil, theoreticalStocks: [], realStocks: [], features: [])
 		super(semanticId)
 		@name = name
 		@description = description
@@ -77,6 +82,7 @@ class DataFoodConsortium::Connector::PhysicalPlace
 		@mainContact = mainContact
 		@theoreticalStocks = theoreticalStocks
 		@realStocks = realStocks
+		@features = features
 		self.semanticType = "dfc-b:PhysicalPlace"
 		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
@@ -87,6 +93,7 @@ class DataFoodConsortium::Connector::PhysicalPlace
 		registerSemanticProperty("dfc-b:hasMainContact", &method("mainContact")).valueSetter = method("mainContact=")
 		registerSemanticProperty("dfc-b:localizes", &method("theoreticalStocks")).valueSetter = method("theoreticalStocks=")
 		registerSemanticProperty("dfc-b:stores", &method("realStocks")).valueSetter = method("realStocks=")
+		registerSemanticProperty("dfc-b:hasGeoJsonFeature", &method("features")).valueSetter = method("features=")
 	end
 	
 

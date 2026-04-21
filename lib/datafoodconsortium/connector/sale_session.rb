@@ -22,6 +22,8 @@
 
 
 
+
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::SaleSession
@@ -29,10 +31,10 @@ class DataFoodConsortium::Connector::SaleSession
 
     SEMANTIC_TYPE = "dfc-b:SaleSession".freeze
 
-	# @return [String]
+	# @return [DateTime]
 	attr_accessor :beginDate
 
-	# @return [String]
+	# @return [DateTime]
 	attr_accessor :endDate
 
 	# @return [Real]
@@ -41,22 +43,28 @@ class DataFoodConsortium::Connector::SaleSession
 	# @return [IOffer]
 	attr_accessor :offers
 
+	# @return [IPlace]
+	attr_accessor :hostingPlaces
+
 	# @param semanticId [String]
-	# @param beginDate [String]
-	# @param endDate [String]
+	# @param beginDate [DateTime]
+	# @param endDate [DateTime]
 	# @param quantity [Real]
 	# @param offers [IOffer]
-	def initialize(semanticId, beginDate: nil, endDate: nil, quantity: nil, offers: [])
+	# @param hostingPlaces [IPlace]
+	def initialize(semanticId, beginDate: nil, endDate: nil, quantity: nil, offers: [], hostingPlaces: [])
 		super(semanticId)
 		@beginDate = beginDate
 		@endDate = endDate
 		@quantity = quantity
 		@offers = offers
+		@hostingPlaces = hostingPlaces
 		self.semanticType = "dfc-b:SaleSession"
 		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
 		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
 		registerSemanticProperty("dfc-b:quantity", &method("quantity")).valueSetter = method("quantity=")
 		registerSemanticProperty("dfc-b:lists", &method("offers")).valueSetter = method("offers=")
+		registerSemanticProperty("dfc-b:hostedAt", &method("hostingPlaces")).valueSetter = method("hostingPlaces=")
 	end
 	
 
