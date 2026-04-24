@@ -14,7 +14,7 @@ module DataFoodConsortium
 
       # This is the current file the DFC website refers to in a link header.
       alias_preloaded(
-        "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld",
+        "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld",
         "http://www.datafoodconsortium.org/"
       )
 
@@ -37,7 +37,7 @@ module DataFoodConsortium
       end
 
       def self.json
-        @json ||= JSON.parse(File.read("#{__dir__}/context_1.16.0.json"))["@context"]
+        @json ||= JSON.parse(File.read("#{__dir__}/context_2.0.0.json"))["@context"]
       end
     end
   end
