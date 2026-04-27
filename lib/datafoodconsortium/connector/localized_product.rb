@@ -29,7 +29,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::LocalizedProduct
+class DataFoodConsortium::ConnectorV1::LocalizedProduct
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:LocalizedProduct".freeze

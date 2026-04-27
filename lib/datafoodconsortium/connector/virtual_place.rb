@@ -24,7 +24,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::VirtualPlace
+class DataFoodConsortium::ConnectorV1::VirtualPlace
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:VirtualPlace".freeze

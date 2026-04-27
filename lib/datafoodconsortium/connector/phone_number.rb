@@ -23,7 +23,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PhoneNumber
+class DataFoodConsortium::ConnectorV1::PhoneNumber
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:PhoneNumber".freeze

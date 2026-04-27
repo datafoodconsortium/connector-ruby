@@ -26,7 +26,7 @@
 require "datafoodconsortium/connector/shipping_option"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PickupOption < DataFoodConsortium::Connector::ShippingOption
+class DataFoodConsortium::ConnectorV1::PickupOption < DataFoodConsortium::ConnectorV1::ShippingOption
 
     SEMANTIC_TYPE = "dfc-b:PickupOption".freeze
 

@@ -25,7 +25,7 @@ require "datafoodconsortium/connector/characteristic"
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::AllergenCharacteristic < DataFoodConsortium::Connector::Characteristic
+class DataFoodConsortium::ConnectorV1::AllergenCharacteristic < DataFoodConsortium::ConnectorV1::Characteristic
 
     SEMANTIC_TYPE = "dfc-b:AllergenCharacteristic".freeze
 

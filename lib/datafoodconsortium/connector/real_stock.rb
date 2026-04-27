@@ -28,7 +28,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::RealStock
+class DataFoodConsortium::ConnectorV1::RealStock
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:RealStock".freeze

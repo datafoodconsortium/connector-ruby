@@ -23,7 +23,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::SocialMedia
+class DataFoodConsortium::ConnectorV1::SocialMedia
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:SocialMedia".freeze

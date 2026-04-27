@@ -27,7 +27,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::ShippingOption
+class DataFoodConsortium::ConnectorV1::ShippingOption
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:PickupOption".freeze

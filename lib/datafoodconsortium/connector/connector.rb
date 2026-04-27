@@ -25,7 +25,7 @@ require 'datafoodconsortium/connector/context'
 require 'datafoodconsortium/connector/importer'
 require 'datafoodconsortium/connector/json_ld_serializer'
 
-module DataFoodConsortium::Connector
+module DataFoodConsortium::ConnectorV1
   class Connector
     include Singleton
 

@@ -24,7 +24,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::QuantitativeValue
+class DataFoodConsortium::ConnectorV1::QuantitativeValue
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:QuantitativeValue".freeze

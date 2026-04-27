@@ -23,7 +23,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Address
+class DataFoodConsortium::ConnectorV1::Address
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:Address".freeze

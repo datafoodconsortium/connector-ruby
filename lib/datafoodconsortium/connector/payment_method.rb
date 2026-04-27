@@ -24,7 +24,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PaymentMethod
+class DataFoodConsortium::ConnectorV1::PaymentMethod
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:PaymentMethod".freeze

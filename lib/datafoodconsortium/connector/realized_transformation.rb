@@ -27,7 +27,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::RealizedTransformation
+class DataFoodConsortium::ConnectorV1::RealizedTransformation
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:AsRealizedTransformation".freeze

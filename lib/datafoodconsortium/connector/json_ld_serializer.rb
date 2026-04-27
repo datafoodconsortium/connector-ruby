@@ -23,7 +23,7 @@
 require 'virtual_assembly/semantizer'
 require 'json/ld'
 
-class DataFoodConsortium::Connector::JsonLdSerializer
+class DataFoodConsortium::ConnectorV1::JsonLdSerializer
 
     def initialize(outputContext = nil, inputContext = nil)
         @outputContext = outputContext

@@ -3,7 +3,7 @@
 require 'json/ld'
 
 module DataFoodConsortium
-  module Connector
+  module ConnectorV1
     # Preload the DFC context.
     #
     # Similar to: https://github.com/ruby-rdf/json-ld-preloaded/

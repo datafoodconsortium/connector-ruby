@@ -26,7 +26,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Order
+class DataFoodConsortium::ConnectorV1::Order
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:Order".freeze

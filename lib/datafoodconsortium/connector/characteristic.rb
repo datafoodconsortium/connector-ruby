@@ -25,7 +25,7 @@
 require "datafoodconsortium/connector/quantitative_value"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Characteristic < DataFoodConsortium::Connector::QuantitativeValue
+class DataFoodConsortium::ConnectorV1::Characteristic < DataFoodConsortium::ConnectorV1::QuantitativeValue
 
 
 	# @param unit [ISKOSConcept]

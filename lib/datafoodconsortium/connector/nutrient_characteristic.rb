@@ -25,7 +25,7 @@ require "datafoodconsortium/connector/characteristic"
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::NutrientCharacteristic < DataFoodConsortium::Connector::Characteristic
+class DataFoodConsortium::ConnectorV1::NutrientCharacteristic < DataFoodConsortium::ConnectorV1::Characteristic
 
     SEMANTIC_TYPE = "dfc-b:NutrientCharacteristic".freeze
 

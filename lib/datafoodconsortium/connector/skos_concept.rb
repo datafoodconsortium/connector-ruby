@@ -25,9 +25,9 @@
 
 require "virtual_assembly/semantizer"
 require 'datafoodconsortium/connector/skos_helper'
-class DataFoodConsortium::Connector::SKOSConcept
+class DataFoodConsortium::ConnectorV1::SKOSConcept
     include VirtualAssembly::Semantizer::SemanticObject
-    include DataFoodConsortium::Connector::SKOSHelper
+    include DataFoodConsortium::ConnectorV1::SKOSHelper
 
     SEMANTIC_TYPE = "skos:Concept".freeze
 

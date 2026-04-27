@@ -24,7 +24,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Flow
+class DataFoodConsortium::ConnectorV1::Flow
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "".freeze

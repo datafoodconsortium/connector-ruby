@@ -33,7 +33,7 @@ require "datafoodconsortium/connector/agent"
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Enterprise < DataFoodConsortium::Connector::Agent
+class DataFoodConsortium::ConnectorV1::Enterprise < DataFoodConsortium::ConnectorV1::Agent
 
     SEMANTIC_TYPE = "dfc-b:Enterprise".freeze
 

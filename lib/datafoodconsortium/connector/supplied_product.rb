@@ -30,7 +30,7 @@ require "datafoodconsortium/connector/defined_product"
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::SuppliedProduct < DataFoodConsortium::Connector::DefinedProduct
+class DataFoodConsortium::ConnectorV1::SuppliedProduct < DataFoodConsortium::ConnectorV1::DefinedProduct
 
     SEMANTIC_TYPE = "dfc-b:SuppliedProduct".freeze
 

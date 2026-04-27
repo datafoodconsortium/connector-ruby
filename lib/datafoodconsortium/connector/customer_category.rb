@@ -23,7 +23,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::CustomerCategory
+class DataFoodConsortium::ConnectorV1::CustomerCategory
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze

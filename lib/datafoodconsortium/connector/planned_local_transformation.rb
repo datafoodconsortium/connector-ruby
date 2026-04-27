@@ -27,7 +27,7 @@
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedLocalTransformation
+class DataFoodConsortium::ConnectorV1::PlannedLocalTransformation
     include VirtualAssembly::Semantizer::SemanticObject
 
     SEMANTIC_TYPE = "dfc-b:AsPlannedLocalTransformation".freeze

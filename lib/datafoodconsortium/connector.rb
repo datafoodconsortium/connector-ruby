@@ -1,5 +1,5 @@
 module DataFoodConsortium
-	module Connector
+	module ConnectorV1
 		require 'datafoodconsortium/connector/connector'
 		require 'datafoodconsortium/connector/json_ld_serializer'
 		require 'datafoodconsortium/connector/skos_parser_element'

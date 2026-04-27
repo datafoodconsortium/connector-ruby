@@ -28,7 +28,7 @@ require "datafoodconsortium/connector/flow"
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedLocalProductionFlow < DataFoodConsortium::Connector::Flow
+class DataFoodConsortium::ConnectorV1::PlannedLocalProductionFlow < DataFoodConsortium::ConnectorV1::Flow
 
     SEMANTIC_TYPE = "dfc-b:AsPlannedLocalProductionFlow".freeze
 
