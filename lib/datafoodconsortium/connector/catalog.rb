@@ -35,7 +35,7 @@ class DataFoodConsortium::Connector::Catalog
 	# @return [ICatalogItem]
 	attr_accessor :items
 
-	# @return [IEnterprise]
+	# @return [IOrganization]
 	attr_accessor :maintainers
 
 	# @return [DateTime]
@@ -46,7 +46,7 @@ class DataFoodConsortium::Connector::Catalog
 
 	# @param semanticId [String]
 	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
+	# @param maintainers [IOrganization]
 	# @param beginDate [DateTime]
 	# @param endDate [DateTime]
 	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)

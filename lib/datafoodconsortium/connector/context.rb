@@ -18,6 +18,16 @@ module DataFoodConsortium
         "http://www.datafoodconsortium.org/"
       )
 
+      alias_preloaded(
+        "https://w3id.org/dfc/ontology/context/context_2.0.0.json",
+        "http://www.datafoodconsortium.org/"
+      )
+
+      alias_preloaded(
+        "https://cdn.jsdelivr.net/gh/datafoodconsortium/ontology/context/context_2.0.0.json",
+        "http://www.datafoodconsortium.org/"
+      )
+
       # The hash serializer expects only string values in the context.
       def self.inputContext
         @inputContext = json.select { |key, value| value.is_a? String }

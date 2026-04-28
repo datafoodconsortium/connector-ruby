@@ -7,7 +7,6 @@ module DataFoodConsortium
 		require 'datafoodconsortium/connector/agent.rb'
 		require 'datafoodconsortium/connector/certification.rb'
 		require 'datafoodconsortium/connector/customer_category.rb'
-		require 'datafoodconsortium/connector/enterprise.rb'
 		require 'datafoodconsortium/connector/organization.rb'
 		require 'datafoodconsortium/connector/person.rb'
 		require 'datafoodconsortium/connector/phone_number.rb'

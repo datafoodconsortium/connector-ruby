@@ -37,13 +37,13 @@ class DataFoodConsortium::Connector::Person < DataFoodConsortium::Connector::Age
 	# @return [String]
 	attr_accessor :lastName
 
-	# @return [IEnterprise]
+	# @return [IOrganization]
 	attr_accessor :affiliatedOrganizations
 
 	# @param semanticId [String]
 	# @param firstName [String]
 	# @param lastName [String]
-	# @param affiliatedOrganizations [IEnterprise]
+	# @param affiliatedOrganizations [IOrganization]
 	# @param localizations [IAddress]
 	# @param phoneNumbers [IPhoneNumber]
 	# @param emails [String]
