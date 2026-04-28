@@ -20,34 +20,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require "datafoodconsortium/connector_v1/flow"
 
 
 
-require "datafoodconsortium/connector/shipping_option"
+
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::ConnectorV1::PickupOption < DataFoodConsortium::ConnectorV1::ShippingOption
+class DataFoodConsortium::ConnectorV1::PlannedLocalConsumptionFlow < DataFoodConsortium::ConnectorV1::Flow
 
-    SEMANTIC_TYPE = "dfc-b:PickupOption".freeze
+    SEMANTIC_TYPE = "dfc-b:AsPlannedLocalConsumptionFlow".freeze
 
-	# @return [IPhysicalPlace]
-	attr_accessor :pickupPlace
+	# @return [IPlannedLocalTransformation]
+	attr_accessor :transformation
+
+	# @return [ILocalizedProduct]
+	attr_accessor :product
 
 	# @param semanticId [String]
-	# @param pickupPlace [IPhysicalPlace]
-	# @param name [String]
-	# @param description [String]
-	# @param fee [Real]
+	# @param transformation [IPlannedLocalTransformation]
+	# @param product [ILocalizedProduct]
 	# @param quantity [IQuantity]
-	# @param order [IOrder]
-	# @param saleSession [ISaleSession]
-	# @param beginDate [DateTime]
-	# @param endDate [DateTime]
-	def initialize(semanticId, pickupPlace: nil, name: nil, description: nil, fee: nil, quantity: nil, order: nil, saleSession: nil, beginDate: nil, endDate: nil)
-		super(semanticId, name: name, description: description, fee: fee, quantity: quantity, order: order, saleSession: saleSession, beginDate: beginDate, endDate: endDate)
-		@pickupPlace = pickupPlace
-		self.semanticType = "dfc-b:PickupOption"
-		registerSemanticProperty("dfc-b:pickedUpAt", &method("pickupPlace")).valueSetter = method("pickupPlace=")
+	def initialize(semanticId, transformation: nil, product: nil, quantity: nil)
+		super(semanticId, quantity: quantity)
+		@transformation = transformation
+		@product = product
+		self.semanticType = "dfc-b:AsPlannedLocalConsumptionFlow"
+		registerSemanticProperty("dfc-b:incomeOf", &method("transformation")).valueSetter = method("transformation=")
+		registerSemanticProperty("dfc-b:consumes", &method("product")).valueSetter = method("product=")
 	end
 	
 

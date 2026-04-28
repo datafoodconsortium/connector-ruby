@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require "datafoodconsortium/connector/flow"
+require "datafoodconsortium/connector_v1/flow"
 
 
 
@@ -28,9 +28,9 @@ require "datafoodconsortium/connector/flow"
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::ConnectorV1::RealizedProductionFlow < DataFoodConsortium::ConnectorV1::Flow
+class DataFoodConsortium::ConnectorV1::RealizedConsumptionFlow < DataFoodConsortium::ConnectorV1::Flow
 
-    SEMANTIC_TYPE = "dfc-b:AsRealizedProductionFlow".freeze
+    SEMANTIC_TYPE = "dfc-b:AsRealizedConsumptionFlow".freeze
 
 	# @return [IRealizedTransformation]
 	attr_accessor :transformation
@@ -46,9 +46,9 @@ class DataFoodConsortium::ConnectorV1::RealizedProductionFlow < DataFoodConsorti
 		super(semanticId, quantity: quantity)
 		@transformation = transformation
 		@product = product
-		self.semanticType = "dfc-b:AsRealizedProductionFlow"
-		registerSemanticProperty("dfc-b:outcomeOf", &method("transformation")).valueSetter = method("transformation=")
-		registerSemanticProperty("dfc-b:produces", &method("product")).valueSetter = method("product=")
+		self.semanticType = "dfc-b:AsRealizedConsumptionFlow"
+		registerSemanticProperty("dfc-b:incomeOf", &method("transformation")).valueSetter = method("transformation=")
+		registerSemanticProperty("dfc-b:consumes", &method("product")).valueSetter = method("product=")
 	end
 	
 

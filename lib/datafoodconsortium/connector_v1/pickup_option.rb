@@ -20,31 +20,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require "datafoodconsortium/connector/characteristic"
 
 
+
+require "datafoodconsortium/connector_v1/shipping_option"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::ConnectorV1::AllergenCharacteristic < DataFoodConsortium::ConnectorV1::Characteristic
+class DataFoodConsortium::ConnectorV1::PickupOption < DataFoodConsortium::ConnectorV1::ShippingOption
 
-    SEMANTIC_TYPE = "dfc-b:AllergenCharacteristic".freeze
+    SEMANTIC_TYPE = "dfc-b:PickupOption".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :allergenDimension
+	# @return [IPhysicalPlace]
+	attr_accessor :pickupPlace
 
-	# @param allergenDimension [ISKOSConcept]
-	# @param unit [ISKOSConcept]
-	# @param value [Real]
-	def initialize(allergenDimension: nil, unit: nil, value: nil)
-		super(unit: unit, value: value)
-		@allergenDimension = allergenDimension
-		self.semanticType = "dfc-b:AllergenCharacteristic"
-		registerSemanticProperty("dfc-b:hasAllergenDimension", &method("allergenDimension")).valueSetter = method("allergenDimension=")
+	# @param semanticId [String]
+	# @param pickupPlace [IPhysicalPlace]
+	# @param name [String]
+	# @param description [String]
+	# @param fee [Real]
+	# @param quantity [IQuantity]
+	# @param order [IOrder]
+	# @param saleSession [ISaleSession]
+	# @param beginDate [DateTime]
+	# @param endDate [DateTime]
+	def initialize(semanticId, pickupPlace: nil, name: nil, description: nil, fee: nil, quantity: nil, order: nil, saleSession: nil, beginDate: nil, endDate: nil)
+		super(semanticId, name: name, description: description, fee: fee, quantity: quantity, order: order, saleSession: saleSession, beginDate: beginDate, endDate: endDate)
+		@pickupPlace = pickupPlace
+		self.semanticType = "dfc-b:PickupOption"
+		registerSemanticProperty("dfc-b:pickedUpAt", &method("pickupPlace")).valueSetter = method("pickupPlace=")
 	end
-	
-
-	
-
 	
 
 

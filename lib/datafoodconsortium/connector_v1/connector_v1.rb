@@ -21,9 +21,9 @@
 # SOFTWARE.
 
 require 'singleton'
-require 'datafoodconsortium/connector/context'
-require 'datafoodconsortium/connector/importer'
-require 'datafoodconsortium/connector/json_ld_serializer'
+require 'datafoodconsortium/connector_v1/context'
+require 'datafoodconsortium/connector_v1/importer'
+require 'datafoodconsortium/connector_v1/json_ld_serializer'
 
 module DataFoodConsortium::ConnectorV1
   class Connector

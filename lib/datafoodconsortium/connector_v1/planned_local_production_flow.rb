@@ -20,31 +20,36 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require "datafoodconsortium/connector/characteristic"
+require "datafoodconsortium/connector_v1/flow"
+
+
+
 
 
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::ConnectorV1::PhysicalCharacteristic < DataFoodConsortium::ConnectorV1::Characteristic
+class DataFoodConsortium::ConnectorV1::PlannedLocalProductionFlow < DataFoodConsortium::ConnectorV1::Flow
 
-    SEMANTIC_TYPE = "dfc-b:PhysicalCharacteristic".freeze
+    SEMANTIC_TYPE = "dfc-b:AsPlannedLocalProductionFlow".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :physicalDimension
+	# @return [IPlannedLocalTransformation]
+	attr_accessor :transformation
 
-	# @param physicalDimension [ISKOSConcept]
-	# @param unit [ISKOSConcept]
-	# @param value [Real]
-	def initialize(physicalDimension: nil, unit: nil, value: nil)
-		super(unit: unit, value: value)
-		@physicalDimension = physicalDimension
-		self.semanticType = "dfc-b:PhysicalCharacteristic"
-		registerSemanticProperty("dfc-b:hasPhysicalDimension", &method("physicalDimension")).valueSetter = method("physicalDimension=")
+	# @return [ILocalizedProduct]
+	attr_accessor :product
+
+	# @param semanticId [String]
+	# @param transformation [IPlannedLocalTransformation]
+	# @param product [ILocalizedProduct]
+	# @param quantity [IQuantity]
+	def initialize(semanticId, transformation: nil, product: nil, quantity: nil)
+		super(semanticId, quantity: quantity)
+		@transformation = transformation
+		@product = product
+		self.semanticType = "dfc-b:AsPlannedLocalProductionFlow"
+		registerSemanticProperty("dfc-b:outcomeOf", &method("transformation")).valueSetter = method("transformation=")
+		registerSemanticProperty("dfc-b:produces", &method("product")).valueSetter = method("product=")
 	end
-	
-
-	
-
 	
 
 

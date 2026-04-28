@@ -20,21 +20,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require "datafoodconsortium/connector_v1/characteristic"
 
 
-require "datafoodconsortium/connector/quantitative_value"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::ConnectorV1::Characteristic < DataFoodConsortium::ConnectorV1::QuantitativeValue
+class DataFoodConsortium::ConnectorV1::AllergenCharacteristic < DataFoodConsortium::ConnectorV1::Characteristic
 
+    SEMANTIC_TYPE = "dfc-b:AllergenCharacteristic".freeze
 
+	# @return [ISKOSConcept]
+	attr_accessor :allergenDimension
+
+	# @param allergenDimension [ISKOSConcept]
 	# @param unit [ISKOSConcept]
 	# @param value [Real]
-	def initialize(unit: nil, value: nil)
+	def initialize(allergenDimension: nil, unit: nil, value: nil)
 		super(unit: unit, value: value)
-		
-		
-		
+		@allergenDimension = allergenDimension
+		self.semanticType = "dfc-b:AllergenCharacteristic"
+		registerSemanticProperty("dfc-b:hasAllergenDimension", &method("allergenDimension")).valueSetter = method("allergenDimension=")
 	end
 	
 

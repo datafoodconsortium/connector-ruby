@@ -23,7 +23,7 @@
 
 
 
-require "datafoodconsortium/connector/shipping_option"
+require "datafoodconsortium/connector_v1/shipping_option"
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::ConnectorV1::DeliveryOption < DataFoodConsortium::ConnectorV1::ShippingOption

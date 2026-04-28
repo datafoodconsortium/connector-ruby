@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::Connector::CatalogItem do
+RSpec.describe DataFoodConsortium::ConnectorV1::CatalogItem do
   it "can be empty when exported" do
-    subject = DataFoodConsortium::Connector::CatalogItem.new(
+    subject = DataFoodConsortium::ConnectorV1::CatalogItem.new(
       "https://myplatform.com/ci"
     )
     result = exported_json(subject)
@@ -13,9 +13,9 @@ RSpec.describe DataFoodConsortium::Connector::CatalogItem do
   end
 
   it "contains all fields when exported" do
-    sp = DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/sp")
-    offer = DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/o")
-    subject = DataFoodConsortium::Connector::CatalogItem.new(
+    sp = DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/sp")
+    offer = DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/o")
+    subject = DataFoodConsortium::ConnectorV1::CatalogItem.new(
       "https://myplatform.com/ci",
       product: sp,
       sku: "sku",

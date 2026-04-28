@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::Connector::Connector do
+RSpec.describe DataFoodConsortium::ConnectorV1::Connector do
   let(:product) do
-    DataFoodConsortium::Connector::SuppliedProduct.new(
+    DataFoodConsortium::ConnectorV1::SuppliedProduct.new(
       "https://example.net/tomato",
       name: "Tomato",
       description: "Awesome tomato",

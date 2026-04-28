@@ -13,7 +13,7 @@ This is a legacy version kept for backward compatibility.
 
 In order to use it with newer versions, it has been published as a new package https://rubygems.org/gems/datafoodconsortium-connector-v1.
 
-The module name has been changed to DataFoodConsortium::ConnectorV1.
+The module name has been changed to DataFoodConsortium::ConnectorV1, the package files and folder were renamed to connector_v1.
 
 ## [1.3.0] - 2025-12-17
 

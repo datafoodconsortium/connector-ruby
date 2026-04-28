@@ -24,7 +24,7 @@
 
 
 require "virtual_assembly/semantizer"
-require 'datafoodconsortium/connector/skos_helper'
+require 'datafoodconsortium/connector_v1/skos_helper'
 class DataFoodConsortium::ConnectorV1::SKOSConcept
     include VirtualAssembly::Semantizer::SemanticObject
     include DataFoodConsortium::ConnectorV1::SKOSHelper

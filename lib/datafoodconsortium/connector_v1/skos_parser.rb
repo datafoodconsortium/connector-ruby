@@ -22,9 +22,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'datafoodconsortium/connector/skos_helper'
-require 'datafoodconsortium/connector/skos_concept'
-require 'datafoodconsortium/connector/skos_parser_element'
+require 'datafoodconsortium/connector_v1/skos_helper'
+require 'datafoodconsortium/connector_v1/skos_concept'
+require 'datafoodconsortium/connector_v1/skos_parser_element'
 
 class DataFoodConsortium::ConnectorV1::SKOSInstance
   include DataFoodConsortium::ConnectorV1::SKOSHelper

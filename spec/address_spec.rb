@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::Connector::Address do
+RSpec.describe DataFoodConsortium::ConnectorV1::Address do
   it "can be empty when exported" do
-    subject = DataFoodConsortium::Connector::Address.new(
+    subject = DataFoodConsortium::ConnectorV1::Address.new(
       "https://myplatform.com/a"
     )
     result = exported_json(subject)
@@ -13,7 +13,7 @@ RSpec.describe DataFoodConsortium::Connector::Address do
   end
 
   it "contains all fields when exported" do
-    subject = DataFoodConsortium::Connector::Address.new(
+    subject = DataFoodConsortium::ConnectorV1::Address.new(
       "https://myplatform.com/a",
       street: "street",
       postalCode: "postalCode",

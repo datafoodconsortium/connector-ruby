@@ -1,4 +1,4 @@
-RSpec.describe DataFoodConsortium::Connector::Connector do
+RSpec.describe DataFoodConsortium::ConnectorV1::Connector do
   it "exports an empty list" do
     subjects = []
     actual = exported_json(*subjects)
@@ -9,23 +9,23 @@ RSpec.describe DataFoodConsortium::Connector::Connector do
   end
 
   it "exports multiple subjects in a graph" do
-    a = DataFoodConsortium::Connector::Address.new(
+    a = DataFoodConsortium::ConnectorV1::Address.new(
       "https://myplatform.com/a",
       street: "street",
       postalCode: "postalCode",
       city: "city",
       country: "country"
     )
-    cc = DataFoodConsortium::Connector::CustomerCategory.new(
+    cc = DataFoodConsortium::ConnectorV1::CustomerCategory.new(
       "https://myplatform.com/cc",
       description: "description"
     )
-    sp = DataFoodConsortium::Connector::SuppliedProduct.new(
+    sp = DataFoodConsortium::ConnectorV1::SuppliedProduct.new(
       "https://myplatform.com/sp",
       name: "name",
       description: "description",
       productType: connector.PRODUCT_TYPES.VEGETABLE.ARTICHOKE,
-      quantity: DataFoodConsortium::Connector::QuantitativeValue.new(
+      quantity: DataFoodConsortium::ConnectorV1::QuantitativeValue.new(
         unit: connector.MEASURES.KILOGRAM,
         value: 1.2
       ),
@@ -41,14 +41,14 @@ RSpec.describe DataFoodConsortium::Connector::Connector do
       ],
       allergenCharacteristics: [],
       nutrientCharacteristics: [
-        DataFoodConsortium::Connector::NutrientCharacteristic.new(
+        DataFoodConsortium::ConnectorV1::NutrientCharacteristic.new(
           nutrientDimension: connector.MEASURES.CALCIUM,
           unit: connector.MEASURES.GRAM,
           value: 8.47
         )
       ],
       physicalCharacteristics: [
-        DataFoodConsortium::Connector::PhysicalCharacteristic.new(
+        DataFoodConsortium::ConnectorV1::PhysicalCharacteristic.new(
           physicalDimension: connector.MEASURES.WEIGHT,
           unit: connector.MEASURES.KILOGRAM,
           value: 3.25
@@ -58,9 +58,9 @@ RSpec.describe DataFoodConsortium::Connector::Connector do
       natureOrigin: connector.FACETS.NATUREORIGIN.PLANTORIGIN,
       partOrigin: connector.FACETS.NATUREORIGIN.PLANTORIGIN
     )
-    o = DataFoodConsortium::Connector::Offer.new(
+    o = DataFoodConsortium::ConnectorV1::Offer.new(
       "https://myplatform.com/o",
-      price: DataFoodConsortium::Connector::Price.new(
+      price: DataFoodConsortium::ConnectorV1::Price.new(
         value: 12.78,
         vatRate: 5.22,
         unit: connector.MEASURES.EURO
@@ -68,14 +68,14 @@ RSpec.describe DataFoodConsortium::Connector::Connector do
       stockLimitation: 52,
       offeredTo: cc
     )
-    ci = DataFoodConsortium::Connector::CatalogItem.new(
+    ci = DataFoodConsortium::ConnectorV1::CatalogItem.new(
       "https://myplatform.com/ci",
       product: sp,
       sku: "sku",
       stockLimitation: 10,
       offers: [o]
     )
-    e = DataFoodConsortium::Connector::Enterprise.new(
+    e = DataFoodConsortium::ConnectorV1::Enterprise.new(
       "https://myplatform.com/e",
       name: "name",
       description: "description",
@@ -85,7 +85,7 @@ RSpec.describe DataFoodConsortium::Connector::Connector do
       catalogItems: [ci],
       localizations: []
     )
-    p = DataFoodConsortium::Connector::Person.new(
+    p = DataFoodConsortium::ConnectorV1::Person.new(
       "https://myplatform.com/p",
       firstName: "firstName",
       lastName: "lastName",

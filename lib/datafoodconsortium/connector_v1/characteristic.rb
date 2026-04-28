@@ -20,36 +20,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require "datafoodconsortium/connector/flow"
 
 
-
-
-
+require "datafoodconsortium/connector_v1/quantitative_value"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::ConnectorV1::RealizedConsumptionFlow < DataFoodConsortium::ConnectorV1::Flow
+class DataFoodConsortium::ConnectorV1::Characteristic < DataFoodConsortium::ConnectorV1::QuantitativeValue
 
-    SEMANTIC_TYPE = "dfc-b:AsRealizedConsumptionFlow".freeze
 
-	# @return [IRealizedTransformation]
-	attr_accessor :transformation
-
-	# @return [IPhysicalProduct]
-	attr_accessor :product
-
-	# @param semanticId [String]
-	# @param transformation [IRealizedTransformation]
-	# @param product [IPhysicalProduct]
-	# @param quantity [IQuantity]
-	def initialize(semanticId, transformation: nil, product: nil, quantity: nil)
-		super(semanticId, quantity: quantity)
-		@transformation = transformation
-		@product = product
-		self.semanticType = "dfc-b:AsRealizedConsumptionFlow"
-		registerSemanticProperty("dfc-b:incomeOf", &method("transformation")).valueSetter = method("transformation=")
-		registerSemanticProperty("dfc-b:consumes", &method("product")).valueSetter = method("product=")
+	# @param unit [ISKOSConcept]
+	# @param value [Real]
+	def initialize(unit: nil, value: nil)
+		super(unit: unit, value: value)
+		
+		
+		
 	end
+	
+
+	
+
 	
 
 
