@@ -46,10 +46,10 @@ class DataFoodConsortium::Connector::PhysicalPlace
 	attr_accessor :openingHours
 
 	# @return [IAddress]
-	attr_accessor :addresses
+	attr_accessor :address
 
 	# @return [IPerson]
-	attr_accessor :mainContact
+	attr_accessor :mainContacts
 
 	# @return [ITheoreticalStock]
 	attr_accessor :theoreticalStocks
@@ -66,20 +66,20 @@ class DataFoodConsortium::Connector::PhysicalPlace
 	# @param hostedSaleSessions [ISaleSession]
 	# @param phoneNumbers [IPhoneNumber]
 	# @param openingHours [IOpeningHoursSpecification]
-	# @param addresses [IAddress]
-	# @param mainContact [IPerson]
+	# @param address [IAddress]
+	# @param mainContacts [IPerson]
 	# @param theoreticalStocks [ITheoreticalStock]
 	# @param realStocks [IRealStock]
 	# @param features [IGeoJsonFeature]
-	def initialize(semanticId, name: nil, description: nil, hostedSaleSessions: [], phoneNumbers: [], openingHours: [], addresses: [], mainContact: nil, theoreticalStocks: [], realStocks: [], features: [])
+	def initialize(semanticId, name: nil, description: nil, hostedSaleSessions: [], phoneNumbers: [], openingHours: [], address: nil, mainContacts: [], theoreticalStocks: [], realStocks: [], features: [])
 		super(semanticId)
 		@name = name
 		@description = description
 		@hostedSaleSessions = hostedSaleSessions
 		@phoneNumbers = phoneNumbers
 		@openingHours = openingHours
-		@addresses = addresses
-		@mainContact = mainContact
+		@address = address
+		@mainContacts = mainContacts
 		@theoreticalStocks = theoreticalStocks
 		@realStocks = realStocks
 		@features = features
@@ -89,8 +89,8 @@ class DataFoodConsortium::Connector::PhysicalPlace
 		registerSemanticProperty("dfc-b:hosts", &method("hostedSaleSessions")).valueSetter = method("hostedSaleSessions=")
 		registerSemanticProperty("dfc-b:hasPhoneNumber", &method("phoneNumbers")).valueSetter = method("phoneNumbers=")
 		registerSemanticProperty("dfc-b:hasOpeningHours", &method("openingHours")).valueSetter = method("openingHours=")
-		registerSemanticProperty("dfc-b:hasAddress", &method("addresses")).valueSetter = method("addresses=")
-		registerSemanticProperty("dfc-b:hasMainContact", &method("mainContact")).valueSetter = method("mainContact=")
+		registerSemanticProperty("dfc-b:hasAddress", &method("address")).valueSetter = method("address=")
+		registerSemanticProperty("dfc-b:hasMainContact", &method("mainContacts")).valueSetter = method("mainContacts=")
 		registerSemanticProperty("dfc-b:localizes", &method("theoreticalStocks")).valueSetter = method("theoreticalStocks=")
 		registerSemanticProperty("dfc-b:stores", &method("realStocks")).valueSetter = method("realStocks=")
 		registerSemanticProperty("dfc-b:hasGeoJsonFeature", &method("features")).valueSetter = method("features=")
