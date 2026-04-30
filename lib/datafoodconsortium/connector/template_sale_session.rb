@@ -36,16 +36,22 @@ class DataFoodConsortium::Connector::TemplateSaleSession
 	# @return [IOrganization]
 	attr_accessor :organizations
 
+	# @return [DateTime]
+	attr_accessor :date
+
 	# @param semanticId [String]
 	# @param hostingPlaces [IPlace]
 	# @param organizations [IOrganization]
-	def initialize(semanticId, hostingPlaces: [], organizations: [])
+	# @param date [DateTime]
+	def initialize(semanticId, hostingPlaces: [], organizations: [], date: nil)
 		super(semanticId)
 		@hostingPlaces = hostingPlaces
 		@organizations = organizations
+		@date = date
 		self.semanticType = "dfc-b:TemplateSaleSession"
 		registerSemanticProperty("dfc-b:hostedAt", &method("hostingPlaces")).valueSetter = method("hostingPlaces=")
 		registerSemanticProperty("dfc-b:isTemplateSaleSessionOf", &method("organizations")).valueSetter = method("organizations=")
+		registerSemanticProperty("dfc-b:date", &method("date")).valueSetter = method("date=")
 	end
 	
 

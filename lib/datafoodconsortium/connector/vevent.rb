@@ -60,8 +60,8 @@ class DataFoodConsortium::Connector::Vevent
 		@rrule = rrule
 		self.semanticType = "http://www.w3.org/2002/12/cal/icaltzd#Vevent"
 		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtstart", &method("dtstart")).valueSetter = method("dtstart=")
-		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtstart", &method("dtend")).valueSetter = method("dtend=")
-		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtstart", &method("rrule")).valueSetter = method("rrule=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtend", &method("dtend")).valueSetter = method("dtend=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#rrule", &method("rrule")).valueSetter = method("rrule=")
 	end
 	
 
