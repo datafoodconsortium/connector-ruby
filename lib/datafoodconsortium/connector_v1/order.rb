@@ -24,6 +24,7 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::ConnectorV1::Order
@@ -58,6 +59,9 @@ class DataFoodConsortium::ConnectorV1::Order
 	# @return [ISKOSConcept]
 	attr_accessor :paymentStatus
 
+	# @return [IPaymentMethod]
+	attr_accessor :paymentMethod
+
 	# @param semanticId [String]
 	# @param number [String]
 	# @param date [String]
@@ -68,7 +72,8 @@ class DataFoodConsortium::ConnectorV1::Order
 	# @param fulfilmentStatus [ISKOSConcept]
 	# @param orderStatus [ISKOSConcept]
 	# @param paymentStatus [ISKOSConcept]
-	def initialize(semanticId, number: nil, date: nil, saleSession: nil, lines: [], client: nil, soldBy: nil, fulfilmentStatus: nil, orderStatus: nil, paymentStatus: nil)
+	# @param paymentMethod [IPaymentMethod]
+	def initialize(semanticId, number: nil, date: nil, saleSession: nil, lines: [], client: nil, soldBy: nil, fulfilmentStatus: nil, orderStatus: nil, paymentStatus: nil, paymentMethod: nil)
 		super(semanticId)
 		@number = number
 		@date = date
@@ -79,6 +84,7 @@ class DataFoodConsortium::ConnectorV1::Order
 		@fulfilmentStatus = fulfilmentStatus
 		@orderStatus = orderStatus
 		@paymentStatus = paymentStatus
+		@paymentMethod = paymentMethod
 		self.semanticType = "dfc-b:Order"
 		registerSemanticProperty("dfc-b:orderNumber", &method("number")).valueSetter = method("number=")
 		registerSemanticProperty("dfc-b:date", &method("date")).valueSetter = method("date=")
@@ -89,6 +95,7 @@ class DataFoodConsortium::ConnectorV1::Order
 		registerSemanticProperty("dfc-b:hasFulfilmentStatus", &method("fulfilmentStatus")).valueSetter = method("fulfilmentStatus=")
 		registerSemanticProperty("dfc-b:hasOrderStatus", &method("orderStatus")).valueSetter = method("orderStatus=")
 		registerSemanticProperty("dfc-b:hasPaymentStatus", &method("paymentStatus")).valueSetter = method("paymentStatus=")
+		registerSemanticProperty("dfc-b:hasPaymentMethod", &method("paymentMethod")).valueSetter = method("paymentMethod=")
 	end
 	
 

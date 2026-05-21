@@ -28,6 +28,7 @@ require "datafoodconsortium/connector_v1/defined_product"
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::ConnectorV1::SuppliedProduct < DataFoodConsortium::ConnectorV1::DefinedProduct
@@ -37,12 +38,16 @@ class DataFoodConsortium::ConnectorV1::SuppliedProduct < DataFoodConsortium::Con
 	# @return [Real]
 	attr_accessor :totalTheoreticalStock
 
+	# @return [ILocalizedProduct]
+	attr_accessor :localizedProducts
+
 	
 
 	
 
 	# @param semanticId [String]
 	# @param totalTheoreticalStock [Real]
+	# @param localizedProducts [ILocalizedProduct]
 	# @param name [String]
 	# @param description [String]
 	# @param productType [ISKOSConcept]
@@ -62,11 +67,13 @@ class DataFoodConsortium::ConnectorV1::SuppliedProduct < DataFoodConsortium::Con
 	# @param images [String]
 	# @param variants [IDefinedProduct]
 	# @param isVariantOf [IDefinedProduct]
-	def initialize(semanticId, totalTheoreticalStock: nil, name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [], variants: [], isVariantOf: [])
+	def initialize(semanticId, totalTheoreticalStock: nil, localizedProducts: [], name: nil, description: nil, productType: nil, quantity: nil, alcoholPercentage: nil, lifetime: nil, claims: [], usageOrStorageConditions: nil, allergenCharacteristics: [], nutrientCharacteristics: [], physicalCharacteristics: [], geographicalOrigin: nil, catalogItems: [], certifications: [], natureOrigin: [], partOrigin: [], images: [], variants: [], isVariantOf: [])
 		super(semanticId, name: name, description: description, productType: productType, quantity: quantity, alcoholPercentage: alcoholPercentage, lifetime: lifetime, claims: claims, usageOrStorageConditions: usageOrStorageConditions, allergenCharacteristics: allergenCharacteristics, nutrientCharacteristics: nutrientCharacteristics, physicalCharacteristics: physicalCharacteristics, geographicalOrigin: geographicalOrigin, catalogItems: catalogItems, certifications: certifications, natureOrigin: natureOrigin, partOrigin: partOrigin, images: images, variants: variants, isVariantOf: isVariantOf)
 		@totalTheoreticalStock = totalTheoreticalStock
+		@localizedProducts = localizedProducts
 		self.semanticType = "dfc-b:SuppliedProduct"
 		registerSemanticProperty("dfc-b:totalTheoreticalStock", &method("totalTheoreticalStock")).valueSetter = method("totalTheoreticalStock=")
+		registerSemanticProperty("dfc-b:referenceOf", &method("localizedProducts")).valueSetter = method("localizedProducts=")
 	end
 	
 

@@ -29,14 +29,20 @@ class DataFoodConsortium::ConnectorV1::CustomerCategory
     SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze
 
 	# @return [String]
+	attr_accessor :name
+
+	# @return [String]
 	attr_accessor :description
 
 	# @param semanticId [String]
+	# @param name [String]
 	# @param description [String]
-	def initialize(semanticId, description: nil)
+	def initialize(semanticId, name: nil, description: nil)
 		super(semanticId)
+		@name = name
 		@description = description
 		self.semanticType = "dfc-b:CustomerCategory"
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
 	end
 	

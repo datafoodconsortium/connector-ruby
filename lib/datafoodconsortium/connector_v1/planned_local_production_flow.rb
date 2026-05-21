@@ -47,7 +47,7 @@ class DataFoodConsortium::ConnectorV1::PlannedLocalProductionFlow < DataFoodCons
 		@transformation = transformation
 		@product = product
 		self.semanticType = "dfc-b:AsPlannedLocalProductionFlow"
-		registerSemanticProperty("dfc-b:outcomeOf", &method("transformation")).valueSetter = method("transformation=")
+		registerSemanticProperty("dfc-b:outputOf", &method("transformation")).valueSetter = method("transformation=")
 		registerSemanticProperty("dfc-b:produces", &method("product")).valueSetter = method("product=")
 	end
 	

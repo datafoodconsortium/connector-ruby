@@ -64,8 +64,8 @@ class DataFoodConsortium::ConnectorV1::RealizedTransformation
 		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
 		registerSemanticProperty("dfc-b:startDate", &method("startDate")).valueSetter = method("startDate=")
 		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
-		registerSemanticProperty("dfc-b:hasIncome", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutcome", &method("productionFlow")).valueSetter = method("productionFlow=")
+		registerSemanticProperty("dfc-b:hasInput", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
+		registerSemanticProperty("dfc-b:hasOutput", &method("productionFlow")).valueSetter = method("productionFlow=")
 	end
 	
 
