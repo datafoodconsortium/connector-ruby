@@ -30,19 +30,25 @@ class DataFoodConsortium::Connector::CustomerCategory
     SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze
 
 	# @return [String]
+	attr_accessor :name
+
+	# @return [String]
 	attr_accessor :description
 
 	# @return [IAgent]
 	attr_accessor :members
 
 	# @param semanticId [String]
+	# @param name [String]
 	# @param description [String]
 	# @param members [IAgent]
-	def initialize(semanticId, description: nil, members: [])
+	def initialize(semanticId, name: nil, description: nil, members: [])
 		super(semanticId)
+		@name = name
 		@description = description
 		@members = members
 		self.semanticType = "dfc-b:CustomerCategory"
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
 		registerSemanticProperty("dfc-b:isMemberOf", &method("members")).valueSetter = method("members=")
 	end

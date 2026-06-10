@@ -37,7 +37,7 @@ class DataFoodConsortium::Connector::Address
 	# @return [String]
 	attr_accessor :city
 
-	# @return [String]
+	# @return [ISKOSConcept]
 	attr_accessor :country
 
 	# @return [Real]
@@ -53,7 +53,7 @@ class DataFoodConsortium::Connector::Address
 	# @param street [String]
 	# @param postalCode [String]
 	# @param city [String]
-	# @param country [String]
+	# @param country [ISKOSConcept]
 	# @param latitude [Real]
 	# @param longitude [Real]
 	# @param region [String]

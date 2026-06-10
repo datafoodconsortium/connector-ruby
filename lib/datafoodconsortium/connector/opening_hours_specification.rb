@@ -21,29 +21,35 @@
 # SOFTWARE.
 
 
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Quantity
+class DataFoodConsortium::Connector::OpeningHoursSpecification
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:Quantity".freeze
+    SEMANTIC_TYPE = "https://schema.org/OpeningHoursSpecification".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :unit
+	# @return [String]
+	attr_accessor :dayOfWeek
 
-	# @return [Real]
-	attr_accessor :value
+	# @return [Time]
+	attr_accessor :opens
 
-	# @param unit [ISKOSConcept]
-	# @param value [Real]
-	def initialize(unit: nil, value: nil)
-		super()
-		@unit = unit
-		@value = value
-		self.semanticType = "dfc-b:Quantity"
-		registerSemanticProperty("dfc-b:hasUnit", &method("unit")).valueSetter = method("unit=")
-		registerSemanticProperty("dfc-b:value", &method("value")).valueSetter = method("value=")
+	# @return [Time]
+	attr_accessor :closes
+
+	# @param semanticId [String]
+	# @param dayOfWeek [String]
+	# @param opens [Time]
+	# @param closes [Time]
+	def initialize(semanticId, dayOfWeek: nil, opens: nil, closes: nil)
+		super(semanticId)
+		@dayOfWeek = dayOfWeek
+		@opens = opens
+		@closes = closes
+		self.semanticType = "https://schema.org/OpeningHoursSpecification"
+		registerSemanticProperty("https://schema.org/dayOfWeek", &method("dayOfWeek")).valueSetter = method("dayOfWeek=")
+		registerSemanticProperty("https://schema.org/opens", &method("opens")).valueSetter = method("opens=")
+		registerSemanticProperty("https://schema.org/closes", &method("closes")).valueSetter = method("closes=")
 	end
 	
 
