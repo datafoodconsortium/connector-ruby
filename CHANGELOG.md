@@ -18,9 +18,6 @@ This version has been generated using:
 
 ### Added
 
-- Add SuppliedProduct referenceOf.
-- Add TechnicalProduct referenceOf.
-
 Classes:
 - Add `ical:Vevent`
 - Add `ical:Value_RECUR`
@@ -29,32 +26,37 @@ Classes:
 - Add `geo:Geometry`
 - Add `geo:Point`
 - Add `geo:Polygon`
-- Add `ProductOption`, subClassOf Option
-- Add `ProductOptionValue`, subClassOf What_Subject
-- Add `Variant`, subClassOf What_Subject
-- Add `VariantCaracteristic`, subClassOf What_Subject
-- Add `TemplateSaleSession`, subClassOf DFC_BusinessOntology_Relation
-- Add `Route`, subClassOf Where_Subject
-- Add `Step`, subClassOf Where_Subject
-- Add `PickUpStep`, subClassOf Step
-- Add `DeliveryStep`, subClassOf Step
+- Add `ProductOption`
+- Add `ProductOptionValue`
+- Add `Variant`
+- Add `VariantCaracteristic`
+- Add `TemplateSaleSession`
+- Add `Route`
+- Add `Step`
+- Add `PickUpStep`
+- Add `DeliveryStep`
 - Add `Datable`
-- Add `Organization` (replace `Enterprise`)
+- Add `Organization`
 - Add `Certification`
 - Add `Shipment`
 
 Properties:
 - Add `Catalog:startDate`
 - Add `PlannedLocalTransformation:startDate`
-- Add `PlannedLocalTransformation:startDate`
+- Add `RealizedTransformation:startDate`
+- Add `SuppliedProduct:referenceOf`.
+- Add `TechnicalProduct:referenceOf`.
 
 ### Changed
 
-- `Enterprise` has been renamed to `Organization` (**BREAKING CHANGE**).
 - `Stock:availabilityDate` is now a 1-1 property (**BREAKING CHANGE**)
 - `PaymentMethod:paymentMethodProvider` is now a 1-1 property (**BREAKING CHANGE**)
 - `PaymentMethod:paymentMethodType` is now a 1-1 property (**BREAKING CHANGE**)
 - `Variant:isVariantOf is now a `Variant` instead of `DefinedProduct` (**BREAKING CHANGE**)
+
+### Removed
+
+- Removed the `Enterprise` class. It was renamed to `Organization` (**BREAKING CHANGE**)
 
 ## [1.4.0] - 2026-05-21
 
