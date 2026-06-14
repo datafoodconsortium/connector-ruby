@@ -49,7 +49,7 @@ class DataFoodConsortium::ConnectorV1::LocalizedProduct
 	# @return [Real]
 	attr_accessor :cost
 
-	# @return [Real]
+	# @return [ITheoreticalStock]
 	attr_accessor :theoreticalStocks
 
 	# @return [ISuppliedProduct]
@@ -70,7 +70,7 @@ class DataFoodConsortium::ConnectorV1::LocalizedProduct
 	# @param images [String]
 	# @param quantity [IQuantity]
 	# @param cost [Real]
-	# @param theoreticalStocks [Real]
+	# @param theoreticalStocks [ITheoreticalStock]
 	# @param suppliedProducts [ISuppliedProduct]
 	# @param physicalProducts [IPhysicalProduct]
 	# @param plannedLocalProductionFlows [IPlannedLocalProductionFlow]

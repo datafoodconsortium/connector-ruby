@@ -31,6 +31,7 @@ require "datafoodconsortium/connector_v1/agent"
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::ConnectorV1::Enterprise < DataFoodConsortium::ConnectorV1::Agent
@@ -64,6 +65,9 @@ class DataFoodConsortium::ConnectorV1::Enterprise < DataFoodConsortium::Connecto
 	# @return [IPerson]
 	attr_accessor :mainContact
 
+	# @return [IAgent]
+	attr_accessor :agents
+
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
@@ -74,13 +78,14 @@ class DataFoodConsortium::ConnectorV1::Enterprise < DataFoodConsortium::Connecto
 	# @param suppliedProducts [ISuppliedProduct]
 	# @param technicalProducts [ITechnicalProduct]
 	# @param mainContact [IPerson]
+	# @param agents [IAgent]
 	# @param localizations [IAddress]
 	# @param phoneNumbers [IPhoneNumber]
 	# @param emails [String]
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
 	# @param logo [String]
-	def initialize(semanticId, name: nil, description: nil, vatNumber: nil, customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil)
+	def initialize(semanticId, name: nil, description: nil, vatNumber: nil, customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, agents: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil)
 		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias, logo: logo)
 		@name = name
 		@description = description
@@ -91,6 +96,7 @@ class DataFoodConsortium::ConnectorV1::Enterprise < DataFoodConsortium::Connecto
 		@suppliedProducts = suppliedProducts
 		@technicalProducts = technicalProducts
 		@mainContact = mainContact
+		@agents = agents
 		self.semanticType = "dfc-b:Enterprise"
 		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:hasDescription", &method("description")).valueSetter = method("description=")
@@ -101,6 +107,7 @@ class DataFoodConsortium::ConnectorV1::Enterprise < DataFoodConsortium::Connecto
 		registerSemanticProperty("dfc-b:supplies", &method("suppliedProducts")).valueSetter = method("suppliedProducts=")
 		registerSemanticProperty("dfc-b:proposes", &method("technicalProducts")).valueSetter = method("technicalProducts=")
 		registerSemanticProperty("dfc-b:hasMainContact", &method("mainContact")).valueSetter = method("mainContact=")
+		registerSemanticProperty("dfc-b:affiliates", &method("agents")).valueSetter = method("agents=")
 	end
 	
 
