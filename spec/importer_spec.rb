@@ -1,18 +1,18 @@
-RSpec.describe DataFoodConsortium::Connector::Importer do
+RSpec.describe DataFoodConsortium::ConnectorV1::Importer do
   let(:enterprise) do
-    DataFoodConsortium::Connector::Enterprise.new(
+    DataFoodConsortium::ConnectorV1::Enterprise.new(
       "https://example.net/foo-food-inc",
       suppliedProducts: [product, second_product],
     )
   end
   let(:catalog_item) do
-    DataFoodConsortium::Connector::CatalogItem.new(
+    DataFoodConsortium::ConnectorV1::CatalogItem.new(
       "https://example.net/tomatoItem",
       product: product,
     )
   end
   let(:product) do
-    DataFoodConsortium::Connector::SuppliedProduct.new(
+    DataFoodConsortium::ConnectorV1::SuppliedProduct.new(
       "https://example.net/tomato",
       name: "Tomato",
       description: "Awesome tomato",
@@ -55,13 +55,13 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
     JSON
   end
   let(:second_product) do
-    DataFoodConsortium::Connector::SuppliedProduct.new(
+    DataFoodConsortium::ConnectorV1::SuppliedProduct.new(
       "https://example.net/ocra",
       name: "Ocra",
     )
   end
   let(:quantity) do
-    DataFoodConsortium::Connector::QuantitativeValue.new(
+    DataFoodConsortium::ConnectorV1::QuantitativeValue.new(
       unit: connector.MEASURES.PIECE,
       value: 5,
     )
@@ -108,7 +108,7 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
   it "imports an object with referenced context" do
     result = connector.import(product_data)
 
-    expect(result).to be_a DataFoodConsortium::Connector::SuppliedProduct
+    expect(result).to be_a DataFoodConsortium::ConnectorV1::SuppliedProduct
     expect(result.semanticType).to eq "dfc-b:SuppliedProduct"
     expect(result.semanticId).to eq "https://example.net/tomato"
     expect(result.name).to eq "Tomato"
@@ -119,7 +119,7 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
   it "imports an object with included DFC v1.8 context" do
     result = connector.import(product_data_with_context_v1_8)
 
-    expect(result).to be_a DataFoodConsortium::Connector::SuppliedProduct
+    expect(result).to be_a DataFoodConsortium::ConnectorV1::SuppliedProduct
     expect(result.semanticType).to eq "dfc-b:SuppliedProduct"
     expect(result.semanticId).to eq "https://example.net/tomato"
     expect(result.name).to eq "Tomato"

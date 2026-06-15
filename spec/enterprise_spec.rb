@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::Connector::Enterprise do
+RSpec.describe DataFoodConsortium::ConnectorV1::Enterprise do
   it "can be empty when exported" do
-    subject = DataFoodConsortium::Connector::Enterprise.new(
+    subject = DataFoodConsortium::ConnectorV1::Enterprise.new(
       "https://myplatform.com/e"
     )
     result = exported_json(subject)
@@ -13,21 +13,24 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
   end
 
   it "contains all fields when exported" do
-    subject = DataFoodConsortium::Connector::Enterprise.new(
+    subject = DataFoodConsortium::ConnectorV1::Enterprise.new(
       "https://myplatform.com/e",
       name: "name",
       description: "description",
       vatNumber: "vatNumber",
       customerCategories: [
-        DataFoodConsortium::Connector::CustomerCategory.new("https://myplatform.com/cc")
+        DataFoodConsortium::ConnectorV1::CustomerCategory.new("https://myplatform.com/cc")
       ],
       suppliedProducts: [
-        DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp")
+        DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/sp")
       ],
       catalogItems: [
-        DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci")
+        DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci")
       ],
-      localizations: []
+      localizations: [],
+      affiliates: [
+        DataFoodConsortium::ConnectorV1::Person.new("https://myplatform.com/p1")
+      ]
     )
     result = exported_json(subject)
     expect(result).to include(
@@ -40,27 +43,28 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
         "dfc-b:manages" => "https://myplatform.com/ci",
         "dfc-b:name" => "name",
         "dfc-b:supplies" => "https://myplatform.com/sp",
+        "dfc-b:affiliates" => "https://myplatform.com/p1",
       }
     )
   end
 
   it "contains collections as arrays when exported" do
-    subject = DataFoodConsortium::Connector::Enterprise.new(
+    subject = DataFoodConsortium::ConnectorV1::Enterprise.new(
       "https://myplatform.com/e",
       name: "name",
       description: "description",
       vatNumber: "vatNumber",
       customerCategories: [
-        DataFoodConsortium::Connector::CustomerCategory.new("https://myplatform.com/cc"),
-        DataFoodConsortium::Connector::CustomerCategory.new("https://myplatform.com/cc2")
+        DataFoodConsortium::ConnectorV1::CustomerCategory.new("https://myplatform.com/cc"),
+        DataFoodConsortium::ConnectorV1::CustomerCategory.new("https://myplatform.com/cc2")
       ],
       suppliedProducts: [
-        DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp"),
-        DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp2")
+        DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/sp"),
+        DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/sp2")
       ],
       catalogItems: [
-        DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci"),
-        DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci2")
+        DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci"),
+        DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci2")
       ],
       localizations: []
     )

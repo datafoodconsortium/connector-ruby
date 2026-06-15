@@ -7,6 +7,73 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-06-15
+
+Generated from [UML model 3.4.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.4.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
+
+To avoid name conflict with newer major versions, this version has been published as a new package https://rubygems.org/gems/datafoodconsortium-connector-v1.
+
+The module name has been changed to DataFoodConsortium::ConnectorV1, the package files and folder were renamed to connector_v1.
+
+**This version contains breaking changes introduced by the ontology, see below.**
+
+### Added
+
+Accessors and mutators:
+- Add `Agent:socialMedias` setter.
+- Add `Agent:websites` setter.
+- Add `Agent:emails` setter.
+- Add `Catalog:maintainers` setter and remover.
+- Add `Catalog:items` setter.
+- Add `CatalogItem:catalogs` setter and wrong remover.
+- Add `CatalogItem:offers` setter and remover.
+- Add `CustomerCategory:name` getter and setter.
+- Add `DefinedProduct:partOrigin` setter.
+- Add `DefinedProduct:natureOrigin` setter.
+- Add `DefinedProduct:certifications` setter.
+- Add `DefinedProduct:localizedProducts` accessors and mutators.
+- Add `DefinedProduct:catalogItems` setter and remover.
+- Add `DefinedProduct:images` adder, getter, setter and remover.
+- Add `DefinedProduct:physicalCharacteristics` setter.
+- Add `DefinedProduct:nutrientCharacteristics` setter.
+- Add `DefinedProduct:allergenCharacteristics` setter.
+- Add `DefinedProduct:claims` setter.
+- Add `Enterprise:affiliates` accessors and mutators (affiliates).
+- Add `Enterprise:technicalProducts` setter and remover.
+- Add `Enterprise:catalogItems` setter and remover.
+- Add `Enterprise:customerCategories` setter and remover.
+- Add `Enterprise:suppliedProducts` setter and remover.
+- Add `Order:lines` setter and remover.
+- Add `Order:paymentMethod` getter and setter.
+- Add `Person:affiliatedOrgs` setter.
+- Add `SaleSession:offers` setter and remover.
+
+New objects:
+- Add `OpeningHoursSpecification`.
+
+Tests:
+- Add test for `Catalog`.
+- Add test for `LocalizedProduct`.
+
+### Fixed
+
+- Fix `Agent:localizations` setter.
+- Fix `Agent:phoneNumbers` setter.
+- Fix `LocalizedProduct:theoreticalStocks` wrong type (now `ITheoreticalStock`).
+
+### Changed
+
+- `Address:country` is now a `ISKOSConcept` to reflect ontology v1.16 state (**breaking change**).
+- Rename `hasIncome` -> `hasInput` and `hasOutcome` -> `hasOutput` in `PlannedTransformation` (**breaking change**).
+- Rename `incomeOf` > `inputOf` in `PlannedConsumptionFlow` (**breaking change**).
+- Rename `outcomeOf` -> `outpufOf` in `PlannedProductionFlow` (**breaking change**).
+- Rename `PhysicalPlace:addresses` to `PhysicalPlace:address` (singular) to support correct cardinatility (**breaking change**).
+- Rename `PhysicalPlace:mainContact` to `PhysicalPlace:mainContacts` (plural) to support correct cardinatility (**breaking change**).
+
+### Removed
+
+- Remove the `Quantity` class as there is no such class in the ontology. We should use `QuantitativeValue` (**breaking change**).
+
 ## [1.3.0] - 2025-12-17
 
 This version has been generated using:
@@ -191,7 +258,10 @@ This version has been generated using the [code generator](https://github.com/da
 
 - Initial version of this library.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.13...v1.0.0
 [1.0.0-alpha.13]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.12...v1.0.0-alpha.13

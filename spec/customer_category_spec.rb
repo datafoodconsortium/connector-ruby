@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::Connector::CustomerCategory do
+RSpec.describe DataFoodConsortium::ConnectorV1::CustomerCategory do
   it "can be empty when exported" do
-    subject = DataFoodConsortium::Connector::CustomerCategory.new(
+    subject = DataFoodConsortium::ConnectorV1::CustomerCategory.new(
       "https://myplatform.com/cc"
     )
     result = exported_json(subject)
@@ -11,14 +11,16 @@ RSpec.describe DataFoodConsortium::Connector::CustomerCategory do
   end
 
   it "contains all fields when exported" do
-    subject = DataFoodConsortium::Connector::CustomerCategory.new(
+    subject = DataFoodConsortium::ConnectorV1::CustomerCategory.new(
       "https://myplatform.com/cc",
-      description: "description"
+      name: "name",
+      description: "description",
     )
     result = exported_json(subject)
     expect(result).to include(
       "@id" => "https://myplatform.com/cc",
       "@type" => "dfc-b:CustomerCategory",
+      "dfc-b:name" => "name",
       "dfc-b:description" => "description",
     )
   end
