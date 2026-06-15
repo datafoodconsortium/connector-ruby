@@ -33,6 +33,7 @@ require "datafoodconsortium/connector/agent"
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Organization < DataFoodConsortium::Connector::Agent
@@ -72,6 +73,9 @@ class DataFoodConsortium::Connector::Organization < DataFoodConsortium::Connecto
 	# @return [ICertification]
 	attr_accessor :certifications
 
+	# @return [IPerson]
+	attr_accessor :affiliates
+
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
@@ -84,6 +88,7 @@ class DataFoodConsortium::Connector::Organization < DataFoodConsortium::Connecto
 	# @param mainContact [IPerson]
 	# @param templateSaleSessions [ITemplateSaleSession]
 	# @param certifications [ICertification]
+	# @param affiliates [IPerson]
 	# @param localizations [IAddress]
 	# @param phoneNumbers [IPhoneNumber]
 	# @param emails [String]
@@ -91,7 +96,7 @@ class DataFoodConsortium::Connector::Organization < DataFoodConsortium::Connecto
 	# @param socialMedias [ISocialMedia]
 	# @param logo [String]
 	# @param customerCategoriesMembership [ICustomerCategory]
-	def initialize(semanticId, name: nil, description: nil, vatNumber: nil, customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, templateSaleSessions: [], certifications: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil, customerCategoriesMembership: [])
+	def initialize(semanticId, name: nil, description: nil, vatNumber: nil, customerCategories: [], catalogs: [], catalogItems: [], suppliedProducts: [], technicalProducts: [], mainContact: nil, templateSaleSessions: [], certifications: [], affiliates: [], localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil, customerCategoriesMembership: [])
 		super(semanticId, localizations: localizations, phoneNumbers: phoneNumbers, emails: emails, websites: websites, socialMedias: socialMedias, logo: logo, customerCategoriesMembership: customerCategoriesMembership)
 		@name = name
 		@description = description
@@ -104,6 +109,7 @@ class DataFoodConsortium::Connector::Organization < DataFoodConsortium::Connecto
 		@mainContact = mainContact
 		@templateSaleSessions = templateSaleSessions
 		@certifications = certifications
+		@affiliates = affiliates
 		self.semanticType = "dfc-b:Organization"
 		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:hasDescription", &method("description")).valueSetter = method("description=")
@@ -116,6 +122,7 @@ class DataFoodConsortium::Connector::Organization < DataFoodConsortium::Connecto
 		registerSemanticProperty("dfc-b:hasMainContact", &method("mainContact")).valueSetter = method("mainContact=")
 		registerSemanticProperty("dfc-b:hasTemplateSaleSession", &method("templateSaleSessions")).valueSetter = method("templateSaleSessions=")
 		registerSemanticProperty("dfc-b:isCertifiedBy", &method("certifications")).valueSetter = method("certifications=")
+		registerSemanticProperty("dfc-b:affiliates", &method("affiliates")).valueSetter = method("affiliates=")
 	end
 	
 

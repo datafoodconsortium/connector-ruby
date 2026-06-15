@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.0] - 2026-06-10
+## [2.0.0] - 2026-06-15
 
 This version has been generated using:
 
-- [Connector code generator v1.2.0 branch](https://github.com/datafoodconsortium/connector-codegen/tree/v1.2.0).
+- [Connector code generator v2 branch](https://github.com/datafoodconsortium/connector-codegen/tree/v2).
 - [UML data model PR 29](https://github.com/datafoodconsortium/data-model-uml/pull/29).
 
 **This version contains breaking changes introduced by the ontology, see below.**
@@ -26,19 +26,16 @@ Classes:
 - Add `geo:Geometry`
 - Add `geo:Point`
 - Add `geo:Polygon`
+- Add `Certification`
+- Add `DeliveryStep`
+- Add `Organization`
+- Add `PickUpStep`
 - Add `ProductOption`
 - Add `ProductOptionValue`
+- Add `Route`
+- Add `TemplateSaleSession`
 - Add `Variant`
 - Add `VariantCaracteristic`
-- Add `TemplateSaleSession`
-- Add `Route`
-- Add `Step`
-- Add `PickUpStep`
-- Add `DeliveryStep`
-- Add `Datable`
-- Add `Organization`
-- Add `Certification`
-- Add `Shipment`
 
 Properties:
 - Add `Catalog:startDate`
