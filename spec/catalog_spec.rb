@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::Connector::Catalog do
+RSpec.describe DataFoodConsortium::ConnectorV1::Catalog do
   it "can be empty when exported" do
-    subject = DataFoodConsortium::Connector::Catalog.new(
+    subject = DataFoodConsortium::ConnectorV1::Catalog.new(
       "https://myplatform.com/c"
     )
     result = exported_json(subject)
@@ -13,14 +13,12 @@ RSpec.describe DataFoodConsortium::Connector::Catalog do
   end
 
   it "contains all fields when exported" do
-    catalogItem = DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/catalogItem")
-    organization = DataFoodConsortium::Connector::Organization.new("https://myplatform.com/organization")
-    subject = DataFoodConsortium::Connector::Catalog.new(
+    catalogItem = DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/catalogItem")
+    organization = DataFoodConsortium::ConnectorV1::Enterprise.new("https://myplatform.com/organization")
+    subject = DataFoodConsortium::ConnectorV1::Catalog.new(
       "https://myplatform.com/catalog",
       items: [catalogItem],
       maintainers: [organization],
-      beginDate: "beginDate",
-      endDate: "endDate",
     )
     result = exported_json(subject)
     expect(result).to include(
@@ -29,8 +27,6 @@ RSpec.describe DataFoodConsortium::Connector::Catalog do
         "@type" => "dfc-b:Catalog",
         "dfc-b:lists" => "https://myplatform.com/catalogItem",
         "dfc-b:maintainedBy" => "https://myplatform.com/organization",
-        "dfc-b:beginDate" => "beginDate",
-        "dfc-b:endDate" => "endDate",
       }
     )
   end

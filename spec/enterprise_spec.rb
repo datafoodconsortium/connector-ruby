@@ -28,7 +28,7 @@ RSpec.describe DataFoodConsortium::ConnectorV1::Enterprise do
         DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci")
       ],
       localizations: [],
-      agents: [
+      affiliates: [
         DataFoodConsortium::ConnectorV1::Person.new("https://myplatform.com/p1")
       ]
     )
