@@ -21,13 +21,24 @@
 # SOFTWARE.
 
 
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::CustomerCategory
+class DataFoodConsortium::Connector::Certification
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze
+    SEMANTIC_TYPE = "dfc-b:Certfication".freeze
+
+	# @return [String]
+	attr_accessor :certificationReferences
+
+	# @return [String]
+	attr_accessor :certificationScores
+
+	# @return [String]
+	attr_accessor :operatorIds
+
+	# @return [IOrganization]
+	attr_accessor :certifiedOrganizations
 
 	# @return [String]
 	attr_accessor :name
@@ -35,22 +46,28 @@ class DataFoodConsortium::Connector::CustomerCategory
 	# @return [String]
 	attr_accessor :description
 
-	# @return [IAgent]
-	attr_accessor :members
-
 	# @param semanticId [String]
+	# @param certificationReferences [String]
+	# @param certificationScores [String]
+	# @param operatorIds [String]
+	# @param certifiedOrganizations [IOrganization]
 	# @param name [String]
 	# @param description [String]
-	# @param members [IAgent]
-	def initialize(semanticId, name: nil, description: nil, members: [])
+	def initialize(semanticId, certificationReferences: [], certificationScores: [], operatorIds: [], certifiedOrganizations: [], name: nil, description: nil)
 		super(semanticId)
+		@certificationReferences = certificationReferences
+		@certificationScores = certificationScores
+		@operatorIds = operatorIds
+		@certifiedOrganizations = certifiedOrganizations
 		@name = name
 		@description = description
-		@members = members
-		self.semanticType = "dfc-b:CustomerCategory"
+		self.semanticType = "dfc-b:Certfication"
+		registerSemanticProperty("dfc-b:certiferReference", &method("certificationReferences")).valueSetter = method("certificationReferences=")
+		registerSemanticProperty("dfc-b:certificationScore", &method("certificationScores")).valueSetter = method("certificationScores=")
+		registerSemanticProperty("dfc-b:operatorId", &method("operatorIds")).valueSetter = method("operatorIds=")
+		registerSemanticProperty("dfc-b:certifies", &method("certifiedOrganizations")).valueSetter = method("certifiedOrganizations=")
 		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
-		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
-		registerSemanticProperty("dfc-b:isMemberOf", &method("members")).valueSetter = method("members=")
+		registerSemanticProperty("dfc-b:hasDescription", &method("description")).valueSetter = method("description=")
 	end
 	
 

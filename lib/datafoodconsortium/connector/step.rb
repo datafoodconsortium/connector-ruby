@@ -22,12 +22,13 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::CustomerCategory
+class DataFoodConsortium::Connector::Step
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze
+    SEMANTIC_TYPE = "dfc-b:Step".freeze
 
 	# @return [String]
 	attr_accessor :name
@@ -35,22 +36,46 @@ class DataFoodConsortium::Connector::CustomerCategory
 	# @return [String]
 	attr_accessor :description
 
-	# @return [IAgent]
-	attr_accessor :members
+	# @return [IRoute]
+	attr_accessor :routes
+
+	# @return [IShipment]
+	attr_accessor :deliveredShipments
+
+	# @return [IShipment]
+	attr_accessor :pickedUpShipments
+
+	# @return [String]
+	attr_accessor :duration
+
+	# @return [DateTime]
+	attr_accessor :arrivalDate
 
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
-	# @param members [IAgent]
-	def initialize(semanticId, name: nil, description: nil, members: [])
+	# @param routes [IRoute]
+	# @param deliveredShipments [IShipment]
+	# @param pickedUpShipments [IShipment]
+	# @param duration [String]
+	# @param arrivalDate [DateTime]
+	def initialize(semanticId, name: nil, description: nil, routes: [], deliveredShipments: [], pickedUpShipments: [], duration: nil, arrivalDate: nil)
 		super(semanticId)
 		@name = name
 		@description = description
-		@members = members
-		self.semanticType = "dfc-b:CustomerCategory"
+		@routes = routes
+		@deliveredShipments = deliveredShipments
+		@pickedUpShipments = pickedUpShipments
+		@duration = duration
+		@arrivalDate = arrivalDate
+		self.semanticType = "dfc-b:Step"
 		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
-		registerSemanticProperty("dfc-b:isMemberOf", &method("members")).valueSetter = method("members=")
+		registerSemanticProperty("dfc-b:isStepOf", &method("routes")).valueSetter = method("routes=")
+		registerSemanticProperty("dfc-b:delivery", &method("deliveredShipments")).valueSetter = method("deliveredShipments=")
+		registerSemanticProperty("dfc-b:pickUp", &method("pickedUpShipments")).valueSetter = method("pickedUpShipments=")
+		registerSemanticProperty("dfc-b:duration", &method("duration")).valueSetter = method("duration=")
+		registerSemanticProperty("dfc-b:arrivalDate", &method("arrivalDate")).valueSetter = method("arrivalDate=")
 	end
 	
 

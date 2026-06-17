@@ -23,36 +23,27 @@
 
 
 
-
+require "datafoodconsortium/connector/step"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
-    include VirtualAssembly::Semantizer::SemanticObject
+class DataFoodConsortium::Connector::PickupStep < DataFoodConsortium::Connector::Step
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:PickUpStep".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
-
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
-
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
-		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasInput", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutput", &method("productionFlow")).valueSetter = method("productionFlow=")
+	# @param name [String]
+	# @param description [String]
+	# @param routes [IRoute]
+	# @param deliveredShipments [IShipment]
+	# @param pickedUpShipments [IShipment]
+	# @param duration [String]
+	# @param arrivalDate [DateTime]
+	def initialize(semanticId, name: nil, description: nil, routes: [], deliveredShipments: [], pickedUpShipments: [], duration: nil, arrivalDate: nil)
+		super(semanticId, name: name, description: description, routes: routes, deliveredShipments: deliveredShipments, pickedUpShipments: pickedUpShipments, duration: duration, arrivalDate: arrivalDate)
+		
+		self.semanticType = "dfc-b:PickUpStep"
+		
 	end
 	
 

@@ -21,38 +21,35 @@
 # SOFTWARE.
 
 
-
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::OpeningHoursSpecification
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "https://schema.org/OpeningHoursSpecification".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
+	# @return [String]
+	attr_accessor :dayOfWeek
 
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
+	# @return [Time]
+	attr_accessor :opens
 
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [Time]
+	attr_accessor :closes
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param dayOfWeek [String]
+	# @param opens [Time]
+	# @param closes [Time]
+	def initialize(semanticId, dayOfWeek: nil, opens: nil, closes: nil)
 		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasInput", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutput", &method("productionFlow")).valueSetter = method("productionFlow=")
+		@dayOfWeek = dayOfWeek
+		@opens = opens
+		@closes = closes
+		self.semanticType = "https://schema.org/OpeningHoursSpecification"
+		registerSemanticProperty("https://schema.org/dayOfWeek", &method("dayOfWeek")).valueSetter = method("dayOfWeek=")
+		registerSemanticProperty("https://schema.org/opens", &method("opens")).valueSetter = method("opens=")
+		registerSemanticProperty("https://schema.org/closes", &method("closes")).valueSetter = method("closes=")
 	end
 	
 

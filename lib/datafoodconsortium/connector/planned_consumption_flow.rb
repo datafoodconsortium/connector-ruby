@@ -47,7 +47,7 @@ class DataFoodConsortium::Connector::PlannedConsumptionFlow < DataFoodConsortium
 		@transformation = transformation
 		@product = product
 		self.semanticType = "dfc-b:AsPlannedConsumptionFlow"
-		registerSemanticProperty("dfc-b:incomeOf", &method("transformation")).valueSetter = method("transformation=")
+		registerSemanticProperty("dfc-b:inputOf", &method("transformation")).valueSetter = method("transformation=")
 		registerSemanticProperty("dfc-b:consumes", &method("product")).valueSetter = method("product=")
 	end
 	

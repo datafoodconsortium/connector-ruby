@@ -22,6 +22,7 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Agent
@@ -47,6 +48,9 @@ class DataFoodConsortium::Connector::Agent
 	# @return [String]
 	attr_accessor :logo
 
+	# @return [ICustomerCategory]
+	attr_accessor :customerCategoriesMembership
+
 	# @param semanticId [String]
 	# @param localizations [IAddress]
 	# @param phoneNumbers [IPhoneNumber]
@@ -54,7 +58,8 @@ class DataFoodConsortium::Connector::Agent
 	# @param websites [String]
 	# @param socialMedias [ISocialMedia]
 	# @param logo [String]
-	def initialize(semanticId, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil)
+	# @param customerCategoriesMembership [ICustomerCategory]
+	def initialize(semanticId, localizations: [], phoneNumbers: [], emails: [], websites: [], socialMedias: [], logo: nil, customerCategoriesMembership: [])
 		super(semanticId)
 		@localizations = localizations
 		@phoneNumbers = phoneNumbers
@@ -62,6 +67,7 @@ class DataFoodConsortium::Connector::Agent
 		@websites = websites
 		@socialMedias = socialMedias
 		@logo = logo
+		@customerCategoriesMembership = customerCategoriesMembership
 		self.semanticType = "dfc-b:Agent"
 		registerSemanticProperty("dfc-b:hasAddress", &method("localizations")).valueSetter = method("localizations=")
 		registerSemanticProperty("dfc-b:hasPhoneNumber", &method("phoneNumbers")).valueSetter = method("phoneNumbers=")
@@ -69,6 +75,7 @@ class DataFoodConsortium::Connector::Agent
 		registerSemanticProperty("dfc-b:websitePage", &method("websites")).valueSetter = method("websites=")
 		registerSemanticProperty("dfc-b:hasSocialMedia", &method("socialMedias")).valueSetter = method("socialMedias=")
 		registerSemanticProperty("dfc-b:logo", &method("logo")).valueSetter = method("logo=")
+		registerSemanticProperty("dfc-b:isMemberOf", &method("customerCategoriesMembership")).valueSetter = method("customerCategoriesMembership=")
 	end
 	
 

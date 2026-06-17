@@ -22,12 +22,13 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::CustomerCategory
+class DataFoodConsortium::Connector::VariantCharacteristic
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:CustomerCategory".freeze
+    SEMANTIC_TYPE = "dfc-b:VariantCaracteristic".freeze
 
 	# @return [String]
 	attr_accessor :name
@@ -35,22 +36,34 @@ class DataFoodConsortium::Connector::CustomerCategory
 	# @return [String]
 	attr_accessor :description
 
-	# @return [IAgent]
-	attr_accessor :members
+	# @return [DateTime]
+	attr_accessor :date
+
+	# @return [IProductOption]
+	attr_accessor :productOption
+
+	# @return [IProductOptionValue]
+	attr_accessor :productOptionValue
 
 	# @param semanticId [String]
 	# @param name [String]
 	# @param description [String]
-	# @param members [IAgent]
-	def initialize(semanticId, name: nil, description: nil, members: [])
+	# @param date [DateTime]
+	# @param productOption [IProductOption]
+	# @param productOptionValue [IProductOptionValue]
+	def initialize(semanticId, name: nil, description: nil, date: nil, productOption: nil, productOptionValue: nil)
 		super(semanticId)
 		@name = name
 		@description = description
-		@members = members
-		self.semanticType = "dfc-b:CustomerCategory"
+		@date = date
+		@productOption = productOption
+		@productOptionValue = productOptionValue
+		self.semanticType = "dfc-b:VariantCaracteristic"
 		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
 		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
-		registerSemanticProperty("dfc-b:isMemberOf", &method("members")).valueSetter = method("members=")
+		registerSemanticProperty("dfc-b:date", &method("date")).valueSetter = method("date=")
+		registerSemanticProperty("dfc-b:hasProductOption", &method("productOption")).valueSetter = method("productOption=")
+		registerSemanticProperty("dfc-b:hasProductOptionValue", &method("productOptionValue")).valueSetter = method("productOptionValue=")
 	end
 	
 

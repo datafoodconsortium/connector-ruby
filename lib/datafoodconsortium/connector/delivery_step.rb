@@ -22,28 +22,28 @@
 
 
 
+
+require "datafoodconsortium/connector/step"
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::Quantity
-    include VirtualAssembly::Semantizer::SemanticObject
+class DataFoodConsortium::Connector::DeliveryStep < DataFoodConsortium::Connector::Step
 
-    SEMANTIC_TYPE = "dfc-b:Quantity".freeze
+    SEMANTIC_TYPE = "dfc-b:DeliveryStep".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :unit
 
-	# @return [Real]
-	attr_accessor :value
-
-	# @param unit [ISKOSConcept]
-	# @param value [Real]
-	def initialize(unit: nil, value: nil)
-		super()
-		@unit = unit
-		@value = value
-		self.semanticType = "dfc-b:Quantity"
-		registerSemanticProperty("dfc-b:hasUnit", &method("unit")).valueSetter = method("unit=")
-		registerSemanticProperty("dfc-b:value", &method("value")).valueSetter = method("value=")
+	# @param semanticId [String]
+	# @param name [String]
+	# @param description [String]
+	# @param routes [IRoute]
+	# @param deliveredShipments [IShipment]
+	# @param pickedUpShipments [IShipment]
+	# @param duration [String]
+	# @param arrivalDate [DateTime]
+	def initialize(semanticId, name: nil, description: nil, routes: [], deliveredShipments: [], pickedUpShipments: [], duration: nil, arrivalDate: nil)
+		super(semanticId, name: name, description: description, routes: routes, deliveredShipments: deliveredShipments, pickedUpShipments: pickedUpShipments, duration: duration, arrivalDate: arrivalDate)
+		
+		self.semanticType = "dfc-b:DeliveryStep"
+		
 	end
 	
 

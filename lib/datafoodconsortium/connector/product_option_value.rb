@@ -21,38 +21,35 @@
 # SOFTWARE.
 
 
-
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::ProductOptionValue
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:ProductOptionValue".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
+	# @return [String]
+	attr_accessor :name
 
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
+	# @return [String]
+	attr_accessor :description
 
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [DateTime]
+	attr_accessor :date
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param name [String]
+	# @param description [String]
+	# @param date [DateTime]
+	def initialize(semanticId, name: nil, description: nil, date: nil)
 		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasInput", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutput", &method("productionFlow")).valueSetter = method("productionFlow=")
+		@name = name
+		@description = description
+		@date = date
+		self.semanticType = "dfc-b:ProductOptionValue"
+		registerSemanticProperty("dfc-b:name", &method("name")).valueSetter = method("name=")
+		registerSemanticProperty("dfc-b:description", &method("description")).valueSetter = method("description=")
+		registerSemanticProperty("dfc-b:date", &method("date")).valueSetter = method("date=")
 	end
 	
 

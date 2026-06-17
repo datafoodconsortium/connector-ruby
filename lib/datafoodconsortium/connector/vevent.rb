@@ -21,38 +21,47 @@
 # SOFTWARE.
 
 
-
-
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::Vevent
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "http://www.w3.org/2002/12/cal/icaltzd#Vevent".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
+	# @return [DateTime]
+	attr_accessor :dtstart
 
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
+	# @return [DateTime]
+	attr_accessor :dtend
 
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [ValueRecur]
+	attr_accessor :rrule
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param dtstart [DateTime]
+	# @param dtend [DateTime]
+	# @param rrule [ValueRecur]
+	def initialize(semanticId, dtstart: nil, dtend: nil, rrule: nil)
 		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasInput", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutput", &method("productionFlow")).valueSetter = method("productionFlow=")
+		@dtstart = dtstart
+		@dtend = dtend
+		@rrule = rrule
+		self.semanticType = "http://www.w3.org/2002/12/cal/icaltzd#Vevent"
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtstart", &method("dtstart")).valueSetter = method("dtstart=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#dtend", &method("dtend")).valueSetter = method("dtend=")
+		registerSemanticProperty("http://www.w3.org/2002/12/cal/icaltzd#rrule", &method("rrule")).valueSetter = method("rrule=")
 	end
 	
 

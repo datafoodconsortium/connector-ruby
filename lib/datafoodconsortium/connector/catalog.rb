@@ -24,6 +24,7 @@
 
 
 
+
 require "virtual_assembly/semantizer"
 
 class DataFoodConsortium::Connector::Catalog
@@ -34,19 +35,31 @@ class DataFoodConsortium::Connector::Catalog
 	# @return [ICatalogItem]
 	attr_accessor :items
 
-	# @return [IEnterprise]
+	# @return [IOrganization]
 	attr_accessor :maintainers
+
+	# @return [DateTime]
+	attr_accessor :beginDate
+
+	# @return [DateTime]
+	attr_accessor :endDate
 
 	# @param semanticId [String]
 	# @param items [ICatalogItem]
-	# @param maintainers [IEnterprise]
-	def initialize(semanticId, items: [], maintainers: [])
+	# @param maintainers [IOrganization]
+	# @param beginDate [DateTime]
+	# @param endDate [DateTime]
+	def initialize(semanticId, items: [], maintainers: [], beginDate: nil, endDate: nil)
 		super(semanticId)
 		@items = items
 		@maintainers = maintainers
+		@beginDate = beginDate
+		@endDate = endDate
 		self.semanticType = "dfc-b:Catalog"
 		registerSemanticProperty("dfc-b:lists", &method("items")).valueSetter = method("items=")
 		registerSemanticProperty("dfc-b:maintainedBy", &method("maintainers")).valueSetter = method("maintainers=")
+		registerSemanticProperty("dfc-b:beginDate", &method("beginDate")).valueSetter = method("beginDate=")
+		registerSemanticProperty("dfc-b:endDate", &method("endDate")).valueSetter = method("endDate=")
 	end
 	
 

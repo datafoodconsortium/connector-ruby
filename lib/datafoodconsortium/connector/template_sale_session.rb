@@ -23,36 +23,35 @@
 
 
 
-
 require "virtual_assembly/semantizer"
 
-class DataFoodConsortium::Connector::PlannedTransformation
+class DataFoodConsortium::Connector::TemplateSaleSession
     include VirtualAssembly::Semantizer::SemanticObject
 
-    SEMANTIC_TYPE = "dfc-b:AsPlannedTransformation".freeze
+    SEMANTIC_TYPE = "dfc-b:TemplateSaleSession".freeze
 
-	# @return [ISKOSConcept]
-	attr_accessor :transformationType
+	# @return [IPlace]
+	attr_accessor :hostingPlaces
 
-	# @return [IPlannedConsumptionFlow]
-	attr_accessor :consumptionFlow
+	# @return [IOrganization]
+	attr_accessor :organizations
 
-	# @return [IPlannedProductionFlow]
-	attr_accessor :productionFlow
+	# @return [DateTime]
+	attr_accessor :date
 
 	# @param semanticId [String]
-	# @param transformationType [ISKOSConcept]
-	# @param consumptionFlow [IPlannedConsumptionFlow]
-	# @param productionFlow [IPlannedProductionFlow]
-	def initialize(semanticId, transformationType: nil, consumptionFlow: nil, productionFlow: nil)
+	# @param hostingPlaces [IPlace]
+	# @param organizations [IOrganization]
+	# @param date [DateTime]
+	def initialize(semanticId, hostingPlaces: [], organizations: [], date: nil)
 		super(semanticId)
-		@transformationType = transformationType
-		@consumptionFlow = consumptionFlow
-		@productionFlow = productionFlow
-		self.semanticType = "dfc-b:AsPlannedTransformation"
-		registerSemanticProperty("dfc-b:hasTransformationType", &method("transformationType")).valueSetter = method("transformationType=")
-		registerSemanticProperty("dfc-b:hasInput", &method("consumptionFlow")).valueSetter = method("consumptionFlow=")
-		registerSemanticProperty("dfc-b:hasOutput", &method("productionFlow")).valueSetter = method("productionFlow=")
+		@hostingPlaces = hostingPlaces
+		@organizations = organizations
+		@date = date
+		self.semanticType = "dfc-b:TemplateSaleSession"
+		registerSemanticProperty("dfc-b:hostedAt", &method("hostingPlaces")).valueSetter = method("hostingPlaces=")
+		registerSemanticProperty("dfc-b:isTemplateSaleSessionOf", &method("organizations")).valueSetter = method("organizations=")
+		registerSemanticProperty("dfc-b:date", &method("date")).valueSetter = method("date=")
 	end
 	
 

@@ -15,7 +15,7 @@ RSpec.describe DataFoodConsortium::Connector::Person do
       firstName: "firstName",
       lastName: "lastName",
       affiliatedOrganizations: [
-        DataFoodConsortium::Connector::Enterprise.new("https://myplatform.com/e")
+        DataFoodConsortium::Connector::Organization.new("https://myplatform.com/e")
       ],
       localizations: [
         DataFoodConsortium::Connector::Address.new("https://myplatform.com/a")
